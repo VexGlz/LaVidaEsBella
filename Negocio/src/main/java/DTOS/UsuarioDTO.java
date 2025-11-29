@@ -4,34 +4,23 @@
  */
 package DTOS;
 
+
+
 public class UsuarioDTO {
 
-    //Info Personal
     private Long id;
-    private String nombre;
-    private String curp;
-    private String direccion;
-    private String correo;
-    private boolean adoptadoPreviamente;
+    private String contrasena; // Solo para login/registro
 
-    //Info Vivienda
-    private String tipoVivienda;         
-    private String condicionesHogar;     
-    private String convivencia;          
-    private String tiempoDisponibilidad; 
+    // Composición: El usuario "TIENE" info personal y de vivienda
+    private InfoPersonalDTO infoPersonal;
+    private InfoViviendaDTO infoVivienda;
 
     public UsuarioDTO() {
+        this.infoPersonal = new InfoPersonalDTO();
+        this.infoVivienda = new InfoViviendaDTO();
     }
 
-    public UsuarioDTO(String nombre, String curp, String direccion, String correo,String tipoVivienda, String condicionesHogar) {
-        this.nombre = nombre;
-        this.curp = curp;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.tipoVivienda = tipoVivienda;
-        this.condicionesHogar = condicionesHogar;
-    }
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -40,75 +29,27 @@ public class UsuarioDTO {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public String getCurp() {
-        return curp;
+    public InfoPersonalDTO getInfoPersonal() {
+        return infoPersonal;
     }
 
-    public void setCurp(String curp) {
-        this.curp = curp;
+    public void setInfoPersonal(InfoPersonalDTO infoPersonal) {
+        this.infoPersonal = infoPersonal;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public InfoViviendaDTO getInfoVivienda() {
+        return infoVivienda;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public boolean isAdoptadoPreviamente() {
-        return adoptadoPreviamente;
-    }
-
-    public void setAdoptadoPreviamente(boolean adoptadoPreviamente) {
-        this.adoptadoPreviamente = adoptadoPreviamente;
-    }
-
-    public String getTipoVivienda() {
-        return tipoVivienda;
-    }
-
-    public void setTipoVivienda(String tipoVivienda) {
-        this.tipoVivienda = tipoVivienda;
-    }
-
-    public String getCondicionesHogar() {
-        return condicionesHogar;
-    }
-
-    public void setCondicionesHogar(String condicionesHogar) {
-        this.condicionesHogar = condicionesHogar;
-    }
-
-    public String getConvivencia() {
-        return convivencia;
-    }
-
-    public void setConvivencia(String convivencia) {
-        this.convivencia = convivencia;
-    }
-
-    public String getTiempoDisponibilidad() {
-        return tiempoDisponibilidad;
-    }
-
-    public void setTiempoDisponibilidad(String tiempoDisponibilidad) {
-        this.tiempoDisponibilidad = tiempoDisponibilidad;
+    public void setInfoVivienda(InfoViviendaDTO infoVivienda) {
+        this.infoVivienda = infoVivienda;
     }
 }

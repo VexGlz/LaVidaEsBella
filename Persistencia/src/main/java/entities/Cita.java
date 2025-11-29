@@ -4,37 +4,25 @@
  */
 package entities;
 
-import java.io.Serializable;
+import org.bson.types.ObjectId;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Josel
- */
-public class Cita implements Serializable {
+public class Cita {
 
-    private Long id;
+    private ObjectId id;
     private LocalDateTime fechaHora;
-
-    private Usuario usuario;
-    private Mascota mascota;
-    private Long idSolicitud;
+    private ObjectId idUsuario;
+    private ObjectId idMascota;
 
     public Cita() {
     }
 
-    public Cita(Long id, LocalDateTime fechaHora, Usuario usuario, Mascota mascota) {
-        this.id = id;
-        this.fechaHora = fechaHora;
-        this.usuario = usuario;
-        this.mascota = mascota;
-    }
-
-    public Long getId() {
+    // Getters y Setters
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -42,31 +30,23 @@ public class Cita implements Serializable {
         return fechaHora;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setFechaHora(LocalDateTime f) {
+        this.fechaHora = f;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public ObjectId getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(ObjectId id) {
+        this.idUsuario = id;
     }
 
-    public Mascota getMascota() {
-        return mascota;
+    public ObjectId getIdMascota() {
+        return idMascota;
     }
 
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
-    }
-
-    public Long getIdSolicitud() {
-        return idSolicitud;
-    }
-
-    public void setIdSolicitud(Long idSolicitud) {
-        this.idSolicitud = idSolicitud;
+    public void setIdMascota(ObjectId id) {
+        this.idMascota = id;
     }
 }

@@ -4,10 +4,6 @@
  */
 package DTOS;
 
-/**
- *
- * @author Josel
- */
 public class MascotaDTO {
 
     private Long id;
@@ -91,5 +87,10 @@ public class MascotaDTO {
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

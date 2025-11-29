@@ -3,120 +3,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entities;
-
-import java.io.Serializable;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Josel
  */
-public class Usuario implements Serializable {
+public class Usuario {
 
-    private Long _id;
-    private String nombre;
-    private String curp;
-    private String direccion;
-    private String correo;
-    private boolean historialAdopcion;
+    private ObjectId id;
+    private String contrasena;
 
-    private String tipoVivienda;
-    private String condicionesHogar;
-    private String otrasMascotasONinos;
-    private String disponibilidadTiempo;
+    private InfoPersonal infoPersonal;
+    private InfoVivienda infoVivienda;
 
     public Usuario() {
     }
 
-    public Usuario(Long _id, String nombre, String curp, String direccion, String correo, boolean historialAdopcion, String tipoVivienda, String condicionesHogar, String otrasMascotasONinos, String disponibilidadTiempo) {
-        this._id = _id;
-        this.nombre = nombre;
-        this.curp = curp;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.historialAdopcion = historialAdopcion;
-        this.tipoVivienda = tipoVivienda;
-        this.condicionesHogar = condicionesHogar;
-        this.otrasMascotasONinos = otrasMascotasONinos;
-        this.disponibilidadTiempo = disponibilidadTiempo;
+    public ObjectId getId() {
+        return id;
     }
 
-    public Long getId() {
-        return _id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
-    public void setId(Long _id) {
-        this._id = _id;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public InfoPersonal getInfoPersonal() {
+        return infoPersonal;
     }
 
-    public String getCurp() {
-        return curp;
+    public void setInfoPersonal(InfoPersonal infoPersonal) {
+        this.infoPersonal = infoPersonal;
     }
 
-    public void setCurp(String curp) {
-        this.curp = curp;
+    public InfoVivienda getInfoVivienda() {
+        return infoVivienda;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public boolean isHistorialAdopcion() {
-        return historialAdopcion;
-    }
-
-    public void setHistorialAdopcion(boolean historialAdopcion) {
-        this.historialAdopcion = historialAdopcion;
-    }
-
-    public String getTipoVivienda() {
-        return tipoVivienda;
-    }
-
-    public void setTipoVivienda(String tipoVivienda) {
-        this.tipoVivienda = tipoVivienda;
-    }
-
-    public String getCondicionesHogar() {
-        return condicionesHogar;
-    }
-
-    public void setCondicionesHogar(String condicionesHogar) {
-        this.condicionesHogar = condicionesHogar;
-    }
-
-    public String getOtrasMascotasONinos() {
-        return otrasMascotasONinos;
-    }
-
-    public void setOtrasMascotasONinos(String otrasMascotasONinos) {
-        this.otrasMascotasONinos = otrasMascotasONinos;
-    }
-
-    public String getDisponibilidadTiempo() {
-        return disponibilidadTiempo;
-    }
-
-    public void setDisponibilidadTiempo(String disponibilidadTiempo) {
-        this.disponibilidadTiempo = disponibilidadTiempo;
+    public void setInfoVivienda(InfoVivienda infoVivienda) {
+        this.infoVivienda = infoVivienda;
     }
 }

@@ -4,69 +4,63 @@
  */
 package entities;
 
-import java.io.Serializable;
+import org.bson.types.ObjectId;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Josel
- */
-public class SolicitudAdopcion implements Serializable {
+public class SolicitudAdopcion {
 
-    private Long id;
-    private Usuario usuario;
-    private Mascota mascota;
+    private ObjectId id;
+
+    private ObjectId idUsuario; // Referencia
+    private ObjectId idMascota; // Referencia
+
+    private RazonesAntecedentes razones; // Embebido
+
     private LocalDateTime fechaSolicitud;
     private String estado;
-
-    private String motivoAdopcion;
-    private String antecedentesMascotas;
-    private boolean terminosAceptados;
 
     public SolicitudAdopcion() {
     }
 
-    public SolicitudAdopcion(Long id, Usuario usuario, Mascota mascota, LocalDateTime fechaSolicitud, String estado, String motivoAdopcion, String antecedentesMascotas, boolean terminosAceptados) {
-        this.id = id;
-        this.usuario = usuario;
-        this.mascota = mascota;
-        this.fechaSolicitud = fechaSolicitud;
-        this.estado = estado;
-        this.motivoAdopcion = motivoAdopcion;
-        this.antecedentesMascotas = antecedentesMascotas;
-        this.terminosAceptados = terminosAceptados;
-    }
-
-    public Long getId() {
+    // Getters y Setters
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public ObjectId getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(ObjectId idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Mascota getMascota() {
-        return mascota;
+    public ObjectId getIdMascota() {
+        return idMascota;
     }
 
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
+    public void setIdMascota(ObjectId idMascota) {
+        this.idMascota = idMascota;
+    }
+
+    public RazonesAntecedentes getRazones() {
+        return razones;
+    }
+
+    public void setRazones(RazonesAntecedentes razones) {
+        this.razones = razones;
     }
 
     public LocalDateTime getFechaSolicitud() {
         return fechaSolicitud;
     }
 
-    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
-        this.fechaSolicitud = fechaSolicitud;
+    public void setFechaSolicitud(LocalDateTime f) {
+        this.fechaSolicitud = f;
     }
 
     public String getEstado() {
@@ -75,29 +69,5 @@ public class SolicitudAdopcion implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getMotivoAdopcion() {
-        return motivoAdopcion;
-    }
-
-    public void setMotivoAdopcion(String motivoAdopcion) {
-        this.motivoAdopcion = motivoAdopcion;
-    }
-
-    public String getAntecedentesMascotas() {
-        return antecedentesMascotas;
-    }
-
-    public void setAntecedentesMascotas(String antecedentesMascotas) {
-        this.antecedentesMascotas = antecedentesMascotas;
-    }
-
-    public boolean isTerminosAceptados() {
-        return terminosAceptados;
-    }
-
-    public void setTerminosAceptados(boolean terminosAceptados) {
-        this.terminosAceptados = terminosAceptados;
     }
 }

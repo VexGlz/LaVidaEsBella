@@ -4,21 +4,15 @@
  */
 package entities;
 
-import java.io.Serializable;
+import org.bson.types.ObjectId;
 
-/**
- *
- * @author Josel
- */
-public class Mascota implements Serializable {
+public class Mascota {
 
-    private Long id;
+    private ObjectId id;
     private String nombre;
     private String especie;
-    private String personalidad;
     private String estadoSalud;
-    private String fichaMedica;
-    private String requisitosHogar;
+    private String personalidad;
     private String urlImagen;
     private int edad;
     private boolean disponible;
@@ -26,11 +20,11 @@ public class Mascota implements Serializable {
     public Mascota() {
     }
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -50,14 +44,6 @@ public class Mascota implements Serializable {
         this.especie = especie;
     }
 
-    public String getPersonalidad() {
-        return personalidad;
-    }
-
-    public void setPersonalidad(String personalidad) {
-        this.personalidad = personalidad;
-    }
-
     public String getEstadoSalud() {
         return estadoSalud;
     }
@@ -66,20 +52,12 @@ public class Mascota implements Serializable {
         this.estadoSalud = estadoSalud;
     }
 
-    public String getFichaMedica() {
-        return fichaMedica;
+    public String getPersonalidad() {
+        return personalidad;
     }
 
-    public void setFichaMedica(String fichaMedica) {
-        this.fichaMedica = fichaMedica;
-    }
-
-    public String getRequisitosHogar() {
-        return requisitosHogar;
-    }
-
-    public void setRequisitosHogar(String requisitosHogar) {
-        this.requisitosHogar = requisitosHogar;
+    public void setPersonalidad(String personalidad) {
+        this.personalidad = personalidad;
     }
 
     public String getUrlImagen() {

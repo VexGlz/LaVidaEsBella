@@ -8,21 +8,21 @@ import java.time.LocalDateTime;
 
 public class SolicitudAdopcionDTO {
 
-    //Solicitud
     private Long id;
     private UsuarioDTO usuario;
     private MascotaDTO mascota;
-    private LocalDateTime fechaSolicitud;
-    private String estado;
+    private RazonesAntecedentesDTO razones; // Datos del paso 3
 
-    //Info Razones
-    private String motivoAdopcion;
-    private String antecedentesMascotas;
-    private boolean aceptaCondicionesSeguimiento;
+    private LocalDateTime fechaSolicitud;
+    private String estado; // PENDIENTE, APROBADA, etc.
+    private Long idCita;   // ID de la cita asociada
 
     public SolicitudAdopcionDTO() {
+        this.razones = new RazonesAntecedentesDTO();
+        this.fechaSolicitud = LocalDateTime.now();
     }
 
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -47,6 +47,14 @@ public class SolicitudAdopcionDTO {
         this.mascota = mascota;
     }
 
+    public RazonesAntecedentesDTO getRazones() {
+        return razones;
+    }
+
+    public void setRazones(RazonesAntecedentesDTO razones) {
+        this.razones = razones;
+    }
+
     public LocalDateTime getFechaSolicitud() {
         return fechaSolicitud;
     }
@@ -63,27 +71,11 @@ public class SolicitudAdopcionDTO {
         this.estado = estado;
     }
 
-    public String getMotivoAdopcion() {
-        return motivoAdopcion;
+    public Long getIdCita() {
+        return idCita;
     }
 
-    public void setMotivoAdopcion(String motivoAdopcion) {
-        this.motivoAdopcion = motivoAdopcion;
-    }
-
-    public String getAntecedentesMascotas() {
-        return antecedentesMascotas;
-    }
-
-    public void setAntecedentesMascotas(String antecedentesMascotas) {
-        this.antecedentesMascotas = antecedentesMascotas;
-    }
-
-    public boolean isAceptaCondicionesSeguimiento() {
-        return aceptaCondicionesSeguimiento;
-    }
-
-    public void setAceptaCondicionesSeguimiento(boolean aceptaCondicionesSeguimiento) {
-        this.aceptaCondicionesSeguimiento = aceptaCondicionesSeguimiento;
+    public void setIdCita(Long idCita) {
+        this.idCita = idCita;
     }
 }
