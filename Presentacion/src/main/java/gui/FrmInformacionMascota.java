@@ -8,12 +8,12 @@ package gui;
  *
  * @author Erick
  */
-public class FInfoMascota extends javax.swing.JFrame {
+public class FrmInformacionMascota extends javax.swing.JFrame {
 
     /**
      * Creates new form FInfoMascota
      */
-    public FInfoMascota() {
+    public FrmInformacionMascota() {
         initComponents();
     }
 

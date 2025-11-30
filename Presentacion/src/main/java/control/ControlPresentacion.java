@@ -5,9 +5,21 @@
 package control;
 
 
-import presentacion.boundaries.*;
-import Negocio.control.ControlSubsistemas;
-import negocio.adopcionesdto.*;
+import control.ControlSubsistemas;
+import DTOS.CitaDTO;
+import DTOS.InfoPersonalDTO;
+import DTOS.InfoViviendaDTO;
+import DTOS.RazonesAntecedentesDTO;
+import DTOS.SolicitudAdopcionDTO;
+import DTOS.UsuarioDTO;
+import gui.FrmCorreoConfirmacion;
+import gui.FrmGenerarCita;
+import gui.FrmInfoPersonal;
+import gui.FrmInfoVivienda;
+import gui.FrmInformacionMascota;
+import gui.FrmMenuPrincipal;
+import gui.FrmRazonesAntecedentes;
+import gui.MenuMostrarEspecies;
 
 import javax.swing.*;
 
@@ -41,14 +53,14 @@ public class ControlPresentacion {
 
     public void mostrarMenuPrincipal() {
         if (frmMenuPrincipal == null) {
-            frmMenuPrincipal = new FrmMenuPrincipal(this);
+            frmMenuPrincipal = new FrmMenuPrincipal();
         }
         frmMenuPrincipal.setVisible(true);
     }
 
     public void mostrarMenuMascotas() {
         if (menuMostrarEspecies == null) {
-            menuMostrarEspecies = new MenuMostrarEspecies(this);
+            menuMostrarEspecies = new MenuMostrarEspecies();
         }
         menuMostrarEspecies.setVisible(true);
     }
@@ -59,8 +71,8 @@ public class ControlPresentacion {
     }
 
     public void mostrarInformacionMascota(String idMascota) {
-        cerrarVentana(menuMostrarEspecies);
-        frmInformacionMascota = new FrmInformacionMascota(this, idMascota);
+        if (menuMostrarEspecies != null) menuMostrarEspecies.setVisible(false);
+        frmInformacionMascota = new FrmInformacionMascota();
         frmInformacionMascota.setVisible(true);
     }
 
@@ -70,7 +82,7 @@ public class ControlPresentacion {
     }
 
     public void mostrarInfoPersonal() {
-        frmInfoPersonal = new FrmInfoPersonal(this);
+        frmInfoPersonal = new FrmInfoPersonal();
         frmInfoPersonal.setVisible(true);
     }
 
@@ -78,46 +90,44 @@ public class ControlPresentacion {
         // Guardar en la solicitud actual
         if (solicitudActual == null) {
             solicitudActual = new SolicitudAdopcionDTO();
-            solicitudActual.setIdMascota(idMascotaSeleccionada);
-            solicitudActual.setIdUsuario(idUsuarioActual);
         }
-        solicitudActual.setInfoPersonal(infoPersonal.toString());
+        // TODO: Set mascota and usuario properly
 
-        cerrarVentana(frmInfoPersonal);
+        if (frmInfoPersonal != null) frmInfoPersonal.setVisible(false);
         mostrarInfoVivienda();
     }
 
     public void mostrarInfoVivienda() {
-        frmInfoVivienda = new FrmInfoVivienda(this);
+        frmInfoVivienda = new FrmInfoVivienda();
         frmInfoVivienda.setVisible(true);
     }
 
     public void guardarInfoVivienda(InfoViviendaDTO infoVivienda) {
-        solicitudActual.setInfoVivienda(infoVivienda.toString());
+        // TODO: Save info vivienda
 
-        cerrarVentana(frmInfoVivienda);
+        if (frmInfoVivienda != null) frmInfoVivienda.setVisible(false);
         mostrarRazonesAntecedentes();
     }
 
     public void mostrarRazonesAntecedentes() {
-        frmRazonesAntecedentes = new FrmRazonesAntecedentes(this);
+        frmRazonesAntecedentes = new FrmRazonesAntecedentes();
         frmRazonesAntecedentes.setVisible(true);
     }
 
     public void guardarRazonesAntecedentes(RazonesAntecedentesDTO razones) {
-        solicitudActual.setRazonesAntecedentes(razones.toString());
+        // TODO: Save razones
 
-        cerrarVentana(frmRazonesAntecedentes);
+        if (frmRazonesAntecedentes != null) frmRazonesAntecedentes.setVisible(false);
         mostrarGenerarCita();
     }
 
     public void mostrarGenerarCita() {
-        frmGenerarCita = new FrmGenerarCita(this);
+        frmGenerarCita = new FrmGenerarCita();
         frmGenerarCita.setVisible(true);
     }
 
     public void procesarCita(CitaDTO cita) {
-        solicitudActual.setCita(cita.getId());
+        solicitudActual.setIdCita(cita.getId());
 
         // Procesar solicitud completa
         try {
@@ -132,7 +142,7 @@ public class ControlPresentacion {
     }
 
     public void mostrarConfirmacion() {
-        frmCorreoConfirmacion = new FrmCorreoConfirmacion(this, solicitudActual);
+        frmCorreoConfirmacion = new FrmCorreoConfirmacion();
         frmCorreoConfirmacion.setVisible(true);
     }
 
@@ -168,12 +178,12 @@ public class ControlPresentacion {
     }
 
     private void cerrarTodasLasVentanas() {
-        cerrarVentana(menuMostrarEspecies);
+        if (menuMostrarEspecies != null) menuMostrarEspecies.setVisible(false);
         cerrarVentana(frmInformacionMascota);
         cerrarVentana(frmGenerarCita);
-        cerrarVentana(frmInfoVivienda);
-        cerrarVentana(frmRazonesAntecedentes);
-        cerrarVentana(frmInfoPersonal);
+        if (frmInfoVivienda != null) frmInfoVivienda.setVisible(false);
+        if (frmRazonesAntecedentes != null) frmRazonesAntecedentes.setVisible(false);
+        if (frmInfoPersonal != null) frmInfoPersonal.setVisible(false);
         cerrarVentana(frmCorreoConfirmacion);
     }
 
@@ -183,5 +193,25 @@ public class ControlPresentacion {
 
     public String getIdUsuarioActual() {
         return idUsuarioActual;
+    }
+    
+    /**
+     * Valida las credenciales de login del usuario
+     * @param correo Correo del usuario
+     * @param password Contraseña del usuario
+     * @return UsuarioDTO si las credenciales son válidas
+     * @throws Exception si las credenciales son inválidas
+     */
+    public UsuarioDTO validarLogin(String correo, String password) throws Exception {
+        return controlSubsistemas.validarLogin(correo, password);
+    }
+    
+    /**
+     * Registra un nuevo usuario en el sistema
+     * @param usuario UsuarioDTO con los datos del nuevo usuario
+     * @throws Exception si hay algún error en el registro
+     */
+    public void registrarUsuario(UsuarioDTO usuario) throws Exception {
+        controlSubsistemas.registrarUsuario(usuario);
     }
 }

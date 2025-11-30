@@ -10,11 +10,18 @@ package gui;
  */
 public class FrmRegistro extends javax.swing.JFrame {
 
+    private FrmInicioSesion frmPadre;
+    
     /**
      * Creates new form FrmRegistro
      */
     public FrmRegistro() {
         initComponents();
+    }
+    
+    public FrmRegistro(FrmInicioSesion padre) {
+        initComponents();
+        this.frmPadre = padre;
     }
 
     /**
@@ -187,7 +194,69 @@ public class FrmRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegitrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegitrarActionPerformed
-
+        // Obtener datos del formulario
+        String nombre = TfNom.getText().trim();
+        String correo = TfCorreo1.getText().trim();
+        String password = new String(PfContra.getPassword());
+        
+        // Validar que no estén vacíos
+        if (nombre.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese su nombre", 
+                "Campo requerido", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (correo.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese su correo electrónico", 
+                "Campo requerido", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (password.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese su contraseña", 
+                "Campo requerido", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            // Crear DTO de usuario
+            DTOS.UsuarioDTO usuario = new DTOS.UsuarioDTO();
+            usuario.setContrasena(password);
+            
+            DTOS.InfoPersonalDTO infoPersonal = new DTOS.InfoPersonalDTO();
+            infoPersonal.setNombre(nombre);
+            infoPersonal.setCorreo(correo);
+            usuario.setInfoPersonal(infoPersonal);
+            
+            // Registrar usuario
+            control.ControlPresentacion control = new control.ControlPresentacion();
+            control.registrarUsuario(usuario);
+            
+            // Registro exitoso
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "¡Usuario registrado exitosamente!\nYa puedes iniciar sesión.", 
+                "Registro exitoso", 
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            
+            // Volver a la pantalla de login
+            if (frmPadre != null) {
+                frmPadre.setVisible(true);
+            }
+            this.dispose();
+            
+        } catch (Exception e) {
+            // Mostrar error
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error de registro", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegitrarActionPerformed
 
     /**

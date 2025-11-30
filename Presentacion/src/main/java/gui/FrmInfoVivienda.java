@@ -8,12 +8,12 @@ package gui;
  *
  * @author Erick
  */
-public class JPInfoVivienda extends javax.swing.JPanel {
+public class FrmInfoVivienda extends javax.swing.JPanel {
 
     /**
      * Creates new form JPInfoVivienda
      */
-    public JPInfoVivienda() {
+    public FrmInfoVivienda() {
         initComponents();
     }
 

@@ -8,12 +8,12 @@ package gui;
  *
  * @author Erick
  */
-public class JPInfoRazones extends javax.swing.JPanel {
+public class FrmRazonesAntecedentes extends javax.swing.JPanel {
 
     /**
      * Creates new form JPInfoRazones
      */
-    public JPInfoRazones() {
+    public FrmRazonesAntecedentes() {
         initComponents();
     }
 

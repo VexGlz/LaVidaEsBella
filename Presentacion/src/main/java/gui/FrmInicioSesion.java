@@ -10,11 +10,14 @@ package gui;
  */
 public class FrmInicioSesion extends javax.swing.JFrame {
 
+    private control.ControlPresentacion controlPresentacion;
+    
     /**
      * Creates new form FrmInicioSesion
      */
     public FrmInicioSesion() {
         initComponents();
+        this.controlPresentacion = new control.ControlPresentacion();
     }
 
     /**
@@ -220,11 +223,55 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-
+        // Abrir formulario de registro
+        FrmRegistro frmRegistro = new FrmRegistro(this);
+        frmRegistro.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void btnIniciarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSActionPerformed
-
+        // Obtener datos del formulario
+        String correo = TfCorreo.getText().trim();
+        String password = new String(PfContra.getPassword());
+        
+        // Validar que no estén vacíos
+        if (correo.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese su correo electrónico", 
+                "Campo requerido", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (password.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese su contraseña", 
+                "Campo requerido", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            // Validar login
+            DTOS.UsuarioDTO usuario = controlPresentacion.validarLogin(correo, password);
+            
+            // Login exitoso
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "¡Bienvenido " + usuario.getInfoPersonal().getNombre() + "!", 
+                "Login exitoso", 
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            
+            // Aquí podrías abrir la ventana principal de la aplicación
+            // Por ejemplo: new FrmMenuPrincipal(controlPresentacion).setVisible(true);
+            // this.dispose();
+            
+        } catch (Exception e) {
+            // Mostrar error
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error de inicio de sesión", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnIniciarSActionPerformed
 
     private void TfCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfCorreoActionPerformed

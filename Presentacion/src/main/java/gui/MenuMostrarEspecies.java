@@ -8,12 +8,12 @@ package gui;
  *
  * @author Erick
  */
-public class JPMenuMostrarEspecies extends javax.swing.JPanel {
+public class MenuMostrarEspecies extends javax.swing.JPanel {
 
     /**
      * Creates new form JPMenuMostrarEspecies
      */
-    public JPMenuMostrarEspecies() {
+    public MenuMostrarEspecies() {
         initComponents();
     }
 
