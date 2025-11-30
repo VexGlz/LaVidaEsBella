@@ -9,8 +9,8 @@ package ObjetoNegocio.adaptadores;
  * @author Josel
  */
 
-import negocio.dto.RazonesAntecedentesDTO;
-import persistencia.entidades.RazonesAntecedentes;
+import DTOS.RazonesAntecedentesDTO;
+import entities.RazonesAntecedentes;
 
 public class AdaptadorRazonesAntecedentes {
 

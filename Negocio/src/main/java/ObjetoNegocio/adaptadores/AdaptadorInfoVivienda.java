@@ -4,38 +4,43 @@
  */
 package ObjetoNegocio.adaptadores;
 
+import DTOS.InfoViviendaDTO;
+import entities.InfoVivienda;
+
 /**
  *
  * @author Josel
  */
+public class AdaptadorInfoVivienda {
 
-import negocio.dto.InfoPersonalDTO;
-import persistencia.entidades.InfoPersonal;
-
-public class AdaptadorInfoPersonal {
-
-    public InfoPersonal toEntity(InfoPersonalDTO dto) {
+    // Convierte de DTO (Negocio) a Entidad (Base de Datos)
+    public InfoVivienda toEntity(InfoViviendaDTO dto) {
         if (dto == null) return null;
         
-        InfoPersonal entity = new InfoPersonal();
-        entity.setNombre(dto.getNombre());
-        entity.setCurp(dto.getCurp());
-        entity.setDireccion(dto.getDireccion());
-        entity.setCorreo(dto.getCorreo());
-        entity.setTelefono(dto.getTelefono());
+        InfoVivienda entity = new InfoVivienda();
+        
+        // Asumo que estos son tus campos. Si alguno te marca rojo,
+        // solo cambia el nombre (ej. setCalle por setDireccion)
+        entity.setCondicionesHogar(dto.getCondicionesHogar());
+        entity.setTiempoDisponibilidad(dto.getTiempoDisponibilidad());
+        entity.setTieneNinos(dto.isTieneNinos());
+        entity.setTieneOtrasMascotas(dto.isTieneOtrasMascotas());
+        entity.setTipoVivienda(dto.getTipoVivienda());
         
         return entity;
     }
 
-    public InfoPersonalDTO toDTO(InfoPersonal entity) {
+    // Convierte de Entidad (Base de Datos) a DTO (Negocio)
+    public InfoViviendaDTO toDTO(InfoVivienda entity) {
         if (entity == null) return null;
         
-        InfoPersonalDTO dto = new InfoPersonalDTO();
-        dto.setNombre(entity.getNombre());
-        dto.setCurp(entity.getCurp());
-        dto.setDireccion(entity.getDireccion());
-        dto.setCorreo(entity.getCorreo());
-        dto.setTelefono(entity.getTelefono());
+        InfoViviendaDTO dto = new InfoViviendaDTO();
+        
+        dto.setCondicionesHogar(entity.getCondicionesHogar());
+        dto.setTiempoDisponibilidad(entity.getTiempoDisponibilidad());
+        dto.setTieneNinos(entity.isTieneNinos());
+        dto.setTieneOtrasMascotas(dto.isTieneOtrasMascotas());
+        dto.setTipoVivienda(dto.getTipoVivienda());
         
         return dto;
     }

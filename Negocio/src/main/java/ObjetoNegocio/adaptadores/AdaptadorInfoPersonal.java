@@ -10,7 +10,7 @@ package ObjetoNegocio.adaptadores;
  */
 
 import DTOS.InfoPersonalDTO;
-import persistencia.entidades.InfoPersonal;
+import entities.InfoPersonal;
 
 public class AdaptadorInfoPersonal {
 

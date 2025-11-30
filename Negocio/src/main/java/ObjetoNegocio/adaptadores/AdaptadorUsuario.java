@@ -9,8 +9,8 @@ package ObjetoNegocio.adaptadores;
  * @author Josel
  */
 
-import negocio.dto.UsuarioDTO;
-import persistencia.entidades.Usuario;
+import DTOS.UsuarioDTO;
+import entities.Usuario;
 // import org.bson.types.ObjectId;
 
 public class AdaptadorUsuario {

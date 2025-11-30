@@ -4,6 +4,9 @@
  */
 package control;
 
+import DTOS.CitaDTO;
+import DTOS.SolicitudAdopcionDTO;
+import DTOS.UsuarioDTO;
 import negocio.adopcionesdto.*;
 import negocio.subsistemas.iniciosesion.FachadaInicioSesion;
 import negocio.subsistemas.iniciosesion.IInicioSesion;

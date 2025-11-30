@@ -9,9 +9,8 @@ package ObjetoNegocio.adaptadores;
  * @author Josel
  */
 
-import negocio.dto.CitaDTO;
-import persistencia.entidades.Cita;
-import org.bson.types.ObjectId;
+import DTOS.CitaDTO;
+import entities.Cita;
 
 public class AdaptadorCita {
 

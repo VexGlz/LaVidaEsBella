@@ -70,4 +70,5 @@ public class SolicitudAdopcion {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
 }
