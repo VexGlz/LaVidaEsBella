@@ -10,11 +10,27 @@ package gui;
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
+    private java.awt.CardLayout cardLayout;
+
     /**
      * Creates new form FrmMenuPrincipal
      */
     public FrmMenuPrincipal() {
         initComponents();
+        initCardLayout();
+    }
+
+    private void initCardLayout() {
+        cardLayout = new java.awt.CardLayout();
+        panelContenidoDinamico.setLayout(cardLayout);
+        
+        // Agregar los paneles al CardLayout
+        panelContenidoDinamico.add(new MenuMostrarEspecies(), "inicio");
+        panelContenidoDinamico.add(new JPSolicitudes(), "solicitudes");
+        panelContenidoDinamico.add(new JPContacto(), "contacto");
+        
+        // Mostrar inicio por defecto
+        cardLayout.show(panelContenidoDinamico, "inicio");
     }
 
     /**
@@ -26,21 +42,134 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelCabecera = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btn_inicio = new javax.swing.JButton();
+        btn_solicitudes = new javax.swing.JButton();
+        btn_contacto = new javax.swing.JButton();
+        panelContenidoDinamico = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelCabecera.setBackground(new java.awt.Color(255, 255, 255));
+        panelCabecera.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(33, 110, 33));
+        jLabel1.setText("LA VIDA ES BELLA");
+
+        btn_inicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_inicio.setText("Inicio");
+        btn_inicio.setBorder(null);
+        btn_inicio.setBorderPainted(false);
+        btn_inicio.setContentAreaFilled(false);
+        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inicioActionPerformed(evt);
+            }
+        });
+
+        btn_solicitudes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_solicitudes.setText("Mis Solicitudes");
+        btn_solicitudes.setBorder(null);
+        btn_solicitudes.setBorderPainted(false);
+        btn_solicitudes.setContentAreaFilled(false);
+        btn_solicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solicitudesActionPerformed(evt);
+            }
+        });
+
+        btn_contacto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_contacto.setText("Contacto");
+        btn_contacto.setBorder(null);
+        btn_contacto.setBorderPainted(false);
+        btn_contacto.setContentAreaFilled(false);
+        btn_contacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_contactoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
+        panelCabecera.setLayout(panelCabeceraLayout);
+        panelCabeceraLayout.setHorizontalGroup(
+            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCabeceraLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel1)
+                .addGap(122, 122, 122)
+                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelCabeceraLayout.setVerticalGroup(
+            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCabeceraLayout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
+        );
+
+        panelContenidoDinamico.setBackground(new java.awt.Color(235, 229, 220));
+        panelContenidoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelContenidoDinamicoLayout = new javax.swing.GroupLayout(panelContenidoDinamico);
+        panelContenidoDinamico.setLayout(panelContenidoDinamicoLayout);
+        panelContenidoDinamicoLayout.setHorizontalGroup(
+            panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1255, Short.MAX_VALUE)
+        );
+        panelContenidoDinamicoLayout.setVerticalGroup(
+            panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 607, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panelCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
+        if (cardLayout != null) {
+            cardLayout.show(panelContenidoDinamico, "inicio");
+        }
+    }//GEN-LAST:event_btn_inicioActionPerformed
+
+    private void btn_solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitudesActionPerformed
+        if (cardLayout != null) {
+            cardLayout.show(panelContenidoDinamico, "solicitudes");
+        }
+    }//GEN-LAST:event_btn_solicitudesActionPerformed
+
+    private void btn_contactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_contactoActionPerformed
+        if (cardLayout != null) {
+            cardLayout.show(panelContenidoDinamico, "contacto");
+        }
+    }//GEN-LAST:event_btn_contactoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +207,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_contacto;
+    private javax.swing.JButton btn_inicio;
+    private javax.swing.JButton btn_solicitudes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel panelCabecera;
+    private javax.swing.JPanel panelContenidoDinamico;
     // End of variables declaration//GEN-END:variables
 }

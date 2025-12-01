@@ -37,13 +37,16 @@ public class ControlSubsistemas {
     }
 
     // --- MÉTODOS PARA EL FLUJO DE ADOPCIÓN ---
-    public void procesarSolicitudCompleta(SolicitudAdopcionDTO solicitud, CitaDTO cita) {
+    public void procesarSolicitudCompleta(SolicitudAdopcionDTO solicitud, CitaDTO cita) throws Exception {
         // 1. Guardar la solicitud de adopción (Negocio -> Persistencia)
         controlAdopcion.crearSolicitud(solicitud);
 
         // 2. Agendar la cita y notificar (Negocio -> Infraestructura)
         // Asumiendo que obtenemos el correo del usuario del DTO
-        String correoUsuario = "usuario@ejemplo.com"; // Deberías sacarlo de solicitud.getUsuario().getCorreo()
+        String correoUsuario = "usuario@ejemplo.com"; 
+        if (solicitud != null && solicitud.getUsuario() != null && solicitud.getUsuario().getInfoPersonal() != null) {
+            correoUsuario = solicitud.getUsuario().getInfoPersonal().getCorreo();
+        }
         controlCita.agendarCita(cita, correoUsuario);
 
         System.out.println("Flujo completo de solicitud finalizado exitosamente.");

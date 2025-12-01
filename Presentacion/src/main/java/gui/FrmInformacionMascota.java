@@ -4,17 +4,87 @@
  */
 package gui;
 
+import DTOS.MascotaDTO;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Erick
  */
 public class FrmInformacionMascota extends javax.swing.JFrame {
 
+    private MascotaDTO mascota;
+
     /**
      * Creates new form FInfoMascota
      */
     public FrmInformacionMascota() {
         initComponents();
+    }
+
+    /**
+     * Constructor con mascota
+     */
+    public FrmInformacionMascota(MascotaDTO mascota) {
+        initComponents();
+        this.mascota = mascota;
+        cargarDatosMascota();
+    }
+
+    /**
+     * Carga los datos de la mascota en los componentes
+     */
+    private void cargarDatosMascota() {
+        if (mascota != null) {
+            lblMascota1.setText(mascota.getNombre());
+            lblDetalles1.setText("Especie: " + mascota.getEspecie() + " | Edad: " + mascota.getEdad() + " años");
+            lblTemperamento1.setText(mascota.getPersonalidad() != null ? mascota.getPersonalidad() : "No especificado");
+            jLabel10.setText(mascota.getEstadoSalud() != null ? mascota.getEstadoSalud() : "No especificado");
+            // lblRequisitos1 puede poblarse con datos adicionales si existen
+
+            // Cargar imagen si existe
+            cargarImagen(mascota.getUrlImagen());
+        }
+    }
+
+    /**
+     * Carga la imagen de la mascota
+     */
+    private void cargarImagen(String urlImagen) {
+        try {
+            if (urlImagen != null && !urlImagen.isEmpty()) {
+                ImageIcon icon = null;
+
+                // Intentar cargar desde resources primero
+                if (urlImagen.startsWith("/")) {
+                    java.net.URL imgURL = getClass().getResource(urlImagen);
+                    if (imgURL != null) {
+                        icon = new ImageIcon(imgURL);
+                    }
+                } else {
+                    File imgFile = new File(urlImagen);
+                    if (imgFile.exists()) {
+                        icon = new ImageIcon(urlImagen);
+                    }
+                }
+
+                // Si se cargó la imagen, ajustar tamaño y mostrar
+                if (icon != null && icon.getImageLoadStatus() == java.awt.MediaTracker.COMPLETE) {
+                    Image img = icon.getImage().getScaledInstance(330, 330, Image.SCALE_SMOOTH);
+                    jLabel12.setIcon(new ImageIcon(img));
+                    jLabel12.setText("");
+                } else {
+                    jLabel12.setText("Imagen no disponible");
+                }
+            } else {
+                jLabel12.setText("Sin imagen");
+            }
+        } catch (Exception e) {
+            jLabel12.setText("Error al cargar imagen");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -41,7 +111,7 @@ public class FrmInformacionMascota extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 244, 225));
 
@@ -206,39 +276,64 @@ public class FrmInformacionMascota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        // TODO add your handling code here:
+//        // Aquí iría la lógica para adoptar, por ejemplo abrir el formulario de razones/antecedentes
+//        FrmRazonesAntecedentes frmRazones = new FrmRazonesAntecedentes();
+//        frmRazones.setLocation(null);
+//        frmRazones.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmInformacionMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmInformacionMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmInformacionMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmInformacionMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmInformacionMascota().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel lblDetalles;
     private javax.swing.JLabel lblDetalles1;
-    private javax.swing.JLabel lblMascota;
     private javax.swing.JLabel lblMascota1;
-    private javax.swing.JLabel lblRequisitos;
     private javax.swing.JLabel lblRequisitos1;
-    private javax.swing.JLabel lblTemperamento;
     private javax.swing.JLabel lblTemperamento1;
     // End of variables declaration//GEN-END:variables
 }

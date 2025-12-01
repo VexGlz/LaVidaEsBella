@@ -261,9 +261,9 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 "Login exitoso", 
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
             
-            // Aquí podrías abrir la ventana principal de la aplicación
-            // Por ejemplo: new FrmMenuPrincipal(controlPresentacion).setVisible(true);
-            // this.dispose();
+            // Abrir ventana principal
+            new FrmMenuPrincipal().setVisible(true);
+            this.dispose();
             
         } catch (Exception e) {
             // Mostrar error

@@ -12,10 +12,18 @@ import DTOS.SolicitudAdopcionDTO;
  */
 public class ControlAdopcion {
     
-    public void crearSolicitud(SolicitudAdopcionDTO solicitud) {
-        // TODO: Implementar lógica para crear solicitud de adopción
+    private negocio.subsistemas.adopciones.IAdopciones fachadaAdopciones;
+    
+    public ControlAdopcion() {
+        this.fachadaAdopciones = new negocio.subsistemas.adopciones.FachadaAdopciones();
+    }
+    
+    public void crearSolicitud(SolicitudAdopcionDTO solicitud) throws Exception {
         if (solicitud != null && solicitud.getMascota() != null) {
+            fachadaAdopciones.crearSolicitud(solicitud);
             System.out.println("Solicitud de adopción creada para mascota: " + solicitud.getMascota().getId());
+        } else {
+            throw new Exception("Datos de solicitud inválidos");
         }
     }
 }

@@ -12,11 +12,20 @@ import DTOS.CitaDTO;
  */
 public class ControlCita {
     
-    public void agendarCita(CitaDTO cita, String correoUsuario) {
-        // TODO: Implementar lógica para agendar cita y enviar notificación
+    private negocio.subsistemas.citas.ICitas fachadaCitas;
+    
+    public ControlCita() {
+        this.fachadaCitas = new negocio.subsistemas.citas.FachadaCitas();
+    }
+    
+    public void agendarCita(CitaDTO cita, String correoUsuario) throws Exception {
         if (cita != null && correoUsuario != null) {
+            fachadaCitas.agendarCita(cita);
+            // Aquí se podría integrar un servicio de notificaciones
             System.out.println("Cita agendada para: " + correoUsuario);
             System.out.println("Fecha: " + cita.getFechaHora());
+        } else {
+            throw new Exception("Datos de cita inválidos");
         }
     }
 }

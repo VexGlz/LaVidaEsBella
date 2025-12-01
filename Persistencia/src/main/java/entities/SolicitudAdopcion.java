@@ -11,10 +11,10 @@ public class SolicitudAdopcion {
 
     private ObjectId id;
 
-    private ObjectId idUsuario; // Referencia
-    private ObjectId idMascota; // Referencia
+    private ObjectId idUsuario;
+    private ObjectId idMascota;
 
-    private RazonesAntecedentes razones; // Embebido
+    private RazonesAntecedentes razones;
 
     private LocalDateTime fechaSolicitud;
     private String estado;
