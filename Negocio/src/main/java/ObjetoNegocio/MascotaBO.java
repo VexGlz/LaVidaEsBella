@@ -17,9 +17,9 @@ import java.util.List;
  * @author Josel
  */
 public class MascotaBO implements IMascotaBO {
-    
+
     private MascotaDAO mascotaDAO;
-    
+
     public MascotaBO() {
         this.mascotaDAO = new MascotaDAO(ConexionMongoDB.getInstancia().getDatabase());
     }
@@ -33,23 +33,29 @@ public class MascotaBO implements IMascotaBO {
             System.out.println("Mascota registrada con ID: " + id);
         }
     }
-    
+
     @Override
-    public MascotaDTO buscarMascotaPorId(Long id) {
-        // Nota: El DTO usa Long para ID pero MongoDB usa ObjectId.
-        // Esto es un problema de diseño en los DTOs originales.
-        // Por ahora no podemos buscar por ID Long directamente en Mongo sin un mapeo.
-        // Asumiremos que el Long es el hashcode del ObjectId, lo cual no es reversible.
-        // TODO: Refactorizar DTOs para usar String o ObjectId para IDs.
-        return null; 
+    public MascotaDTO buscarMascotaPorId(String id) {
+        try {
+            // Convertir el String hex a ObjectId y buscar en MongoDB
+            ObjectId objectId = new ObjectId(id);
+            Mascota mascota = mascotaDAO.buscarPorId(objectId);
+            return convertirADTO(mascota);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: ID de mascota inválido: " + id);
+            return null;
+        } catch (Exception e) {
+            System.err.println("Error al buscar mascota: " + e.getMessage());
+            return null;
+        }
     }
-    
+
     // Método auxiliar para buscar por ObjectId (String)
     public MascotaDTO buscarMascotaPorIdMongo(String idHex) {
         Mascota mascota = mascotaDAO.buscarPorId(new ObjectId(idHex));
         return convertirADTO(mascota);
     }
-    
+
     @Override
     public List<MascotaDTO> buscarTodasLasMascotas() {
         List<Mascota> mascotas = mascotaDAO.buscarTodas();
@@ -59,7 +65,7 @@ public class MascotaBO implements IMascotaBO {
         }
         return dtos;
     }
-    
+
     @Override
     public List<MascotaDTO> buscarMascotasDisponibles() {
         List<Mascota> mascotas = mascotaDAO.buscarDisponibles();
@@ -69,7 +75,7 @@ public class MascotaBO implements IMascotaBO {
         }
         return dtos;
     }
-    
+
     @Override
     public void actualizarMascota(MascotaDTO mascotaDTO) {
         // TODO: Implementar actualizar en DAO
@@ -91,12 +97,13 @@ public class MascotaBO implements IMascotaBO {
             actualizarMascota(mascota);
         }
     }
-    
+
     private MascotaDTO convertirADTO(Mascota entidad) {
-        if (entidad == null) return null;
+        if (entidad == null)
+            return null;
         MascotaDTO dto = new MascotaDTO();
         if (entidad.getId() != null) {
-            dto.setId(Long.valueOf(entidad.getId().toString().hashCode()));
+            dto.setId(entidad.getId().toHexString());
         }
         dto.setNombre(entidad.getNombre());
         dto.setEspecie(entidad.getEspecie());
@@ -107,11 +114,19 @@ public class MascotaBO implements IMascotaBO {
         dto.setDisponible(entidad.isDisponible());
         return dto;
     }
-    
+
     private Mascota convertirAEntidad(MascotaDTO dto) {
-        if (dto == null) return null;
+        if (dto == null)
+            return null;
         Mascota entidad = new Mascota();
-        // No seteamos ID porque se genera en Mongo
+        // Si el DTO tiene un ID (actualización), convertirlo a ObjectId
+        if (dto.getId() != null && !dto.getId().isEmpty()) {
+            try {
+                entidad.setId(new ObjectId(dto.getId()));
+            } catch (IllegalArgumentException e) {
+                System.err.println("ID inválido en DTO, se generará uno nuevo: " + dto.getId());
+            }
+        }
         entidad.setNombre(dto.getNombre());
         entidad.setEspecie(dto.getEspecie());
         entidad.setEstadoSalud(dto.getEstadoSalud());

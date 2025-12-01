@@ -11,12 +11,13 @@ import java.util.List;
 
 /**
  * Fachada para el subsistema de mascotas
+ * 
  * @author System
  */
 public class FachadaMascotas implements IMascotas {
-    
+
     private IMascotaBO mascotaBO;
-    
+
     public FachadaMascotas() {
         this.mascotaBO = new MascotaBO();
     }
@@ -27,7 +28,7 @@ public class FachadaMascotas implements IMascotas {
     }
 
     @Override
-    public MascotaDTO buscarMascotaPorId(Long id) throws Exception {
+    public MascotaDTO buscarMascotaPorId(String id) throws Exception {
         return mascotaBO.buscarMascotaPorId(id);
     }
 

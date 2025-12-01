@@ -9,18 +9,19 @@ import java.util.List;
 
 /**
  * Interfaz para el subsistema de mascotas
+ * 
  * @author System
  */
 public interface IMascotas {
-    
+
     void registrarMascota(MascotaDTO mascota) throws Exception;
-    
-    MascotaDTO buscarMascotaPorId(Long id) throws Exception;
-    
+
+    MascotaDTO buscarMascotaPorId(String id) throws Exception;
+
     List<MascotaDTO> buscarTodasLasMascotas() throws Exception;
-    
+
     List<MascotaDTO> buscarMascotasDisponibles() throws Exception;
-    
+
     void actualizarMascota(MascotaDTO mascota) throws Exception;
-    
+
 }

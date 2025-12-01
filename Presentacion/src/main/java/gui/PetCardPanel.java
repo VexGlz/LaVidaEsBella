@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  */
 public class PetCardPanel extends javax.swing.JPanel {
 
-    private Long mascotaId;
+    private String mascotaId;
 
     /**
      * Creates new form PetCardPanel
@@ -80,14 +80,14 @@ public class PetCardPanel extends javax.swing.JPanel {
     /**
      * Establece el ID de la mascota
      */
-    public void setMascotaId(Long id) {
+    public void setMascotaId(String id) {
         this.mascotaId = id;
     }
 
     /**
      * Obtiene el ID de la mascota
      */
-    public Long getMascotaId() {
+    public String getMascotaId() {
         return mascotaId;
     }
 

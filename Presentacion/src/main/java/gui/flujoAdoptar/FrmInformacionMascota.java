@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package gui.flujoAdoptar;
 
+import gui.flujoAdoptar.FrmInfoPersonal;
 import DTOS.MascotaDTO;
 import java.awt.Image;
 import java.io.File;
@@ -16,12 +17,18 @@ import javax.swing.ImageIcon;
 public class FrmInformacionMascota extends javax.swing.JFrame {
 
     private MascotaDTO mascota;
-
+    private control.ControlPresentacion controlPresentacion;
+    private FrmInfoPersonal frmInfoPersonal;
+    
     /**
      * Creates new form FInfoMascota
      */
     public FrmInformacionMascota() {
         initComponents();
+    }
+    
+     public void setControlPresentacion(control.ControlPresentacion controlPresentacion) {
+        this.controlPresentacion = controlPresentacion;
     }
 
     /**
@@ -31,6 +38,13 @@ public class FrmInformacionMascota extends javax.swing.JFrame {
         initComponents();
         this.mascota = mascota;
         cargarDatosMascota();
+    }
+    
+    public FrmInformacionMascota(MascotaDTO mascota, control.ControlPresentacion controlPresentacion) {
+    initComponents();
+    this.mascota = mascota;
+    this.controlPresentacion = controlPresentacion;
+    cargarDatosMascota();
     }
 
     /**
@@ -48,6 +62,11 @@ public class FrmInformacionMascota extends javax.swing.JFrame {
             cargarImagen(mascota.getUrlImagen());
         }
     }
+    
+    /**
+ * Constructor con mascota y referencia al control de presentación
+ */
+
 
     /**
      * Carga la imagen de la mascota
@@ -111,7 +130,7 @@ public class FrmInformacionMascota extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 244, 225));
 
@@ -276,12 +295,12 @@ public class FrmInformacionMascota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-//        // Aquí iría la lógica para adoptar, por ejemplo abrir el formulario de razones/antecedentes
-//        FrmRazonesAntecedentes frmRazones = new FrmRazonesAntecedentes();
-//        frmRazones.setLocation(null);
-//        frmRazones.setVisible(true);
-//        this.dispose();
+      // Notificar al control para continuar con el proceso de adopción
+    if (controlPresentacion != null) {
+        controlPresentacion.continuarConSolicitud();
+    } else {
+        System.err.println("Error: No hay referencia al ControlPresentacion");
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

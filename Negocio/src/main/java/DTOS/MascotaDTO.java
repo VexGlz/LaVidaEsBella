@@ -6,7 +6,7 @@ package DTOS;
 
 public class MascotaDTO {
 
-    private Long id;
+    private String id;
     private String nombre;
     private String especie;
     private String estadoSalud;
@@ -18,18 +18,18 @@ public class MascotaDTO {
     public MascotaDTO() {
     }
 
-    public MascotaDTO(Long id, String nombre, String especie, String urlImagen) {
+    public MascotaDTO(String id, String nombre, String especie, String urlImagen) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
         this.urlImagen = urlImagen;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
