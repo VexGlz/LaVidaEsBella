@@ -25,5 +25,11 @@
             <groupId>org.mongodb</groupId>
             <artifactId>bson</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>error</groupId>
+            <artifactId>Infraestructura</artifactId>
+            <version>25</version>
+        </dependency>
     </dependencies>
 </project>

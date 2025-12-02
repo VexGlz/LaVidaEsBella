@@ -65,6 +65,13 @@ public class SolicitudAdopcionBO implements ISolicitudAdopcionBO {
                     MascotaDTO mascotaDTO = new MascotaDTO();
                     mascotaDTO.setId(mascotaEntidad.getId().toHexString());
                     mascotaDTO.setNombre(mascotaEntidad.getNombre());
+                    mascotaDTO.setUrlImagen(mascotaEntidad.getUrlImagen());
+                    mascotaDTO.setEspecie(mascotaEntidad.getEspecie());
+                    mascotaDTO.setEdad(mascotaEntidad.getEdad());
+                    mascotaDTO.setPersonalidad(mascotaEntidad.getPersonalidad());
+                    mascotaDTO.setEstadoSalud(mascotaEntidad.getEstadoSalud());
+                    mascotaDTO.setDisponible(mascotaEntidad.isDisponible());
+                    mascotaDTO.setEstado(mascotaEntidad.getEstado());
                     dto.setMascota(mascotaDTO);
                 }
             }
@@ -108,6 +115,13 @@ public class SolicitudAdopcionBO implements ISolicitudAdopcionBO {
                         MascotaDTO mascotaDTO = new MascotaDTO();
                         mascotaDTO.setId(mascotaEntidad.getId().toHexString());
                         mascotaDTO.setNombre(mascotaEntidad.getNombre());
+                        mascotaDTO.setUrlImagen(mascotaEntidad.getUrlImagen());
+                        mascotaDTO.setEspecie(mascotaEntidad.getEspecie());
+                        mascotaDTO.setEdad(mascotaEntidad.getEdad());
+                        mascotaDTO.setPersonalidad(mascotaEntidad.getPersonalidad());
+                        mascotaDTO.setEstadoSalud(mascotaEntidad.getEstadoSalud());
+                        mascotaDTO.setDisponible(mascotaEntidad.isDisponible());
+                        mascotaDTO.setEstado(mascotaEntidad.getEstado());
                         dto.setMascota(mascotaDTO);
                     }
                 }

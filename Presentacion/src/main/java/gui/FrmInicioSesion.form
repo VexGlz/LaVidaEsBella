@@ -49,27 +49,28 @@
               <Component id="PanelHead" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="PfContra" min="-2" pref="227" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblCorreo" min="-2" pref="76" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="TfCorreo" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                              <Component id="jSeparator2" min="-2" pref="227" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="PfContra" min="-2" pref="227" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lblCorreo" min="-2" pref="76" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TfCorreo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btnIniciarS" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="jSeparator2" min="-2" pref="227" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnIniciarS" min="-2" pref="192" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="PanelRegistro" min="-2" max="-2" attributes="0"/>
@@ -81,9 +82,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="PanelHead" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="TfCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -98,14 +99,11 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jSeparator2" min="-2" pref="11" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="btnIniciarS" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="btnIniciarS" min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="PanelRegistro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="89" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="PanelRegistro" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,7 +137,7 @@
         <Container class="javax.swing.JPanel" name="PanelRegistro">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ca" green="ee" red="cc" type="rgb"/>
+              <Color blue="0" green="99" red="0" type="rgb"/>
             </Property>
           </Properties>
 
@@ -207,7 +205,7 @@
             <Component class="javax.swing.JButton" name="btnRegistro">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="95" green="c4" red="a0" type="rgb"/>
+                  <Color blue="99" green="ff" red="99" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="14" style="0"/>
@@ -272,7 +270,7 @@
         <Component class="javax.swing.JButton" name="btnIniciarS">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c1" green="f2" red="ce" type="rgb"/>
+              <Color blue="0" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Black" size="18" style="0"/>

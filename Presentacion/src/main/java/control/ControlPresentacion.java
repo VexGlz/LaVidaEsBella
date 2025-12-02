@@ -13,7 +13,7 @@ import DTOS.RazonesAntecedentesDTO;
 import DTOS.SolicitudAdopcionDTO;
 import DTOS.UsuarioDTO;
 import gui.FrmCorreoConfirmacion;
-import gui.FrmGenerarCita;
+import gui.FrmError;
 import gui.flujoAdoptar.FrmInfoPersonal;
 import gui.flujoAdoptar.FrmInfoVivienda;
 import gui.flujoAdoptar.FrmInformacionMascota;
@@ -31,11 +31,11 @@ public class ControlPresentacion {
     // Referencias a las pantallas
     private MenuMostrarEspecies menuMostrarEspecies;
     private FrmInformacionMascota frmInformacionMascota;
-    private FrmGenerarCita frmGenerarCita;
     private FrmInfoVivienda frmInfoVivienda;
     private FrmRazonesAntecedentes frmRazonesAntecedentes;
     private FrmInfoPersonal frmInfoPersonal;
     private FrmCorreoConfirmacion frmCorreoConfirmacion;
+    private FrmError frmError;
     private FrmMenuPrincipal frmMenuPrincipal;
 
     // Variables de contexto
@@ -236,10 +236,6 @@ public class ControlPresentacion {
         }
     }
 
-    public void mostrarGenerarCita() {
-        frmGenerarCita = new FrmGenerarCita();
-        frmGenerarCita.setVisible(true);
-    }
 
     // --- MÉTODOS PARA CITAS ---
     public java.util.List<DTOS.CitaDisponibleDTO> obtenerCitasDisponibles() {
@@ -295,12 +291,15 @@ public class ControlPresentacion {
 
             limpiarDatosSolicitud();
 
+            // Si todo fue exitoso, mostrar pantalla de confirmación
+            mostrarConfirmacion();
+            System.out.println("✓ Solicitud procesada exitosamente");
+
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null,
-                    "Error al procesar la solicitud: " + e.getMessage(),
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            // Si ocurre un error, mostrar pantalla de error
+            System.err.println("✗ Error al procesar solicitud: " + e.getMessage());
             e.printStackTrace();
+            mostrarError("Error: " + e.getMessage());
         }
     }
 
@@ -317,8 +316,48 @@ public class ControlPresentacion {
         frmCorreoConfirmacion.setVisible(true);
     }
 
+    /**
+     * Muestra la pantalla de error con el mensaje especificado
+     * 
+     * @param mensajeError Mensaje de error a mostrar en lblDetalle
+     */
+    public void mostrarError(String mensajeError) {
+        frmError = new FrmError();
+        frmError.setControlPresentacion(this);
+
+        // Buscar el label lblDetalle y setear el mensaje
+        javax.swing.JLabel lblDetalle = findLabelByName(frmError, "lblDetalle");
+        if (lblDetalle != null) {
+            lblDetalle.setText(mensajeError);
+        }
+
+        frmError.setVisible(true);
+        System.out.println("✗ Mostrando pantalla de error: " + mensajeError);
+    }
+
+    /**
+     * Método auxiliar para encontrar un JLabel por nombre en un componente
+     */
+    private javax.swing.JLabel findLabelByName(java.awt.Container container, String labelName) {
+        for (java.awt.Component comp : container.getComponents()) {
+            if (comp instanceof javax.swing.JLabel) {
+                javax.swing.JLabel label = (javax.swing.JLabel) comp;
+                if (labelName.equals(label.getName())) {
+                    return label;
+                }
+            } else if (comp instanceof java.awt.Container) {
+                javax.swing.JLabel found = findLabelByName((java.awt.Container) comp, labelName);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
     public void finalizarProceso() {
-        cerrarVentana(frmCorreoConfirmacion);
+        if (frmCorreoConfirmacion != null)
+            frmCorreoConfirmacion.setVisible(false);
         solicitudActual = null;
         idMascotaSeleccionada = null;
         mostrarMenuPrincipal();
@@ -352,14 +391,14 @@ public class ControlPresentacion {
         if (menuMostrarEspecies != null)
             menuMostrarEspecies.setVisible(false);
         cerrarVentana(frmInformacionMascota);
-        cerrarVentana(frmGenerarCita);
         if (frmInfoVivienda != null)
             frmInfoVivienda.setVisible(false);
         if (frmRazonesAntecedentes != null)
             frmRazonesAntecedentes.setVisible(false);
         if (frmInfoPersonal != null)
             frmInfoPersonal.setVisible(false);
-        cerrarVentana(frmCorreoConfirmacion);
+        if (frmCorreoConfirmacion != null)
+            frmCorreoConfirmacion.setVisible(false);
     }
 
     public ControlSubsistemas getControlSubsistemas() {
@@ -378,6 +417,7 @@ public class ControlPresentacion {
      * @return UsuarioDTO si las credenciales son válidas
      * @throws Exception si las credenciales son inválidas
      */
+
     public UsuarioDTO validarLogin(String correo, String password) throws Exception {
         return controlSubsistemas.validarLogin(correo, password);
     }
@@ -404,6 +444,56 @@ public class ControlPresentacion {
             this.idUsuarioActual = usuario.getId().toString();
             System.out.println("✓ Usuario logueado: " + usuario.getInfoPersonal().getNombre());
         }
+    }
+
+    /**
+     * Maneja el regreso desde el formulario de registro al inicio de sesión
+     * 
+     * @param frmRegistro     Ventana de registro a cerrar
+     * @param frmInicioSesion Ventana de inicio de sesión a mostrar
+     */
+    public void regresarDesdeRegistro(javax.swing.JFrame frmRegistro, javax.swing.JFrame frmInicioSesion) {
+        if (frmRegistro != null) {
+            frmRegistro.dispose();
+        }
+        if (frmInicioSesion != null) {
+            frmInicioSesion.setVisible(true);
+        }
+    }
+
+    /**
+     * Cierra la sesión del usuario actual
+     * Limpia todos los datos del usuario y vuelve al inicio de sesión
+     */
+    public void cerrarSesion() {
+        // Limpiar datos del usuario
+        usuarioActual = null;
+        idUsuarioActual = null;
+        solicitudActual = null;
+        idMascotaSeleccionada = null;
+        citaSeleccionada = null;
+        borradorInfoPersonal = null;
+        borradorCita = null;
+
+        // Mostrar mensaje de confirmación
+        JOptionPane.showMessageDialog(
+                null,
+                "Sesión cerrada exitosamente",
+                "Sesión Cerrada",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        // Cerrar el menú principal
+        if (frmMenuPrincipal != null) {
+            frmMenuPrincipal.setVisible(false);
+            frmMenuPrincipal.dispose();
+            frmMenuPrincipal = null;
+        }
+
+        // Mostrar formulario de inicio de sesión
+        gui.FrmInicioSesion frmInicioSesion = new gui.FrmInicioSesion();
+        frmInicioSesion.setVisible(true);
+
+        System.out.println("✓ Sesión cerrada correctamente");
     }
 
     /**
@@ -573,6 +663,9 @@ public class ControlPresentacion {
 
         controlSubsistemas.cancelarSolicitudAdopcion(idSolicitud);
         System.out.println("✓ Solicitud " + idSolicitud + " cancelada");
+        
+        // Actualizar el catálogo para mostrar la mascota liberada
+        actualizarCatalogo();
     }
 
     /**
@@ -597,6 +690,10 @@ public class ControlPresentacion {
 
         // Vamos a llamar a un nuevo método en controlSubsistemas
         controlSubsistemas.cancelarCitaDeSolicitud(idSolicitud);
+        System.out.println("✓ Cita de solicitud " + idSolicitud + " cancelada");
+        
+        // Actualizar el catálogo para mostrar la mascota liberada
+        actualizarCatalogo();
     }
 
     /**
@@ -621,9 +718,6 @@ public class ControlPresentacion {
         if (solicitud.getMascota() != null && solicitud.getMascota().getId() != null) {
             this.idMascotaSeleccionada = solicitud.getMascota().getId();
         }
-
-        // Mostrar pantalla de generar cita
-        mostrarGenerarCita();
     }
 
     /**
@@ -690,4 +784,12 @@ public class ControlPresentacion {
         return false;
     }
 
+    /**
+     * Actualiza el catálogo de mascotas
+     */
+    public void actualizarCatalogo() {
+        if (menuMostrarEspecies != null) {
+            menuMostrarEspecies.cargarMascotas();
+        }
+    }
 }

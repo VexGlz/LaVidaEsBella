@@ -15,10 +15,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private java.awt.CardLayout cardLayout;
     private MenuMostrarEspecies menuMostrarEspecies;
-    private FrmInfoPersonal frmInfoPersonal; // Nuevo panel
+    private FrmInfoPersonal frmInfoPersonal;
     private FrmInfoVivienda frmInfoVivienda;
     private FrmRazonesAntecedentes frmRazonesAntecedentes;
     private JPInfoResumen frmInfoResumen;
+    private FrmPerfil frmPerfil;
 
     private JPSolicitudes jpSolicitudes;
 
@@ -41,6 +42,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         frmRazonesAntecedentes = new FrmRazonesAntecedentes();
         frmInfoResumen = new JPInfoResumen();
         jpSolicitudes = new JPSolicitudes();
+        frmPerfil = new FrmPerfil();
 
         // Agregar al CardLayout con identificadores clave
         panelContenidoDinamico.add(menuMostrarEspecies, "inicio");
@@ -50,6 +52,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         panelContenidoDinamico.add(frmInfoVivienda, "infoVivienda");
         panelContenidoDinamico.add(frmRazonesAntecedentes, "razonesAntecedentes");
         panelContenidoDinamico.add(frmInfoResumen, "infoResumen");
+        panelContenidoDinamico.add(frmPerfil, "perfil");
 
         cardLayout.show(panelContenidoDinamico, "inicio");
     }
@@ -76,6 +79,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         }
         if (jpSolicitudes != null) {
             jpSolicitudes.setControlPresentacion(control);
+        }
+        if (frmPerfil != null) {
+            frmPerfil.setControlPresentacion(control);
         }
     }
 
@@ -124,6 +130,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -132,6 +139,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btn_inicio = new javax.swing.JButton();
         btn_solicitudes = new javax.swing.JButton();
         btn_contacto = new javax.swing.JButton();
+        lblUserImage = new javax.swing.JLabel();
         panelContenidoDinamico = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,6 +184,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblUserImage
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sources/icon-7797704_1280.png"))); // NOI18N
+        lblUserImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUserImageMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
         panelCabecera.setLayout(panelCabeceraLayout);
         panelCabeceraLayout.setHorizontalGroup(
@@ -192,21 +208,26 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                                 .addGap(37, 37, 37)
                                 .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 194,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(lblUserImage)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         panelCabeceraLayout.setVerticalGroup(
                 panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                .addContainerGap(40, Short.MAX_VALUE)
-                                .addGroup(panelCabeceraLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(37, 37, 37)));
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                panelCabeceraLayout.createSequentialGroup()
+                                        .addContainerGap(40, Short.MAX_VALUE)
+                                        .addGroup(panelCabeceraLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel1)
+                                                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(25, 25, 25)));
 
         panelContenidoDinamico.setBackground(new java.awt.Color(235, 229, 220));
         panelContenidoDinamico.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,6 +263,12 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblUserImageMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblUserImageMouseClicked
+        if (cardLayout != null) {
+            cardLayout.show(panelContenidoDinamico, "perfil");
+        }
+    }// GEN-LAST:event_lblUserImageMouseClicked
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_inicioActionPerformed
         if (cardLayout != null) {
@@ -309,6 +336,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_inicio;
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblUserImage;
     private javax.swing.JPanel panelCabecera;
     private javax.swing.JPanel panelContenidoDinamico;
     // End of variables declaration//GEN-END:variables

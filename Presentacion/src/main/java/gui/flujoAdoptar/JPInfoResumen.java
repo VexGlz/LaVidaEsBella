@@ -31,6 +31,7 @@ public class JPInfoResumen extends javax.swing.JPanel {
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -153,11 +154,6 @@ public class JPInfoResumen extends javax.swing.JPanel {
                                 "Confirmo que toda la información es verídica y acepto la carte de compromiso de adopción");
 
                 btnAnterior.setText("Anterior");
-                btnAnterior.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnAnteriorActionPerformed(evt);
-                        }
-                });
 
                 btnEnviarSolicitud.setBackground(new java.awt.Color(0, 102, 0));
                 btnEnviarSolicitud.setText("Enviar Solicitud");
@@ -315,46 +311,46 @@ public class JPInfoResumen extends javax.swing.JPanel {
                 jPanel1.setLayout(jPanel1Layout);
                 jPanel1Layout.setHorizontalGroup(
                                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 732, Short.MAX_VALUE)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(246, 246, 246)
+                                                                .addComponent(jPanel2,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addContainerGap(270, Short.MAX_VALUE))
                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(jLabel2)
-                                                                                                .addComponent(jPanel2,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGap(0, 0, Short.MAX_VALUE))));
+                                                                                .addGap(0, 121, Short.MAX_VALUE)
+                                                                                .addComponent(jLabel2)
+                                                                                .addGap(0, 743, Short.MAX_VALUE))));
                 jPanel1Layout.setVerticalGroup(
                                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 567, Short.MAX_VALUE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
+                                                                .createSequentialGroup()
+                                                                .addGap(0, 48, Short.MAX_VALUE)
+                                                                .addComponent(jPanel2,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                                                 .addComponent(jLabel2)
-                                                                                .addGap(0, 0, 0)
-                                                                                .addComponent(jPanel2,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(0, 0, Short.MAX_VALUE))));
+                                                                                .addGap(0, 519, Short.MAX_VALUE))));
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
                 this.setLayout(layout);
                 layout.setHorizontalGroup(
                                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
-                                                                .addGap(0, 0, 0)
+                                                                .addContainerGap()
                                                                 .addComponent(jPanel1,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE)));
+                                                                .addGap(0, 0, 0)));
                 layout.setVerticalGroup(
                                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
@@ -388,7 +384,8 @@ public class JPInfoResumen extends javax.swing.JPanel {
                         btnEnviarSolicitud.setEnabled(false);
                         try {
                                 controlPresentacion.procesarCita(cita);
-                                controlPresentacion.finalizarProceso();
+                                // No llamamos a finalizarProceso() aquí porque procesarCita()
+                                // ya maneja la navegación (éxito -> confirmación, error -> error)
                         } catch (Exception e) {
                                 btnEnviarSolicitud.setEnabled(true);
                                 javax.swing.JOptionPane.showMessageDialog(this,

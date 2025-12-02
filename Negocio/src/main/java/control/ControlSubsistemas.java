@@ -16,6 +16,9 @@ import negocio.subsistemas.iniciosesion.IInicioSesion;
 import negocio.subsistemas.mascotas.FachadaMascotas;
 import negocio.subsistemas.mascotas.IMascotas;
 import DTOS.MascotaDTO;
+import infraestructura.dto.CorreoDTO;
+import infraestructura.sistemacorreo.FachadaCorreo;
+import infraestructura.sistemacorreo.ISistemaCorreo;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class ControlSubsistemas {
     private ControlAdopcion controlAdopcion;
     private ControlCita controlCita;
     private ICitaDisponibleBO citaDisponibleBO;
+    private ISistemaCorreo subsistemaCorreo;
 
     public ControlSubsistemas() {
         // Inicialización de subsistemas y controles
@@ -37,6 +41,7 @@ public class ControlSubsistemas {
         this.controlAdopcion = new ControlAdopcion();
         this.controlCita = new ControlCita();
         this.citaDisponibleBO = new CitaDisponibleBO();
+        this.subsistemaCorreo = new FachadaCorreo();
     }
 
     // --- MÉTODOS PARA INICIO DE SESIÓN ---
@@ -96,6 +101,9 @@ public class ControlSubsistemas {
         }
         controlCita.agendarCita(cita, correoUsuario);
 
+        // 4. Enviar correo de confirmación
+        enviarCorreoConfirmacion(solicitud);
+
         System.out.println("Flujo completo de solicitud finalizado exitosamente.");
     }
 
@@ -149,5 +157,32 @@ public class ControlSubsistemas {
 
         // 3. Actualizar estado de la solicitud
         controlAdopcion.actualizarEstadoSolicitud(idSolicitud, "Cancelada");
+    }
+
+    private void enviarCorreoConfirmacion(SolicitudAdopcionDTO solicitud) {
+        try {
+            if (solicitud != null && solicitud.getUsuario() != null
+                    && solicitud.getUsuario().getInfoPersonal() != null) {
+                String destinatario = solicitud.getUsuario().getInfoPersonal().getCorreo();
+                String nombreUsuario = solicitud.getUsuario().getInfoPersonal().getNombre();
+                String nombreMascota = (solicitud.getMascota() != null) ? solicitud.getMascota().getNombre()
+                        : "la mascota";
+
+                String asunto = "Confirmación de Solicitud de Adopción - La Vida es Bella";
+                String mensaje = "Hola " + nombreUsuario + ",\n\n" +
+                        "Tu solicitud de adopción para " + nombreMascota + " ha sido recibida exitosamente.\n" +
+                        "Nos pondremos en contacto contigo pronto para los siguientes pasos.\n\n" +
+                        "Gracias por querer dar un hogar a uno de nuestros amigos peludos.\n\n" +
+                        "Atentamente,\n" +
+                        "El equipo de La Vida es Bella";
+
+                CorreoDTO correo = new CorreoDTO(destinatario, asunto, mensaje);
+                subsistemaCorreo.enviarCorreo(correo);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al enviar correo de confirmación: " + e.getMessage());
+            // No lanzamos la excepción para no interrumpir el flujo principal si falla el
+            // correo
+        }
     }
 }
