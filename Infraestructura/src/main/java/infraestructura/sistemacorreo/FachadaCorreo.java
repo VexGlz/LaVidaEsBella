@@ -8,7 +8,6 @@ import infraestructura.dto.CorreoDTO;
 
 /**
  * Fachada para el subsistema de correo.
- * MODO PRODUCCIÓN ACTIVADO - ENVÍO REAL CON OAUTH2
  * 
  * @author System
  */
@@ -18,11 +17,6 @@ public class FachadaCorreo implements ISistemaCorreo {
 
     public FachadaCorreo() {
         this.controlCorreo = new ControlSistemaCorreo();
-        // FORZAR MODO PRODUCCIÓN - ENVÍO REAL
-        this.controlCorreo.activarModoProduccion();
-        this.controlCorreo.setUsarOAuth2(true);
-
-        System.out.println("✓ FachadaCorreo inicializada en MODO PRODUCCIÓN con OAuth2");
     }
 
     @Override
