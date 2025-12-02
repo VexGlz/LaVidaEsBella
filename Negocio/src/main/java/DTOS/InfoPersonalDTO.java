@@ -10,7 +10,6 @@ public class InfoPersonalDTO {
     private String curp;
     private String direccion;
     private String correo;
-    private String telefono;
 
     public InfoPersonalDTO() {
     }
@@ -53,13 +52,5 @@ public class InfoPersonalDTO {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 }

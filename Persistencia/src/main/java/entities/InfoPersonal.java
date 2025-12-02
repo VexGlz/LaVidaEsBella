@@ -14,7 +14,6 @@ public class InfoPersonal {
     private String curp;
     private String direccion;
     private String correo;
-    private String telefono;
 
     public InfoPersonal() {
     }
@@ -49,13 +48,5 @@ public class InfoPersonal {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 }

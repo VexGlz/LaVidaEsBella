@@ -14,7 +14,9 @@ import DTOS.UsuarioDTO;
 public interface IUsuarioBO {
 
     void registraUsuario(UsuarioDTO usuario);
-    
+
+    void actualizarUsuario(UsuarioDTO usuario);
+
     UsuarioDTO buscarYValidarUsuario(String correo, String password);
 
     void generaSolicitud(UsuarioDTO usuario, SolicitudAdopcionDTO solicitud);

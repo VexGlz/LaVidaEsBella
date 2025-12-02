@@ -4,14 +4,14 @@
  */
 package DTOS;
 
-
 public class InfoViviendaDTO {
 
-    private String tipoVivienda;         
-    private String condicionesHogar;     
+    private String tipoVivienda;
+    private String condicionesHogar;
     private boolean tieneOtrasMascotas;
     private boolean tieneNinos;
-    private String tiempoDisponibilidad; 
+    private String tiempoDisponibilidad;
+    private String urlImagenVivienda; // Ruta o URL de la imagen de la vivienda
 
     public InfoViviendaDTO() {
     }
@@ -54,5 +54,13 @@ public class InfoViviendaDTO {
 
     public void setTiempoDisponibilidad(String tiempoDisponibilidad) {
         this.tiempoDisponibilidad = tiempoDisponibilidad;
+    }
+
+    public String getUrlImagenVivienda() {
+        return urlImagenVivienda;
+    }
+
+    public void setUrlImagenVivienda(String urlImagenVivienda) {
+        this.urlImagenVivienda = urlImagenVivienda;
     }
 }

@@ -15,28 +15,28 @@ import entities.InfoPersonal;
 public class AdaptadorInfoPersonal {
 
     public InfoPersonal toEntity(InfoPersonalDTO dto) {
-        if (dto == null) return null;
-        
+        if (dto == null)
+            return null;
+
         InfoPersonal entity = new InfoPersonal();
         entity.setNombre(dto.getNombre());
         entity.setCurp(dto.getCurp());
         entity.setDireccion(dto.getDireccion());
         entity.setCorreo(dto.getCorreo());
-        entity.setTelefono(dto.getTelefono());
-        
+
         return entity;
     }
 
     public InfoPersonalDTO toDTO(InfoPersonal entity) {
-        if (entity == null) return null;
-        
+        if (entity == null)
+            return null;
+
         InfoPersonalDTO dto = new InfoPersonalDTO();
         dto.setNombre(entity.getNombre());
         dto.setCurp(entity.getCurp());
         dto.setDireccion(entity.getDireccion());
         dto.setCorreo(entity.getCorreo());
-        dto.setTelefono(entity.getTelefono());
-        
+
         return dto;
     }
 }

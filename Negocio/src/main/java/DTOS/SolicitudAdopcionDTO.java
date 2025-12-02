@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 
 public class SolicitudAdopcionDTO {
 
-    private Long id;
+    private String id;
     private UsuarioDTO usuario;
     private MascotaDTO mascota;
     private RazonesAntecedentesDTO razones; // Datos del paso 3
 
     private LocalDateTime fechaSolicitud;
     private String estado; // PENDIENTE, APROBADA, etc.
-    private Long idCita;   // ID de la cita asociada
+    private String idCita; // ID de la cita asociada
 
     public SolicitudAdopcionDTO() {
         this.razones = new RazonesAntecedentesDTO();
@@ -23,11 +23,11 @@ public class SolicitudAdopcionDTO {
     }
 
     // Getters y Setters
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -71,11 +71,11 @@ public class SolicitudAdopcionDTO {
         this.estado = estado;
     }
 
-    public Long getIdCita() {
+    public String getIdCita() {
         return idCita;
     }
 
-    public void setIdCita(Long idCita) {
+    public void setIdCita(String idCita) {
         this.idCita = idCita;
     }
 }

@@ -48,6 +48,10 @@ public class ControlSubsistemas {
         subsistemaInicioSesion.registrarUsuario(usuario);
     }
 
+    public void actualizarUsuario(UsuarioDTO usuario) throws Exception {
+        subsistemaInicioSesion.actualizarUsuario(usuario);
+    }
+
     // --- MÉTODOS PARA MASCOTAS ---
     public MascotaDTO obtenerMascotaPorId(String id) {
         try {
@@ -85,5 +89,33 @@ public class ControlSubsistemas {
         controlCita.agendarCita(cita, correoUsuario);
 
         System.out.println("Flujo completo de solicitud finalizado exitosamente.");
+    }
+
+    // --- MÉTODOS PARA GESTIÓN DE SOLICITUDES ---
+
+    /**
+     * Busca todas las solicitudes de un usuario
+     */
+    public List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(String idUsuario) throws Exception {
+        return controlAdopcion.buscarSolicitudesPorUsuario(idUsuario);
+    }
+
+    /**
+     * Actualiza el estado de una solicitud
+     */
+    public void actualizarEstadoSolicitud(String idSolicitud, String nuevoEstado) throws Exception {
+        controlAdopcion.actualizarEstadoSolicitud(idSolicitud, nuevoEstado);
+    }
+
+    public SolicitudAdopcionDTO buscarSolicitudPorId(String idSolicitud) throws Exception {
+        return controlAdopcion.buscarSolicitudPorId(idSolicitud);
+    }
+
+    public void cancelarCitaDeSolicitud(String idSolicitud) throws Exception {
+        // Por ahora, actualizamos el estado de la solicitud para indicar que la cita
+        // fue cancelada
+        // En una implementación completa, esto también liberaría la cita en la tabla de
+        // citas
+        controlAdopcion.actualizarEstadoSolicitud(idSolicitud, "Cita Cancelada");
     }
 }

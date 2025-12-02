@@ -58,6 +58,36 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
                                 System.out.println("✓ Datos pre-cargados para: " + info.getNombre());
                         }
                 }
+
+                // Luego cargar borrador si existe (tiene prioridad sobre datos guardados)
+                DTOS.InfoPersonalDTO borrador = controlPresentacion.getBorradorInfoPersonal();
+                if (borrador != null) {
+                        if (borrador.getNombre() != null && !borrador.getNombre().isEmpty()) {
+                                tfNombre.setText(borrador.getNombre());
+                        }
+                        if (borrador.getCurp() != null && !borrador.getCurp().isEmpty()) {
+                                tfCURP.setText(borrador.getCurp());
+                        }
+                        if (borrador.getDireccion() != null && !borrador.getDireccion().isEmpty()) {
+                                tfDireccion.setText(borrador.getDireccion());
+                        }
+                        if (borrador.getCorreo() != null && !borrador.getCorreo().isEmpty()) {
+                                tfCorreo.setText(borrador.getCorreo());
+                        }
+
+                        System.out.println("✓ Borrador cargado");
+                }
+
+                // Cargar cita guardada si existe
+                DTOS.CitaDisponibleDTO citaBorrador = controlPresentacion.getBorradorCita();
+                if (citaBorrador != null) {
+                        citaSeleccionada = citaBorrador;
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                        tfFechaPreferida.setText(sdf.format(citaBorrador.getFecha()));
+                        tfHoraPreferida.setText(citaBorrador.getHora());
+
+                        System.out.println("✓ Cita de borrador cargada");
+                }
         }
 
         /**
@@ -69,356 +99,237 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
-        // Code">//GEN-BEGIN:initComponents
-        private void initComponents() {
+        // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-                jPanel1 = new javax.swing.JPanel();
-                jLabel2 = new javax.swing.JLabel();
-                jPanel2 = new javax.swing.JPanel();
-                btnGuardarBorrador = new javax.swing.JButton();
-                btnCancelar = new javax.swing.JButton();
-                cbAdoptadoPreviamente = new javax.swing.JCheckBox();
-                tfFechaPreferida = new javax.swing.JTextField();
-                tfHoraPreferida = new javax.swing.JTextField();
-                jLabel10 = new javax.swing.JLabel();
-                jLabel9 = new javax.swing.JLabel();
-                jLabel11 = new javax.swing.JLabel();
-                jLabel8 = new javax.swing.JLabel();
-                tfCorreo = new javax.swing.JTextField();
-                jLabel7 = new javax.swing.JLabel();
-                jLabel6 = new javax.swing.JLabel();
-                tfDireccion = new javax.swing.JTextField();
-                tfNombre = new javax.swing.JTextField();
-                jLabel4 = new javax.swing.JLabel();
-                jLabel5 = new javax.swing.JLabel();
-                tfCURP = new javax.swing.JTextField();
-                jLabel3 = new javax.swing.JLabel();
-                btnSiguiente = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnGuardarBorrador = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        cbAdoptadoPreviamente = new javax.swing.JCheckBox();
+        tfFechaPreferida = new javax.swing.JTextField();
+        tfHoraPreferida = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tfCorreo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tfDireccion = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tfCURP = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btnSiguiente = new javax.swing.JButton();
+        btnFecha = new javax.swing.JButton();
 
-                jPanel1.setBackground(new java.awt.Color(219, 213, 195));
+        jPanel1.setBackground(new java.awt.Color(219, 213, 195));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-                jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-                jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-                jLabel2.setText("Solicitud de Adopciones");
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setText("Solicitud de Adopciones");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 0, -1, -1));
 
-                jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-                btnGuardarBorrador.setText("Guardar Borrador");
-                btnGuardarBorrador.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnGuardarBorradorActionPerformed(evt);
-                        }
-                });
+        btnGuardarBorrador.setText("Guardar Borrador");
+        btnGuardarBorrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarBorradorActionPerformed(evt);
+            }
+        });
 
-                btnCancelar.setText("Cancelar");
-                btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnCancelarActionPerformed(evt);
-                        }
-                });
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
-                cbAdoptadoPreviamente.setText("He adoptado previamente en este refugio (mis datos se precargaran)");
-                cbAdoptadoPreviamente.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                cbAdoptadoPreviamenteActionPerformed(evt);
-                        }
-                });
+        cbAdoptadoPreviamente.setText("He adoptado previamente en este refugio (mis datos se precargaran)");
+        cbAdoptadoPreviamente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAdoptadoPreviamenteActionPerformed(evt);
+            }
+        });
 
-                tfFechaPreferida.setBackground(new java.awt.Color(204, 204, 204));
-                tfFechaPreferida.setText("mm/dd/yyyy");
+        tfFechaPreferida.setBackground(new java.awt.Color(204, 204, 204));
+        tfFechaPreferida.setText("mm/dd/yyyy");
 
-                tfHoraPreferida.setBackground(new java.awt.Color(204, 204, 204));
-                tfHoraPreferida.setText("-- : -- --");
+        tfHoraPreferida.setBackground(new java.awt.Color(204, 204, 204));
+        tfHoraPreferida.setText("-- : -- --");
 
-                jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel10.setText("Hora Preferida");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Hora Preferida");
 
-                jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel9.setText("Fecha Preferida");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Fecha Preferida");
 
-                jLabel11.setForeground(new java.awt.Color(102, 102, 102));
-                jLabel11.setText(
-                                "Indica la fecha y hora en la que te gustária realizar la entrevista( sujeta a confirmación del refugio).");
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Indica la fecha y hora en la que te gustária realizar la entrevista( sujeta a confirmación del refugio).");
 
-                jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel8.setText("Preferencia para Entrevista Inicial");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("Preferencia para Entrevista Inicial");
 
-                javax.swing.JButton btnSeleccionarFecha = new javax.swing.JButton();
-                btnSeleccionarFecha.setText("📅 Seleccionar Fecha Disponible");
-                btnSeleccionarFecha.setBackground(new java.awt.Color(0, 102, 153));
-                btnSeleccionarFecha.setForeground(java.awt.Color.WHITE);
-                btnSeleccionarFecha.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                abrirSelectorCitas();
-                        }
-                });
+        tfCorreo.setBackground(new java.awt.Color(204, 204, 204));
 
-                // Hacer campos de fecha solo lectura
-                tfFechaPreferida.setEditable(false);
-                tfHoraPreferida.setEditable(false);
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Correo Electrónico");
 
-                btnSeleccionarFecha.setText("📅 Seleccionar Fecha Disponible");
-                btnSeleccionarFecha.setBackground(new java.awt.Color(0, 102, 153));
-                btnSeleccionarFecha.setForeground(java.awt.Color.WHITE);
-                btnSeleccionarFecha.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                abrirSelectorCitas();
-                        }
-                });
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Dirección completa");
 
-                // Hacer campos de fecha solo lectura
-                tfFechaPreferida.setEditable(false);
-                tfHoraPreferida.setEditable(false);
+        tfDireccion.setBackground(new java.awt.Color(204, 204, 204));
 
-                tfCorreo.setBackground(new java.awt.Color(204, 204, 204));
+        tfNombre.setBackground(new java.awt.Color(204, 204, 204));
 
-                jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel7.setText("Correo Electrónico");
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Nombre");
 
-                jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel6.setText("Dirección completa");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("CURP");
 
-                tfDireccion.setBackground(new java.awt.Color(204, 204, 204));
+        tfCURP.setBackground(new java.awt.Color(204, 204, 204));
 
-                tfNombre.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Paso 1: Datos Personales y Cita Preferida");
 
-                jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-                jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel4.setText("Nombre");
+        btnSiguiente.setBackground(new java.awt.Color(0, 153, 51));
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
 
-                jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel5.setText("CURP");
+        btnFecha.setText("Seleccionar fecha y hora");
+        btnFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFechaActionPerformed(evt);
+            }
+        });
 
-                tfCURP.setBackground(new java.awt.Color(204, 204, 204));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfDireccion, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(tfCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGuardarBorrador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSiguiente)))
+                        .addGap(34, 34, 34))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbAdoptadoPreviamente)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel11)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(tfFechaPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(55, 55, 55)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfHoraPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel10))))
+                            .addComponent(btnFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(254, Short.MAX_VALUE))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCURP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel8)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFecha)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfFechaPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfHoraPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbAdoptadoPreviamente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnGuardarBorrador)
+                        .addComponent(btnSiguiente))
+                    .addComponent(btnCancelar))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
 
-                jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-                jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-                jLabel3.setText("Paso 1: Datos Personales y Cita Preferida");
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 88, -1, -1));
 
-                btnSiguiente.setBackground(new java.awt.Color(0, 153, 51));
-                btnSiguiente.setText("Siguiente");
-                btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnSiguienteActionPerformed(evt);
-                        }
-                });
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
-                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-                jPanel2.setLayout(jPanel2Layout);
-                jPanel2Layout.setHorizontalGroup(
-                                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(31, 31, 31)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(jPanel2Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGroup(jPanel2Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addComponent(cbAdoptadoPreviamente)
-                                                                                                                .addComponent(jLabel8)
-                                                                                                                .addComponent(jLabel4)
-                                                                                                                .addComponent(jLabel3)
-                                                                                                                .addComponent(jLabel6)
-                                                                                                                .addComponent(jLabel7)
-                                                                                                                .addComponent(tfNombre,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                345,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                                .addComponent(jLabel11)
-                                                                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                                                                jPanel2Layout.createSequentialGroup()
-                                                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                                                                .createSequentialGroup()
-                                                                                                                                                                                                .addComponent(jLabel9)
-                                                                                                                                                                                                .addGap(68, 68, 68))
-                                                                                                                                                                                .addGroup(
-                                                                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                                                                                                                jPanel2Layout
-                                                                                                                                                                                                                .createSequentialGroup()
-                                                                                                                                                                                                                .addComponent(
-                                                                                                                                                                                                                                tfFechaPreferida,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                                                109,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                                                .addGap(52, 52,
-                                                                                                                                                                                                                                52)))
-                                                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                                .addComponent(tfHoraPreferida,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                139,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                .addComponent(jLabel10)))))
-                                                                                                .addContainerGap(254,
-                                                                                                                Short.MAX_VALUE))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                jPanel2Layout
-                                                                                                                .createSequentialGroup()
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                .createSequentialGroup()
-                                                                                                                                                .addComponent(btnCancelar)
-                                                                                                                                                .addPreferredGap(
-                                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                .addComponent(btnGuardarBorrador)
-                                                                                                                                                .addPreferredGap(
-                                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                                .addComponent(btnSiguiente))
-                                                                                                                                .addComponent(tfCorreo,
-                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                .addComponent(tfDireccion,
-                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                .createSequentialGroup()
-                                                                                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                .addComponent(jLabel5)
-                                                                                                                                                                .addComponent(tfCURP,
-                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                360,
-                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                                                                .addGap(34, 34, 34)))));
-                jPanel2Layout.setVerticalGroup(
-                                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(16, 16, 16)
-                                                                .addComponent(jLabel3)
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel4)
-                                                                                .addComponent(jLabel5))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(tfNombre,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(tfCURP,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(9, 9, 9)
-                                                                .addComponent(jLabel6)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(tfDireccion,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(8, 8, 8)
-                                                                .addComponent(jLabel7)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(tfCorreo,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(10, 10, 10)
-                                                                .addComponent(jLabel8)
-                                                                .addGap(4, 4, 4)
-                                                                .addComponent(jLabel11)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel9)
-                                                                                .addComponent(jLabel10))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(tfFechaPreferida,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(tfHoraPreferida,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(cbAdoptadoPreviamente)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(btnCancelar)
-                                                                                .addComponent(btnGuardarBorrador)
-                                                                                .addComponent(btnSiguiente))
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)));
-
-                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-                jPanel1.setLayout(jPanel1Layout);
-                jPanel1Layout.setHorizontalGroup(
-                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
-                                                                .createSequentialGroup()
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                .addComponent(jLabel2)
-                                                                .addGap(483, 483, 483))
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(290, 290, 290)
-                                                                .addComponent(jPanel2,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(286, Short.MAX_VALUE)));
-                jPanel1Layout.setVerticalGroup(
-                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
-                                                                .createSequentialGroup()
-                                                                .addComponent(jLabel2)
-                                                                .addGap(40, 40, 40)
-                                                                .addComponent(jPanel2,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(23, Short.MAX_VALUE)));
-
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-                this.setLayout(layout);
-                layout.setHorizontalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(jPanel1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)));
-                layout.setVerticalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(jPanel1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)));
-        }// </editor-fold>//GEN-END:initComponents
+        private void btnFechaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnFechaActionPerformed
+                abrirSelectorCitas();
+        }// GEN-LAST:event_btnFechaActionPerformed                                        
 
         private void abrirSelectorCitas() {
                 if (controlPresentacion == null)
@@ -546,45 +457,86 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
                         // Guardar info personal
                         controlPresentacion.guardarInfoPersonal(info);
 
+                        // Si ha adoptado previamente, ir directo al resumen
+                        if (cbAdoptadoPreviamente.isSelected()) {
+                                System.out.println("✓ Adoptador previo - Saltando al resumen");
+                                controlPresentacion.mostrarInfoResumen();
+                        }
+                        // Si no, continuar con el flujo normal (siguiente paso)
+                        // El flujo normal ya está manejado por guardarInfoPersonal que llama a
+                        // mostrarInfoVivienda
+
                 } else {
                         System.err.println("Error: No hay referencia al ControlPresentacion");
                 }
         }// GEN-LAST:event_btnSiguienteActionPerformed
 
         private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelarActionPerformed
-                // TODO add your handling code here:
+                if (controlPresentacion != null) {
+                        controlPresentacion.regresarDesdeFrmInfoPersonal();
+                }
         }// GEN-LAST:event_btnCancelarActionPerformed
 
         private void btnGuardarBorradorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGuardarBorradorActionPerformed
+                if (controlPresentacion != null) {
+                        // Recopilar datos del formulario (sin validación estricta)
+                        String nombre = tfNombre.getText().trim();
+                        String curp = tfCURP.getText().trim();
+                        String direccion = tfDireccion.getText().trim();
+                        String correo = tfCorreo.getText().trim();
 
+                        // Crear DTO con los datos actuales
+                        DTOS.InfoPersonalDTO info = new DTOS.InfoPersonalDTO();
+                        info.setNombre(nombre);
+                        info.setCurp(curp);
+                        info.setDireccion(direccion);
+                        info.setCorreo(correo);
+
+                        // Guardar como borrador en el control
+                        controlPresentacion.guardarBorradorInfoPersonal(info);
+
+                        // Guardar también la cita seleccionada si existe
+                        if (citaSeleccionada != null) {
+                                controlPresentacion.guardarBorradorCita(citaSeleccionada);
+                        }
+
+                        // Mostrar confirmación
+                        javax.swing.JOptionPane.showMessageDialog(
+                                        this,
+                                        "Borrador guardado correctamente.\nPodrás continuar más tarde desde donde lo dejaste.",
+                                        "Borrador guardado",
+                                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
         }// GEN-LAST:event_btnGuardarBorradorActionPerformed
+         // GEN-LAST:event_btnGuardarBorradorActionPerformed
 
         private void cbAdoptadoPreviamenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbAdoptadoPreviamenteActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_cbAdoptadoPreviamenteActionPerformed
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JButton btnCancelar;
-        private javax.swing.JButton btnGuardarBorrador;
-        private javax.swing.JButton btnSiguiente;
-        private javax.swing.JCheckBox cbAdoptadoPreviamente;
-        private javax.swing.JLabel jLabel10;
-        private javax.swing.JLabel jLabel11;
-        private javax.swing.JLabel jLabel2;
-        private javax.swing.JLabel jLabel3;
-        private javax.swing.JLabel jLabel4;
-        private javax.swing.JLabel jLabel5;
-        private javax.swing.JLabel jLabel6;
-        private javax.swing.JLabel jLabel7;
-        private javax.swing.JLabel jLabel8;
-        private javax.swing.JLabel jLabel9;
-        private javax.swing.JPanel jPanel1;
-        private javax.swing.JPanel jPanel2;
-        private javax.swing.JTextField tfCURP;
-        private javax.swing.JTextField tfCorreo;
-        private javax.swing.JTextField tfDireccion;
-        private javax.swing.JTextField tfFechaPreferida;
-        private javax.swing.JTextField tfHoraPreferida;
-        private javax.swing.JTextField tfNombre;
-        // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnFecha;
+    private javax.swing.JButton btnGuardarBorrador;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JCheckBox cbAdoptadoPreviamente;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField tfCURP;
+    private javax.swing.JTextField tfCorreo;
+    private javax.swing.JTextField tfDireccion;
+    private javax.swing.JTextField tfFechaPreferida;
+    private javax.swing.JTextField tfHoraPreferida;
+    private javax.swing.JTextField tfNombre;
+    // End of variables declaration//GEN-END:variables
 }

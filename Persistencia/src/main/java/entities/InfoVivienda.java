@@ -15,6 +15,7 @@ public class InfoVivienda {
     private boolean tieneOtrasMascotas;
     private boolean tieneNinos;
     private String tiempoDisponibilidad;
+    private String urlImagenVivienda;
 
     public InfoVivienda() {
     }
@@ -57,5 +58,13 @@ public class InfoVivienda {
 
     public void setTiempoDisponibilidad(String t) {
         this.tiempoDisponibilidad = t;
+    }
+
+    public String getUrlImagenVivienda() {
+        return urlImagenVivienda;
+    }
+
+    public void setUrlImagenVivienda(String urlImagenVivienda) {
+        this.urlImagenVivienda = urlImagenVivienda;
     }
 }

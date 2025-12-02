@@ -30,340 +30,263 @@ public class JPInfoResumen extends javax.swing.JPanel {
         @SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
-        // Code">//GEN-BEGIN:initComponents
-        private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-                jPanel1 = new javax.swing.JPanel();
-                jPanel2 = new javax.swing.JPanel();
-                jPanel3 = new javax.swing.JPanel();
-                lblImagenMascota = new javax.swing.JLabel();
-                lblNombreMascota = new javax.swing.JLabel();
-                lblDetallesMascota = new javax.swing.JLabel();
-                jLabel4 = new javax.swing.JLabel();
-                lblNombreSolicitante = new javax.swing.JLabel();
-                lblCURP = new javax.swing.JLabel();
-                jLabel6 = new javax.swing.JLabel();
-                jLabel5 = new javax.swing.JLabel();
-                jLabel8 = new javax.swing.JLabel();
-                lblCitaPref = new javax.swing.JLabel();
-                lblContacto = new javax.swing.JLabel();
-                jLabel7 = new javax.swing.JLabel();
-                jLabel9 = new javax.swing.JLabel();
-                jLabel10 = new javax.swing.JLabel();
-                lblTipoVivienda = new javax.swing.JLabel();
-                lblConvivencia = new javax.swing.JLabel();
-                jLabel11 = new javax.swing.JLabel();
-                jCheckBox1 = new javax.swing.JCheckBox();
-                btnAnterior = new javax.swing.JButton();
-                btnEnviarSolicitud = new javax.swing.JButton();
-                jLabel3 = new javax.swing.JLabel();
-                jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        lblImagenMascota = new javax.swing.JLabel();
+        lblNombreMascota = new javax.swing.JLabel();
+        lblDetallesMascota = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblNombreSolicitante = new javax.swing.JLabel();
+        lblCURP = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblCitaPref = new javax.swing.JLabel();
+        lblContacto = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblTipoVivienda = new javax.swing.JLabel();
+        lblConvivencia = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        btnAnterior = new javax.swing.JButton();
+        btnEnviarSolicitud = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-                setBackground(new java.awt.Color(219, 213, 195));
+        setBackground(new java.awt.Color(219, 213, 195));
 
-                jPanel1.setBackground(new java.awt.Color(219, 213, 195));
+        jPanel1.setBackground(new java.awt.Color(219, 213, 195));
 
-                jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-                jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
-                lblImagenMascota.setText("IMAGEN MASCOTA");
+        lblImagenMascota.setText("IMAGEN MASCOTA");
 
-                lblNombreMascota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                lblNombreMascota.setText("NOMBRE MASCOTA");
+        lblNombreMascota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombreMascota.setText("NOMBRE MASCOTA");
 
-                lblDetallesMascota.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                lblDetallesMascota.setText("DETALLES MASCOTA");
+        lblDetallesMascota.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDetallesMascota.setText("DETALLES MASCOTA");
 
-                javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-                jPanel3.setLayout(jPanel3Layout);
-                jPanel3Layout.setHorizontalGroup(
-                                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(lblImagenMascota,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                87,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addGroup(jPanel3Layout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
-                                                                                .addComponent(lblNombreMascota,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE)
-                                                                                .addComponent(lblDetallesMascota,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE))
-                                                                .addContainerGap(164, Short.MAX_VALUE)));
-                jPanel3Layout.setVerticalGroup(
-                                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addGroup(jPanel3Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(jPanel3Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addComponent(lblNombreMascota)
-                                                                                                .addPreferredGap(
-                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addComponent(lblDetallesMascota)
-                                                                                                .addGap(0, 34, Short.MAX_VALUE))
-                                                                                .addComponent(lblImagenMascota,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE))
-                                                                .addContainerGap()));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblImagenMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNombreMascota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDetallesMascota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblNombreMascota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblDetallesMascota)
+                        .addGap(0, 34, Short.MAX_VALUE))
+                    .addComponent(lblImagenMascota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
 
-                jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jLabel4.setText("Datos del Solicitante");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Datos del Solicitante");
 
-                lblNombreSolicitante.setText("NOMBRE DEL SOLICITANTE");
+        lblNombreSolicitante.setText("NOMBRE DEL SOLICITANTE");
 
-                lblCURP.setText("CURP ");
+        lblCURP.setText("CURP ");
 
-                jLabel6.setText("CURP:");
+        jLabel6.setText("CURP:");
 
-                jLabel5.setText("Nombre:");
+        jLabel5.setText("Nombre:");
 
-                jLabel8.setText("Cita Preferida:");
+        jLabel8.setText("Cita Preferida:");
 
-                lblCitaPref.setText("CITA PREFERIDA");
+        lblCitaPref.setText("CITA PREFERIDA");
 
-                lblContacto.setText("CONTACTO");
+        lblContacto.setText("CONTACTO");
 
-                jLabel7.setText("Contacto:");
+        jLabel7.setText("Contacto:");
 
-                jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jLabel9.setText("Condiciones del Hogar");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setText("Condiciones del Hogar");
 
-                jLabel10.setText("Tipo Vivienda:");
+        jLabel10.setText("Tipo Vivienda:");
 
-                lblTipoVivienda.setText("TIPO DE VIVIENDA");
+        lblTipoVivienda.setText("TIPO DE VIVIENDA");
 
-                lblConvivencia.setText("DESC CONVIVENCIA");
+        lblConvivencia.setText("DESC CONVIVENCIA");
 
-                jLabel11.setText("Convivencia:");
+        jLabel11.setText("Convivencia:");
 
-                jCheckBox1.setText(
-                                "Confirmo que toda la información es verídica y acepto la carte de compromiso de adopción");
+        jCheckBox1.setText("Confirmo que toda la información es verídica y acepto la carte de compromiso de adopción");
 
-                btnAnterior.setText("Anterior");
+        btnAnterior.setText("Anterior");
 
-                btnEnviarSolicitud.setBackground(new java.awt.Color(0, 102, 0));
-                btnEnviarSolicitud.setText("Enviar Solicitud");
-                btnEnviarSolicitud.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                btnEnviarSolicitudActionPerformed(evt);
-                        }
-                });
+        btnEnviarSolicitud.setBackground(new java.awt.Color(0, 102, 0));
+        btnEnviarSolicitud.setText("Enviar Solicitud");
+        btnEnviarSolicitud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarSolicitudActionPerformed(evt);
+            }
+        });
 
-                jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-                jLabel3.setText("Paso 4: Resumen y Confirmacion");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Paso 4: Resumen y Confirmacion");
 
-                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-                jPanel2.setLayout(jPanel2Layout);
-                jPanel2Layout.setHorizontalGroup(
-                                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(jPanel2Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGap(54, 54, 54)
-                                                                                                .addGroup(jPanel2Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel5)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(lblNombreSolicitante))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel7)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                                                .addComponent(lblContacto))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel8)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(lblCitaPref))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel6)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(lblCURP))))
-                                                                                .addGroup(jPanel2Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGap(50, 50, 50)
-                                                                                                .addGroup(jPanel2Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel10)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(lblTipoVivienda))
-                                                                                                                .addGroup(jPanel2Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel11)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(lblConvivencia)))))
-                                                                .addGap(478, 478, 478))
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(29, 29, 29)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(jLabel3)
-                                                                                .addComponent(jPanel3,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jLabel4)
-                                                                                .addComponent(jLabel9)
-                                                                                .addComponent(jCheckBox1)
-                                                                                .addGroup(jPanel2Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addComponent(btnAnterior)
-                                                                                                .addPreferredGap(
-                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                Short.MAX_VALUE)
-                                                                                                .addComponent(btnEnviarSolicitud)))
-                                                                .addGap(63, 63, 63)));
-                jPanel2Layout.setVerticalGroup(
-                                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(22, 22, 22)
-                                                                .addComponent(jLabel3)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jPanel3,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(27, 27, 27)
-                                                                .addComponent(jLabel4)
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel5)
-                                                                                .addComponent(lblNombreSolicitante))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel6)
-                                                                                .addComponent(lblCURP))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel8)
-                                                                                .addComponent(lblCitaPref))
-                                                                .addGap(4, 4, 4)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel7)
-                                                                                .addComponent(lblContacto))
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jLabel9)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel10)
-                                                                                .addComponent(lblTipoVivienda))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jLabel11)
-                                                                                .addComponent(lblConvivencia))
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jCheckBox1)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                33,
-                                                                                Short.MAX_VALUE)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(btnAnterior)
-                                                                                .addComponent(btnEnviarSolicitud))
-                                                                .addGap(27, 27, 27)));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNombreSolicitante))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblContacto))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCitaPref))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCURP))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTipoVivienda))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblConvivencia)))))
+                .addGap(478, 478, 478))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel9)
+                    .addComponent(jCheckBox1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAnterior)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEnviarSolicitud)))
+                .addGap(63, 63, 63))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblNombreSolicitante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblCURP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lblCitaPref))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblContacto))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lblTipoVivienda))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(lblConvivencia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnterior)
+                    .addComponent(btnEnviarSolicitud))
+                .addGap(27, 27, 27))
+        );
 
-                jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-                jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-                jLabel2.setText("Solicitud de Adopciones");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setText("Solicitud de Adopciones");
 
-                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-                jPanel1.setLayout(jPanel1Layout);
-                jPanel1Layout.setHorizontalGroup(
-                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 732, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(jLabel2)
-                                                                                                .addComponent(jPanel2,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGap(0, 0, Short.MAX_VALUE))));
-                jPanel1Layout.setVerticalGroup(
-                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 567, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(jLabel2)
-                                                                                .addGap(0, 0, 0)
-                                                                                .addComponent(jPanel2,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(0, 0, Short.MAX_VALUE))));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 732, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 567, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addGap(0, 0, 0)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-                this.setLayout(layout);
-                layout.setHorizontalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addGap(40, 40, 40)
-                                                                .addComponent(jPanel1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)));
-                layout.setVerticalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addGap(28, 28, 28)
-                                                                .addComponent(jPanel1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)));
-        }// </editor-fold>//GEN-END:initComponents
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
         private void btnEnviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEnviarSolicitudActionPerformed
                 if (controlPresentacion != null) {
@@ -398,6 +321,12 @@ public class JPInfoResumen extends javax.swing.JPanel {
                 }
         }// GEN-LAST:event_btnEnviarSolicitudActionPerformed
 
+        private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {
+                if (controlPresentacion != null) {
+                        controlPresentacion.regresarDesdeInfoResumen();
+                }
+        }
+
         public void cargarDatos() {
                 if (controlPresentacion != null) {
                         DTOS.UsuarioDTO usuario = controlPresentacion.getUsuarioActual();
@@ -407,9 +336,7 @@ public class JPInfoResumen extends javax.swing.JPanel {
                         if (usuario != null && usuario.getInfoPersonal() != null) {
                                 lblNombreSolicitante.setText(usuario.getInfoPersonal().getNombre());
                                 lblCURP.setText(usuario.getInfoPersonal().getCurp());
-                                lblContacto.setText(
-                                                usuario.getInfoPersonal().getTelefono() + " / "
-                                                                + usuario.getInfoPersonal().getCorreo());
+                                lblContacto.setText(usuario.getInfoPersonal().getCorreo());
                         }
 
                         if (usuario != null && usuario.getInfoVivienda() != null) {
@@ -426,31 +353,31 @@ public class JPInfoResumen extends javax.swing.JPanel {
                 }
         }
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JButton btnAnterior;
-        private javax.swing.JButton btnEnviarSolicitud;
-        private javax.swing.JCheckBox jCheckBox1;
-        private javax.swing.JLabel jLabel10;
-        private javax.swing.JLabel jLabel11;
-        private javax.swing.JLabel jLabel2;
-        private javax.swing.JLabel jLabel3;
-        private javax.swing.JLabel jLabel4;
-        private javax.swing.JLabel jLabel5;
-        private javax.swing.JLabel jLabel6;
-        private javax.swing.JLabel jLabel7;
-        private javax.swing.JLabel jLabel8;
-        private javax.swing.JLabel jLabel9;
-        private javax.swing.JPanel jPanel1;
-        private javax.swing.JPanel jPanel2;
-        private javax.swing.JPanel jPanel3;
-        private javax.swing.JLabel lblCURP;
-        private javax.swing.JLabel lblCitaPref;
-        private javax.swing.JLabel lblContacto;
-        private javax.swing.JLabel lblConvivencia;
-        private javax.swing.JLabel lblDetallesMascota;
-        private javax.swing.JLabel lblImagenMascota;
-        private javax.swing.JLabel lblNombreMascota;
-        private javax.swing.JLabel lblNombreSolicitante;
-        private javax.swing.JLabel lblTipoVivienda;
-        // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnEnviarSolicitud;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblCURP;
+    private javax.swing.JLabel lblCitaPref;
+    private javax.swing.JLabel lblContacto;
+    private javax.swing.JLabel lblConvivencia;
+    private javax.swing.JLabel lblDetallesMascota;
+    private javax.swing.JLabel lblImagenMascota;
+    private javax.swing.JLabel lblNombreMascota;
+    private javax.swing.JLabel lblNombreSolicitante;
+    private javax.swing.JLabel lblTipoVivienda;
+    // End of variables declaration//GEN-END:variables
 }

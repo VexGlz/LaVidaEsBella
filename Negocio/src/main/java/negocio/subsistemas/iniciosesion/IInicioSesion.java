@@ -8,9 +8,13 @@ import DTOS.UsuarioDTO;
 
 /**
  * Interfaz para el subsistema de inicio de sesión
+ * 
  * @author System
  */
 public interface IInicioSesion {
     UsuarioDTO iniciarSesion(String correo, String password) throws Exception;
+
     void registrarUsuario(UsuarioDTO usuario) throws Exception;
+
+    void actualizarUsuario(UsuarioDTO usuario) throws Exception;
 }

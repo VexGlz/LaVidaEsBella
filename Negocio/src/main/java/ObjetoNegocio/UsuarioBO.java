@@ -41,6 +41,9 @@ public class UsuarioBO implements IUsuarioBO {
             // Guardar en base de datos
             ObjectId id = usuarioDAO.guardar(usuario);
             System.out.println("Usuario guardado con ID: " + id);
+
+            // ACTUALIZAR EL DTO CON EL ID GENERADO
+            usuarioDTO.setId(id.toHexString());
         }
     }
 
@@ -87,6 +90,15 @@ public class UsuarioBO implements IUsuarioBO {
         return new SolicitudAdopcionDTO();
     }
 
+    @Override
+    public void actualizarUsuario(UsuarioDTO usuarioDTO) {
+        if (usuarioDTO != null && usuarioDTO.getId() != null) {
+            Usuario usuario = convertirAEntidad(usuarioDTO);
+            usuario.setId(new ObjectId(usuarioDTO.getId()));
+            usuarioDAO.actualizar(usuario);
+        }
+    }
+
     /**
      * Convierte una entidad Usuario a UsuarioDTO
      */
@@ -105,8 +117,18 @@ public class UsuarioBO implements IUsuarioBO {
             infoDTO.setCorreo(usuario.getInfoPersonal().getCorreo());
             infoDTO.setCurp(usuario.getInfoPersonal().getCurp());
             infoDTO.setDireccion(usuario.getInfoPersonal().getDireccion());
-            infoDTO.setTelefono(usuario.getInfoPersonal().getTelefono());
             dto.setInfoPersonal(infoDTO);
+        }
+
+        if (usuario.getInfoVivienda() != null) {
+            DTOS.InfoViviendaDTO infoViviendaDTO = new DTOS.InfoViviendaDTO();
+            infoViviendaDTO.setTipoVivienda(usuario.getInfoVivienda().getTipoVivienda());
+            infoViviendaDTO.setCondicionesHogar(usuario.getInfoVivienda().getCondicionesHogar());
+            infoViviendaDTO.setTieneOtrasMascotas(usuario.getInfoVivienda().isTieneOtrasMascotas());
+            infoViviendaDTO.setTieneNinos(usuario.getInfoVivienda().isTieneNinos());
+            infoViviendaDTO.setTiempoDisponibilidad(usuario.getInfoVivienda().getTiempoDisponibilidad());
+            infoViviendaDTO.setUrlImagenVivienda(usuario.getInfoVivienda().getUrlImagenVivienda());
+            dto.setInfoVivienda(infoViviendaDTO);
         }
 
         return dto;
@@ -125,8 +147,18 @@ public class UsuarioBO implements IUsuarioBO {
             infoPersonal.setCorreo(dto.getInfoPersonal().getCorreo());
             infoPersonal.setCurp(dto.getInfoPersonal().getCurp());
             infoPersonal.setDireccion(dto.getInfoPersonal().getDireccion());
-            infoPersonal.setTelefono(dto.getInfoPersonal().getTelefono());
             usuario.setInfoPersonal(infoPersonal);
+        }
+
+        if (dto.getInfoVivienda() != null) {
+            entities.InfoVivienda infoVivienda = new entities.InfoVivienda();
+            infoVivienda.setTipoVivienda(dto.getInfoVivienda().getTipoVivienda());
+            infoVivienda.setCondicionesHogar(dto.getInfoVivienda().getCondicionesHogar());
+            infoVivienda.setTieneOtrasMascotas(dto.getInfoVivienda().isTieneOtrasMascotas());
+            infoVivienda.setTieneNinos(dto.getInfoVivienda().isTieneNinos());
+            infoVivienda.setTiempoDisponibilidad(dto.getInfoVivienda().getTiempoDisponibilidad());
+            infoVivienda.setUrlImagenVivienda(dto.getInfoVivienda().getUrlImagenVivienda());
+            usuario.setInfoVivienda(infoVivienda);
         }
 
         return usuario;

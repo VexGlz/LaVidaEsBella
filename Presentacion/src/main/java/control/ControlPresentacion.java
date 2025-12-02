@@ -5,6 +5,7 @@
 package control;
 
 import DTOS.CitaDTO;
+import DTOS.CitaDisponibleDTO;
 import DTOS.InfoPersonalDTO;
 import DTOS.InfoViviendaDTO;
 import DTOS.MascotaDTO;
@@ -21,6 +22,7 @@ import gui.flujoAdoptar.FrmRazonesAntecedentes;
 import gui.flujoAdoptar.MenuMostrarEspecies;
 
 import javax.swing.*;
+import java.util.List;
 
 public class ControlPresentacion {
 
@@ -43,9 +45,13 @@ public class ControlPresentacion {
     private SolicitudAdopcionDTO solicitudActual;
     private CitaDTO citaSeleccionada;
 
+    // Borradores guardados
+    private InfoPersonalDTO borradorInfoPersonal;
+    private CitaDisponibleDTO borradorCita;
+
     public ControlPresentacion() {
         this.controlSubsistemas = new ControlSubsistemas();
-        this.idUsuarioActual = "USER001"; // Usuario de prueba
+        this.idUsuarioActual = null;
     }
 
     public void iniciarSistema() {
@@ -113,6 +119,16 @@ public class ControlPresentacion {
             }
             usuarioActual.setInfoPersonal(infoPersonal);
 
+            // Guardar el usuario actualizado en la base de datos
+            if (usuarioActual.getId() != null) {
+                try {
+                    controlSubsistemas.actualizarUsuario(usuarioActual);
+                    System.out.println("✓ Usuario actualizado en BD con info personal");
+                } catch (Exception e) {
+                    System.err.println("Error al actualizar usuario en BD: " + e.getMessage());
+                }
+            }
+
             // Crear solicitud si no existe
             if (solicitudActual == null) {
                 solicitudActual = new SolicitudAdopcionDTO();
@@ -150,8 +166,12 @@ public class ControlPresentacion {
         try {
             // Asegurar que existe usuario y solicitud
             if (usuarioActual == null) {
+                System.out.println("DEBUG: usuarioActual es null en guardarInfoVivienda. Creando nuevo.");
                 usuarioActual = new UsuarioDTO();
+            } else {
+                System.out.println("DEBUG: usuarioActual ID: " + usuarioActual.getId());
             }
+
             if (solicitudActual == null) {
                 solicitudActual = new SolicitudAdopcionDTO();
                 solicitudActual.setUsuario(usuarioActual);
@@ -159,6 +179,16 @@ public class ControlPresentacion {
 
             // Guardar información de vivienda en el usuario
             usuarioActual.setInfoVivienda(infoVivienda);
+
+            // Guardar el usuario actualizado en la base de datos
+            if (usuarioActual.getId() != null) {
+                try {
+                    controlSubsistemas.actualizarUsuario(usuarioActual);
+                    System.out.println("✓ Usuario actualizado en BD con info vivienda");
+                } catch (Exception e) {
+                    System.err.println("Error al actualizar usuario en BD: " + e.getMessage());
+                }
+            }
 
             System.out.println("✓ Información de vivienda guardada: " + infoVivienda.getTipoVivienda());
 
@@ -401,6 +431,200 @@ public class ControlPresentacion {
 
     public String getIdMascotaSeleccionada() {
         return idMascotaSeleccionada;
+    }
+
+    /**
+     * Cancela el proceso de solicitud de adopción actual
+     * Limpia todos los datos temporales y regresa al menú principal
+     */
+    public void cancelarSolicitud() {
+        // Preguntar confirmación al usuario
+        int confirmacion = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea cancelar la solicitud de adopción?\nSe perderán todos los datos ingresados.",
+                "Confirmar cancelación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            // Limpiar todos los datos de la solicitud
+            limpiarDatosSolicitud();
+
+            // Volver al menú principal
+            if (frmMenuPrincipal != null) {
+                frmMenuPrincipal.mostrarInicio();
+            }
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Solicitud de adopción cancelada.",
+                    "Cancelación exitosa",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    /**
+     * Regresa desde FrmInfoPersonal a la información de la mascota
+     */
+    public void regresarDesdeFrmInfoPersonal() {
+        if (frmMenuPrincipal != null && idMascotaSeleccionada != null) {
+            // Volver a mostrar la información de la mascota
+            mostrarInformacionMascota(idMascotaSeleccionada);
+        }
+    }
+
+    /**
+     * Regresa desde FrmInfoVivienda a FrmInfoPersonal
+     */
+    public void regresarDesdeFrmInfoVivienda() {
+        if (frmMenuPrincipal != null) {
+            frmMenuPrincipal.mostrarInfoPersonal();
+        }
+    }
+
+    /**
+     * Regresa desde FrmRazonesAntecedentes a FrmInfoVivienda
+     */
+    public void regresarDesdeFrmRazonesAntecedentes() {
+        if (frmMenuPrincipal != null) {
+            frmMenuPrincipal.mostrarInfoVivienda();
+        }
+    }
+
+    /**
+     * Regresa desde JPInfoResumen a FrmRazonesAntecedentes
+     */
+    public void regresarDesdeInfoResumen() {
+        if (frmMenuPrincipal != null) {
+            frmMenuPrincipal.mostrarRazonesAntecedentes();
+        }
+    }
+
+    /**
+     * Regresa al menú de selección de especies
+     */
+    public void regresarAlMenuEspecies() {
+        if (menuMostrarEspecies == null) {
+            menuMostrarEspecies = new MenuMostrarEspecies();
+            menuMostrarEspecies.setControlPresentacion(this);
+        }
+        menuMostrarEspecies.setVisible(true);
+    }
+
+    // --- MÉTODOS PARA BORRADORES ---
+
+    /**
+     * Guarda el borrador de información personal
+     */
+    public void guardarBorradorInfoPersonal(InfoPersonalDTO info) {
+        this.borradorInfoPersonal = info;
+        System.out.println("Borrador de información personal guardado");
+    }
+
+    /**
+     * Guarda el borrador de cita seleccionada
+     */
+    public void guardarBorradorCita(CitaDisponibleDTO cita) {
+        this.borradorCita = cita;
+        System.out.println("Borrador de cita guardado");
+    }
+
+    /**
+     * Obtiene el borrador de información personal
+     */
+    public InfoPersonalDTO getBorradorInfoPersonal() {
+        return borradorInfoPersonal;
+    }
+
+    /**
+     * Obtiene el borrador de cita
+     */
+    public CitaDisponibleDTO getBorradorCita() {
+        return borradorCita;
+    }
+
+    // --- MÉTODOS PARA GESTIÓN DE SOLICITUDES ---
+
+    /**
+     * Obtiene todas las solicitudes del usuario actual
+     */
+    public List<SolicitudAdopcionDTO> obtenerSolicitudesUsuario() {
+        System.out.println("DEBUG: Obteniendo solicitudes para usuario ID: " + idUsuarioActual);
+        if (idUsuarioActual == null) {
+            System.err.println("No hay usuario logueado");
+            return new java.util.ArrayList<>();
+        }
+
+        try {
+            return controlSubsistemas.buscarSolicitudesPorUsuario(idUsuarioActual);
+        } catch (Exception e) {
+            System.err.println("Error al obtener solicitudes: " + e.getMessage());
+            e.printStackTrace();
+            return new java.util.ArrayList<>();
+        }
+    }
+
+    /**
+     * Cancela una solicitud de adopción
+     */
+    public void cancelarSolicitudAdopcion(String idSolicitud) throws Exception {
+        if (idSolicitud == null || idSolicitud.isEmpty()) {
+            throw new Exception("ID de solicitud inválido");
+        }
+
+        controlSubsistemas.actualizarEstadoSolicitud(idSolicitud, "Cancelada");
+        System.out.println("✓ Solicitud " + idSolicitud + " cancelada");
+    }
+
+    /**
+     * Cancela la cita asociada a una solicitud
+     */
+    public void cancelarCita(String idSolicitud) throws Exception {
+        if (idSolicitud == null || idSolicitud.isEmpty()) {
+            throw new Exception("ID de solicitud inválido");
+        }
+
+        // Aquí idealmente deberíamos liberar la cita en el sistema de citas
+        // Por ahora, solo actualizamos el estado de la solicitud o limpiamos el campo
+        // de cita
+        // Como no tenemos un método específico en el subsistema para "desvincular"
+        // cita,
+        // asumiremos que cancelar la solicitud o cambiar su estado es suficiente,
+        // o implementaremos un método específico si es necesario.
+
+        // Opción A: Simplemente marcamos la solicitud como que requiere nueva cita o
+        // similar
+        // Pero el usuario pidió "cancelar cita".
+
+        // Vamos a llamar a un nuevo método en controlSubsistemas
+        controlSubsistemas.cancelarCitaDeSolicitud(idSolicitud);
+    }
+
+    /**
+     * Inicia el proceso de reprogramación de cita para una solicitud existente
+     */
+    public void iniciarReprogramacionCita(String idSolicitud) throws Exception {
+        if (idSolicitud == null || idSolicitud.isEmpty()) {
+            throw new Exception("ID de solicitud inválido");
+        }
+
+        // Buscar la solicitud completa
+        SolicitudAdopcionDTO solicitud = controlSubsistemas.buscarSolicitudPorId(idSolicitud);
+
+        if (solicitud == null) {
+            throw new Exception("Solicitud no encontrada");
+        }
+
+        // Establecer como solicitud actual
+        this.solicitudActual = solicitud;
+
+        // Si tiene mascota, cargarla también para contexto
+        if (solicitud.getMascota() != null && solicitud.getMascota().getId() != null) {
+            this.idMascotaSeleccionada = solicitud.getMascota().getId();
+        }
+
+        // Mostrar pantalla de generar cita
+        mostrarGenerarCita();
     }
 
 }
