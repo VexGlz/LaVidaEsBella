@@ -143,10 +143,9 @@ public class ControlPresentacion {
             String nombreUsuario = (infoPersonal.getNombre() != null) ? infoPersonal.getNombre() : "Usuario";
             System.out.println("✓ Información personal guardada: " + nombreUsuario);
 
-            // Navegar al siguiente panel
-            if (frmMenuPrincipal != null) {
-                frmMenuPrincipal.mostrarInfoVivienda();
-            }
+            // La navegación ahora es responsabilidad de la vista (FrmInfoPersonal)
+            // para permitir saltar pasos si es necesario
+
         } catch (Exception e) {
             System.err.println("Error en guardarInfoPersonal: " + e.getMessage());
             e.printStackTrace();
@@ -572,7 +571,7 @@ public class ControlPresentacion {
             throw new Exception("ID de solicitud inválido");
         }
 
-        controlSubsistemas.actualizarEstadoSolicitud(idSolicitud, "Cancelada");
+        controlSubsistemas.cancelarSolicitudAdopcion(idSolicitud);
         System.out.println("✓ Solicitud " + idSolicitud + " cancelada");
     }
 
@@ -625,6 +624,70 @@ public class ControlPresentacion {
 
         // Mostrar pantalla de generar cita
         mostrarGenerarCita();
+    }
+
+    /**
+     * Verifica si el usuario tiene solicitudes previas y carga sus datos
+     * 
+     * @return true si se encontraron datos previos y se cargaron, false si no
+     */
+    public boolean verificarYPreCargarDatosPrevios() {
+        if (idUsuarioActual == null) {
+            return false;
+        }
+
+        List<SolicitudAdopcionDTO> solicitudes = obtenerSolicitudesUsuario();
+        if (solicitudes == null || solicitudes.isEmpty()) {
+            return false;
+        }
+
+        // Buscar la última solicitud válida (que tenga datos)
+        // Orden inverso para obtener la más reciente si la lista está ordenada
+        // cronológicamente
+        // O simplemente iterar y tomar la primera que tenga datos completos
+        for (SolicitudAdopcionDTO sol : solicitudes) {
+            // Ignorar la solicitud actual si ya está en la lista (aunque no debería estar
+            // guardada aún)
+            if (solicitudActual != null && sol.getId() != null && sol.getId().equals(solicitudActual.getId())) {
+                continue;
+            }
+
+            boolean datosEncontrados = false;
+
+            // 1. Cargar Info Vivienda
+            if (sol.getUsuario() != null && sol.getUsuario().getInfoVivienda() != null) {
+                if (usuarioActual == null) {
+                    usuarioActual = new UsuarioDTO();
+                    usuarioActual.setId(idUsuarioActual);
+                }
+                // Solo cargar si no tenemos ya info (o sobrescribir, según requerimiento. Aquí
+                // sobrescribimos para "precargar")
+                usuarioActual.setInfoVivienda(sol.getUsuario().getInfoVivienda());
+                datosEncontrados = true;
+                System.out.println("✓ Info Vivienda recuperada de solicitud previa: " + sol.getId());
+            }
+
+            // 2. Cargar Razones y Antecedentes
+            if (sol.getRazones() != null) {
+                if (solicitudActual == null) {
+                    solicitudActual = new SolicitudAdopcionDTO();
+                    solicitudActual.setUsuario(usuarioActual);
+                    if (idMascotaSeleccionada != null) {
+                        MascotaDTO m = controlSubsistemas.obtenerMascotaPorId(idMascotaSeleccionada);
+                        solicitudActual.setMascota(m);
+                    }
+                }
+                solicitudActual.setRazones(sol.getRazones());
+                datosEncontrados = true;
+                System.out.println("✓ Razones recuperadas de solicitud previa: " + sol.getId());
+            }
+
+            if (datosEncontrados) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

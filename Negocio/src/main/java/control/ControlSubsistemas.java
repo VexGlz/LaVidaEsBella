@@ -80,7 +80,15 @@ public class ControlSubsistemas {
         // 1. Guardar la solicitud de adopción (Negocio -> Persistencia)
         controlAdopcion.crearSolicitud(solicitud);
 
-        // 2. Agendar la cita y notificar (Negocio -> Infraestructura)
+        // 2. Actualizar estado de la mascota a NO DISPONIBLE
+        if (solicitud.getMascota() != null) {
+            MascotaDTO mascota = solicitud.getMascota();
+            mascota.setDisponible(false);
+            subsistemaMascotas.actualizarMascota(mascota);
+            System.out.println("Mascota " + mascota.getId() + " marcada como NO disponible.");
+        }
+
+        // 3. Agendar la cita y notificar (Negocio -> Infraestructura)
         // Asumiendo que obtenemos el correo del usuario del DTO
         String correoUsuario = "usuario@ejemplo.com";
         if (solicitud != null && solicitud.getUsuario() != null && solicitud.getUsuario().getInfoPersonal() != null) {
@@ -112,10 +120,34 @@ public class ControlSubsistemas {
     }
 
     public void cancelarCitaDeSolicitud(String idSolicitud) throws Exception {
-        // Por ahora, actualizamos el estado de la solicitud para indicar que la cita
-        // fue cancelada
-        // En una implementación completa, esto también liberaría la cita en la tabla de
-        // citas
+        // 1. Obtener la solicitud para saber qué mascota liberar
+        SolicitudAdopcionDTO solicitud = controlAdopcion.buscarSolicitudPorId(idSolicitud);
+
+        if (solicitud != null && solicitud.getMascota() != null) {
+            // 2. Liberar la mascota (ponerla disponible)
+            MascotaDTO mascota = solicitud.getMascota();
+            mascota.setDisponible(true);
+            subsistemaMascotas.actualizarMascota(mascota);
+            System.out.println("Mascota " + mascota.getId() + " liberada (disponible) por cancelación de cita.");
+        }
+
+        // 3. Actualizar estado de la solicitud
         controlAdopcion.actualizarEstadoSolicitud(idSolicitud, "Cita Cancelada");
+    }
+
+    public void cancelarSolicitudAdopcion(String idSolicitud) throws Exception {
+        // 1. Obtener la solicitud para saber qué mascota liberar
+        SolicitudAdopcionDTO solicitud = controlAdopcion.buscarSolicitudPorId(idSolicitud);
+
+        if (solicitud != null && solicitud.getMascota() != null) {
+            // 2. Liberar la mascota (ponerla disponible)
+            MascotaDTO mascota = solicitud.getMascota();
+            mascota.setDisponible(true);
+            subsistemaMascotas.actualizarMascota(mascota);
+            System.out.println("Mascota " + mascota.getId() + " liberada (disponible) por cancelación de solicitud.");
+        }
+
+        // 3. Actualizar estado de la solicitud
+        controlAdopcion.actualizarEstadoSolicitud(idSolicitud, "Cancelada");
     }
 }

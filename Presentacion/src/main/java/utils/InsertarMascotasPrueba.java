@@ -22,6 +22,7 @@ public class InsertarMascotasPrueba {
             mascota1.setPersonalidad("Juguetón y amigable con niños");
             mascota1.setUrlImagen("/images/mascotas/perro1.jpg"); // Ruta relativa desde resources
             mascota1.setDisponible(true);
+            mascota1.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota1);
             System.out.println("✓ Mascota 1 registrada: " + mascota1.getNombre());
 
@@ -34,6 +35,7 @@ public class InsertarMascotasPrueba {
             mascota2.setPersonalidad("Tranquila e independiente");
             mascota2.setUrlImagen("/images/mascotas/gato1.jpg");
             mascota2.setDisponible(true);
+            mascota2.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota2);
             System.out.println("✓ Mascota 2 registrada: " + mascota2.getNombre());
 
@@ -46,6 +48,7 @@ public class InsertarMascotasPrueba {
             mascota3.setPersonalidad("Enérgico y leal");
             mascota3.setUrlImagen("/images/mascotas/perro2.jpg");
             mascota3.setDisponible(true);
+            mascota3.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota3);
             System.out.println("✓ Mascota 3 registrada: " + mascota3.getNombre());
 
@@ -58,6 +61,7 @@ public class InsertarMascotasPrueba {
             mascota4.setPersonalidad("Curioso y juguetón");
             mascota4.setUrlImagen("/images/mascotas/gato2.jpg");
             mascota4.setDisponible(true);
+            mascota4.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota4);
             System.out.println("✓ Mascota 4 registrada: " + mascota4.getNombre());
 
@@ -70,6 +74,7 @@ public class InsertarMascotasPrueba {
             mascota5.setPersonalidad("Cantarín y sociable");
             mascota5.setUrlImagen("/images/mascotas/pajaro1.jpg");
             mascota5.setDisponible(true);
+            mascota5.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota5);
             System.out.println("✓ Mascota 5 registrada: " + mascota5.getNombre());
 
@@ -82,6 +87,7 @@ public class InsertarMascotasPrueba {
             mascota6.setPersonalidad("Tranquilo y de bajo mantenimiento");
             mascota6.setUrlImagen("/images/mascotas/reptil1.jpg");
             mascota6.setDisponible(true);
+            mascota6.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota6);
             System.out.println("✓ Mascota 6 registrada: " + mascota6.getNombre());
 

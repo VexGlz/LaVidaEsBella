@@ -78,7 +78,11 @@ public class MascotaBO implements IMascotaBO {
 
     @Override
     public void actualizarMascota(MascotaDTO mascotaDTO) {
-        // TODO: Implementar actualizar en DAO
+        if (mascotaDTO != null) {
+            Mascota mascota = convertirAEntidad(mascotaDTO);
+            mascotaDAO.actualizar(mascota);
+            System.out.println("Mascota actualizada: " + mascota.getId());
+        }
     }
 
     @Override
@@ -112,6 +116,7 @@ public class MascotaBO implements IMascotaBO {
         dto.setUrlImagen(entidad.getUrlImagen());
         dto.setEdad(entidad.getEdad());
         dto.setDisponible(entidad.isDisponible());
+        dto.setEstado(entidad.getEstado());
         return dto;
     }
 
@@ -134,6 +139,7 @@ public class MascotaBO implements IMascotaBO {
         entidad.setUrlImagen(dto.getUrlImagen());
         entidad.setEdad(dto.getEdad());
         entidad.setDisponible(dto.isDisponible());
+        entidad.setEstado(dto.getEstado());
         return entidad;
     }
 }

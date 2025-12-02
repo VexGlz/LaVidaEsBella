@@ -16,6 +16,7 @@ public class Mascota {
     private String urlImagen;
     private int edad;
     private boolean disponible;
+    private String estado;
 
     public Mascota() {
     }
@@ -82,5 +83,13 @@ public class Mascota {
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

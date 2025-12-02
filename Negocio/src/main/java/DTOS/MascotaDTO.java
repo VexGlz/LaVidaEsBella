@@ -14,6 +14,7 @@ public class MascotaDTO {
     private String urlImagen;
     private int edad;
     private boolean disponible;
+    private String estado;
 
     public MascotaDTO() {
     }
@@ -87,6 +88,14 @@ public class MascotaDTO {
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
