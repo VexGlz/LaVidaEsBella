@@ -102,6 +102,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     public void mostrarInfoResumen() {
         if (cardLayout != null) {
+            if (frmInfoResumen != null) {
+                frmInfoResumen.cargarDatos();
+            }
             cardLayout.show(panelContenidoDinamico, "infoResumen");
         }
     }

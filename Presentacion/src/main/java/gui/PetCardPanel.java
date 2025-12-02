@@ -40,17 +40,27 @@ public class PetCardPanel extends javax.swing.JPanel {
             if (urlImagen != null && !urlImagen.isEmpty()) {
                 ImageIcon icon = null;
 
-                // Intentar cargar desde resources primero (ruta relativa que empieza con /)
-                if (urlImagen.startsWith("/")) {
-                    // Es una ruta relativa desde resources
+                // Verificar si es una URL de internet (HTTP/HTTPS)
+                if (urlImagen.startsWith("http://") || urlImagen.startsWith("https://")) {
+                    try {
+                        java.net.URL url = new java.net.URL(urlImagen);
+                        icon = new ImageIcon(url);
+                    } catch (Exception e) {
+                        System.err.println("Error cargando imagen desde URL: " + urlImagen);
+                        e.printStackTrace();
+                    }
+                }
+                // Intentar cargar desde resources (ruta relativa que empieza con /)
+                else if (urlImagen.startsWith("/")) {
                     java.net.URL imgURL = getClass().getResource(urlImagen);
                     if (imgURL != null) {
                         icon = new ImageIcon(imgURL);
                     } else {
                         System.err.println("No se encontró la imagen en resources: " + urlImagen);
                     }
-                } else {
-                    // Es una ruta absoluta, cargar desde el sistema de archivos
+                }
+                // Es una ruta absoluta local
+                else {
                     File imgFile = new File(urlImagen);
                     if (imgFile.exists()) {
                         icon = new ImageIcon(urlImagen);

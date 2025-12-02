@@ -11,12 +11,13 @@ import java.util.List;
 
 /**
  * Fachada para el subsistema de citas
+ * 
  * @author System
  */
 public class FachadaCitas implements ICitas {
-    
+
     private ICitaBO citaBO;
-    
+
     public FachadaCitas() {
         this.citaBO = new CitaBO();
     }
@@ -27,12 +28,12 @@ public class FachadaCitas implements ICitas {
     }
 
     @Override
-    public CitaDTO buscarCitaPorId(Long id) throws Exception {
+    public CitaDTO buscarCitaPorId(String id) throws Exception {
         return citaBO.buscarCitaPorId(id);
     }
 
     @Override
-    public List<CitaDTO> buscarCitasPorUsuario(Long idUsuario) throws Exception {
+    public List<CitaDTO> buscarCitasPorUsuario(String idUsuario) throws Exception {
         return citaBO.buscarCitasPorUsuario(idUsuario);
     }
 }

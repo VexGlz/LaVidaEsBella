@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CitaBO implements ICitaBO {
-    
+
     private CitaDAO citaDAO;
-    
+
     public CitaBO() {
         this.citaDAO = new CitaDAO(ConexionMongoDB.getInstancia().getDatabase());
     }
@@ -27,14 +27,14 @@ public class CitaBO implements ICitaBO {
             citaDAO.guardar(cita);
         }
     }
-    
+
     @Override
-    public CitaDTO buscarCitaPorId(Long id) {
+    public CitaDTO buscarCitaPorId(String id) {
         return null; // Problema de ID
     }
-    
+
     @Override
-    public List<CitaDTO> buscarCitasPorUsuario(Long idUsuario) {
+    public List<CitaDTO> buscarCitasPorUsuario(String idUsuario) {
         return new ArrayList<>(); // Problema de ID
     }
 
@@ -47,17 +47,23 @@ public class CitaBO implements ICitaBO {
     }
 
     @Override
-    public void asociaUsuario(CitaDTO cita, Long idUsuario) {
+    public void asociaUsuario(CitaDTO cita, String idUsuario) {
         if (cita != null) {
             cita.setIdUsuario(idUsuario);
         }
     }
-    
+
     private Cita convertirAEntidad(CitaDTO dto) {
-        if (dto == null) return null;
+        if (dto == null)
+            return null;
         Cita entidad = new Cita();
         entidad.setFechaHora(dto.getFechaHora());
-        // Mapeo de IDs pendiente
+        if (dto.getIdUsuario() != null) {
+            entidad.setIdUsuario(new org.bson.types.ObjectId(dto.getIdUsuario()));
+        }
+        if (dto.getIdMascota() != null) {
+            entidad.setIdMascota(new org.bson.types.ObjectId(dto.getIdMascota()));
+        }
         return entidad;
     }
 }

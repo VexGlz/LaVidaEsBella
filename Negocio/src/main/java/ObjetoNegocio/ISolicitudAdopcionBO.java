@@ -13,14 +13,14 @@ import DTOS.UsuarioDTO;
  * @author Josel
  */
 public interface ISolicitudAdopcionBO {
-    
+
     void crearSolicitud(SolicitudAdopcionDTO solicitud);
-    
-    SolicitudAdopcionDTO buscarSolicitudPorId(Long id);
-    
-    java.util.List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(Long idUsuario);
-    
-    void actualizarEstadoSolicitud(Long id, String nuevoEstado);
+
+    SolicitudAdopcionDTO buscarSolicitudPorId(String id);
+
+    java.util.List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(String idUsuario);
+
+    void actualizarEstadoSolicitud(String id, String nuevoEstado);
 
     void registraRA(SolicitudAdopcionDTO solicitud, String razones, String antecedentes);
 

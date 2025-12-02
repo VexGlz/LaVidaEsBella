@@ -9,16 +9,17 @@ import java.util.List;
 
 /**
  * Interfaz para el subsistema de adopciones
+ * 
  * @author System
  */
 public interface IAdopciones {
-    
+
     void crearSolicitud(SolicitudAdopcionDTO solicitud) throws Exception;
-    
-    SolicitudAdopcionDTO buscarSolicitudPorId(Long id) throws Exception;
-    
-    List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(Long idUsuario) throws Exception;
-    
-    void actualizarEstadoSolicitud(Long id, String nuevoEstado) throws Exception;
-    
+
+    SolicitudAdopcionDTO buscarSolicitudPorId(String id) throws Exception;
+
+    List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(String idUsuario) throws Exception;
+
+    void actualizarEstadoSolicitud(String id, String nuevoEstado) throws Exception;
+
 }

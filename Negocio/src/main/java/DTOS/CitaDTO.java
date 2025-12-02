@@ -12,25 +12,25 @@ import java.time.LocalDateTime;
  */
 public class CitaDTO {
 
-    private Long id;
+    private String id;
     private LocalDateTime fechaHora;
-    private Long idMascota;
-    private Long idUsuario;
+    private String idMascota;
+    private String idUsuario;
 
     public CitaDTO() {
     }
 
-    public CitaDTO(LocalDateTime fechaHora, Long idMascota, Long idUsuario) {
+    public CitaDTO(LocalDateTime fechaHora, String idMascota, String idUsuario) {
         this.fechaHora = fechaHora;
         this.idMascota = idMascota;
         this.idUsuario = idUsuario;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,19 +42,19 @@ public class CitaDTO {
         this.fechaHora = fechaHora;
     }
 
-    public Long getIdMascota() {
+    public String getIdMascota() {
         return idMascota;
     }
 
-    public void setIdMascota(Long idMascota) {
+    public void setIdMascota(String idMascota) {
         this.idMascota = idMascota;
     }
 
-    public Long getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 }

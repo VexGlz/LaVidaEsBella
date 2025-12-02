@@ -4,11 +4,9 @@
  */
 package DTOS;
 
-
-
 public class UsuarioDTO {
 
-    private Long id;
+    private String id;
     private String contrasena; // Solo para login/registro
 
     // Composición: El usuario "TIENE" info personal y de vivienda
@@ -21,11 +19,11 @@ public class UsuarioDTO {
     }
 
     // Getters y Setters
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

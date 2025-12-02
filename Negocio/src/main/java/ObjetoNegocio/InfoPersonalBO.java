@@ -27,7 +27,7 @@ public class InfoPersonalBO implements IInfoPersonalBO {
     }
 
     @Override
-    public UsuarioDTO obtieneUsuario(Long idUsuario) {
+    public UsuarioDTO obtieneUsuario(String idUsuario) {
         // Lógica para recuperar usuario (normalmente llamaría a un DAO)
         // Por ahora retornamos una instancia vacía para cumplir el contrato
         UsuarioDTO user = new UsuarioDTO();

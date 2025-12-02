@@ -17,7 +17,7 @@ public interface IInfoPersonalBO {
 
     double obtieneIngreso(UsuarioDTO usuario);
 
-    UsuarioDTO obtieneUsuario(Long idUsuario);
+    UsuarioDTO obtieneUsuario(String idUsuario);
 
     int obtieneEdad(UsuarioDTO usuario);
 }

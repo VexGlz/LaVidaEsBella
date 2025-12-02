@@ -4,7 +4,6 @@
  */
 package control;
 
-import control.ControlSubsistemas;
 import DTOS.CitaDTO;
 import DTOS.InfoPersonalDTO;
 import DTOS.InfoViviendaDTO;
@@ -40,7 +39,9 @@ public class ControlPresentacion {
     // Variables de contexto
     private String idMascotaSeleccionada;
     private String idUsuarioActual;
+    private UsuarioDTO usuarioActual;
     private SolicitudAdopcionDTO solicitudActual;
+    private CitaDTO citaSeleccionada;
 
     public ControlPresentacion() {
         this.controlSubsistemas = new ControlSubsistemas();
@@ -100,15 +101,42 @@ public class ControlPresentacion {
     }
 
     public void guardarInfoPersonal(InfoPersonalDTO infoPersonal) {
-        // Guardar en la solicitud actual
-        if (solicitudActual == null) {
-            solicitudActual = new SolicitudAdopcionDTO();
-        }
-        // TODO: Set mascota and usuario properly
+        try {
+            // Validar que infoPersonal no sea nulo
+            if (infoPersonal == null) {
+                throw new IllegalArgumentException("La información personal no puede estar vacía");
+            }
 
-        // Llamar al método del FrmMenuPrincipal para cambiar el panel
-        if (frmMenuPrincipal != null) {
-            frmMenuPrincipal.mostrarInfoVivienda();
+            // Crear o actualizar el usuario actual
+            if (usuarioActual == null) {
+                usuarioActual = new UsuarioDTO();
+            }
+            usuarioActual.setInfoPersonal(infoPersonal);
+
+            // Crear solicitud si no existe
+            if (solicitudActual == null) {
+                solicitudActual = new SolicitudAdopcionDTO();
+                solicitudActual.setUsuario(usuarioActual);
+                // Asignar la mascota seleccionada
+                if (idMascotaSeleccionada != null) {
+                    MascotaDTO mascota = controlSubsistemas.obtenerMascotaPorId(idMascotaSeleccionada);
+                    solicitudActual.setMascota(mascota);
+                }
+            }
+
+            String nombreUsuario = (infoPersonal.getNombre() != null) ? infoPersonal.getNombre() : "Usuario";
+            System.out.println("✓ Información personal guardada: " + nombreUsuario);
+
+            // Navegar al siguiente panel
+            if (frmMenuPrincipal != null) {
+                frmMenuPrincipal.mostrarInfoVivienda();
+            }
+        } catch (Exception e) {
+            System.err.println("Error en guardarInfoPersonal: " + e.getMessage());
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Error al guardar información personal: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -119,15 +147,29 @@ public class ControlPresentacion {
     }
 
     public void guardarInfoVivienda(InfoViviendaDTO infoVivienda) {
-        // Guardar info vivienda en la solicitud
-        if (solicitudActual == null) {
-            solicitudActual = new SolicitudAdopcionDTO();
-        }
-        // TODO: Set info vivienda properly
+        try {
+            // Asegurar que existe usuario y solicitud
+            if (usuarioActual == null) {
+                usuarioActual = new UsuarioDTO();
+            }
+            if (solicitudActual == null) {
+                solicitudActual = new SolicitudAdopcionDTO();
+                solicitudActual.setUsuario(usuarioActual);
+            }
 
-        // Navegar al siguiente panel
-        if (frmMenuPrincipal != null) {
-            frmMenuPrincipal.mostrarRazonesAntecedentes();
+            // Guardar información de vivienda en el usuario
+            usuarioActual.setInfoVivienda(infoVivienda);
+
+            System.out.println("✓ Información de vivienda guardada: " + infoVivienda.getTipoVivienda());
+
+            // Navegar al siguiente panel
+            if (frmMenuPrincipal != null) {
+                frmMenuPrincipal.mostrarRazonesAntecedentes();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Error al guardar información de vivienda: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -137,15 +179,25 @@ public class ControlPresentacion {
     }
 
     public void guardarRazonesAntecedentes(RazonesAntecedentesDTO razones) {
-        // Guardar razones y antecedentes en la solicitud
-        if (solicitudActual == null) {
-            solicitudActual = new SolicitudAdopcionDTO();
-        }
-        // TODO: Set razones antecedentes properly
+        try {
+            // Asegurar que existe solicitud
+            if (solicitudActual == null) {
+                solicitudActual = new SolicitudAdopcionDTO();
+            }
 
-        // Navegar al siguiente panel
-        if (frmMenuPrincipal != null) {
-            frmMenuPrincipal.mostrarInfoResumen();
+            // Guardar razones en la solicitud
+            solicitudActual.setRazones(razones);
+
+            System.out.println("✓ Razones y antecedentes guardados: " + razones.getMotivoAdopcion());
+
+            // Navegar al siguiente panel
+            if (frmMenuPrincipal != null) {
+                frmMenuPrincipal.mostrarInfoResumen();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Error al guardar razones y antecedentes: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -160,19 +212,75 @@ public class ControlPresentacion {
         frmGenerarCita.setVisible(true);
     }
 
-    public void procesarCita(CitaDTO cita) {
-        solicitudActual.setIdCita(cita.getId());
+    // --- MÉTODOS PARA CITAS ---
+    public java.util.List<DTOS.CitaDisponibleDTO> obtenerCitasDisponibles() {
+        return controlSubsistemas.obtenerCitasDisponibles();
+    }
 
-        // Procesar solicitud completa
+    public boolean reservarCita(String idCita, String idUsuario) {
+        return controlSubsistemas.reservarCita(idCita, idUsuario);
+    }
+
+    public void procesarCita(DTOS.CitaDTO cita) {
         try {
+            // Recuperación de estado si solicitudActual es null
+            if (solicitudActual == null) {
+                System.out.println(
+                        "⚠️ Advertencia: solicitudActual era null en procesarCita. Intentando recuperar estado.");
+                solicitudActual = new SolicitudAdopcionDTO();
+
+                if (usuarioActual != null) {
+                    solicitudActual.setUsuario(usuarioActual);
+                }
+
+                if (idMascotaSeleccionada != null) {
+                    MascotaDTO mascota = controlSubsistemas.obtenerMascotaPorId(idMascotaSeleccionada);
+                    solicitudActual.setMascota(mascota);
+                }
+            }
+
+            // Asignar fecha de solicitud
+            solicitudActual.setFechaSolicitud(java.time.LocalDateTime.now());
+            solicitudActual.setEstado("Pendiente");
+
+            // Registrar usuario si es nuevo
+            if (usuarioActual.getId() == null) {
+                // Asignar contraseña temporal si no tiene
+                if (usuarioActual.getContrasena() == null || usuarioActual.getContrasena().isEmpty()) {
+                    usuarioActual.setContrasena("temp123");
+                }
+                controlSubsistemas.registrarUsuario(usuarioActual);
+            }
+
+            // Asignar usuario a la solicitud
+            solicitudActual.setUsuario(usuarioActual);
+
+            // Guardar solicitud completa
             controlSubsistemas.procesarSolicitudCompleta(solicitudActual, cita);
-            cerrarVentana(frmGenerarCita);
-            mostrarConfirmacion();
+
+            // IMPORTANTE: Marcar la cita como ocupada si viene de una selección de cita
+            // disponible
+            // Aquí asumimos que cita.getFecha() y cita.getHora() coinciden con una cita
+            // disponible
+            // En una implementación más robusta, pasaríamos el ID de la cita disponible
+
+            limpiarDatosSolicitud();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,
+            javax.swing.JOptionPane.showMessageDialog(null,
                     "Error al procesar la solicitud: " + e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
+    }
+
+    private void limpiarDatosSolicitud() {
+        solicitudActual = null;
+        // NO limpiamos usuarioActual para mantener al usuario logueado
+        // y que sus datos estén disponibles para la siguiente solicitud
+        idMascotaSeleccionada = null;
+        System.out.println("→ Datos de solicitud limpiados (usuario logueado se mantiene)");
     }
 
     public void mostrarConfirmacion() {
@@ -255,6 +363,44 @@ public class ControlPresentacion {
         controlSubsistemas.registrarUsuario(usuario);
     }
 
-}
+    /**
+     * Establece el usuario que ha iniciado sesión
+     * Esto permite pre-llenar sus datos en los formularios
+     * 
+     * @param usuario UsuarioDTO del usuario que inició sesión
+     */
+    public void setUsuarioLogueado(UsuarioDTO usuario) {
+        this.usuarioActual = usuario;
+        if (usuario != null && usuario.getId() != null) {
+            this.idUsuarioActual = usuario.getId().toString();
+            System.out.println("✓ Usuario logueado: " + usuario.getInfoPersonal().getNombre());
+        }
+    }
 
-    
+    /**
+     * Obtiene los datos del usuario actual
+     * Útil para pre-llenar formularios con información existente
+     * 
+     * @return UsuarioDTO del usuario actual o null si no hay usuario logueado
+     */
+    public UsuarioDTO getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public CitaDTO getCitaSeleccionada() {
+        return citaSeleccionada;
+    }
+
+    public void setCitaSeleccionada(CitaDTO citaSeleccionada) {
+        this.citaSeleccionada = citaSeleccionada;
+    }
+
+    public SolicitudAdopcionDTO getSolicitudActual() {
+        return solicitudActual;
+    }
+
+    public String getIdMascotaSeleccionada() {
+        return idMascotaSeleccionada;
+    }
+
+}

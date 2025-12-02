@@ -11,12 +11,13 @@ import java.util.List;
 
 /**
  * Fachada para el subsistema de adopciones
+ * 
  * @author System
  */
 public class FachadaAdopciones implements IAdopciones {
-    
+
     private ISolicitudAdopcionBO solicitudBO;
-    
+
     public FachadaAdopciones() {
         this.solicitudBO = new SolicitudAdopcionBO();
     }
@@ -27,17 +28,17 @@ public class FachadaAdopciones implements IAdopciones {
     }
 
     @Override
-    public SolicitudAdopcionDTO buscarSolicitudPorId(Long id) throws Exception {
+    public SolicitudAdopcionDTO buscarSolicitudPorId(String id) throws Exception {
         return solicitudBO.buscarSolicitudPorId(id);
     }
 
     @Override
-    public List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(Long idUsuario) throws Exception {
+    public List<SolicitudAdopcionDTO> buscarSolicitudesPorUsuario(String idUsuario) throws Exception {
         return solicitudBO.buscarSolicitudesPorUsuario(idUsuario);
     }
 
     @Override
-    public void actualizarEstadoSolicitud(Long id, String nuevoEstado) throws Exception {
+    public void actualizarEstadoSolicitud(String id, String nuevoEstado) throws Exception {
         solicitudBO.actualizarEstadoSolicitud(id, nuevoEstado);
     }
 }

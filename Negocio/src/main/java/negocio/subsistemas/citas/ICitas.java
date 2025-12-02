@@ -9,14 +9,15 @@ import java.util.List;
 
 /**
  * Interfaz para el subsistema de citas
+ * 
  * @author System
  */
 public interface ICitas {
-    
+
     void agendarCita(CitaDTO cita) throws Exception;
-    
-    CitaDTO buscarCitaPorId(Long id) throws Exception;
-    
-    List<CitaDTO> buscarCitasPorUsuario(Long idUsuario) throws Exception;
-    
+
+    CitaDTO buscarCitaPorId(String id) throws Exception;
+
+    List<CitaDTO> buscarCitasPorUsuario(String idUsuario) throws Exception;
+
 }
