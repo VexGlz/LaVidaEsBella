@@ -32,6 +32,8 @@ public class JPInfoResumen extends javax.swing.JPanel {
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -59,6 +61,10 @@ public class JPInfoResumen extends javax.swing.JPanel {
                 btnAnterior = new javax.swing.JButton();
                 btnEnviarSolicitud = new javax.swing.JButton();
                 jLabel3 = new javax.swing.JLabel();
+                Mascotas = new javax.swing.JLabel();
+                lblMascotasSioNo = new javax.swing.JLabel();
+                Mascotas1 = new javax.swing.JLabel();
+                lblninosSioNo = new javax.swing.JLabel();
                 jLabel2 = new javax.swing.JLabel();
 
                 setBackground(new java.awt.Color(219, 213, 195));
@@ -166,6 +172,14 @@ public class JPInfoResumen extends javax.swing.JPanel {
                 jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
                 jLabel3.setText("Paso 4: Resumen y Confirmacion");
 
+                Mascotas.setText("Mascotas:");
+
+                lblMascotasSioNo.setText("DESC CONVIVENCIA");
+
+                Mascotas1.setText("Tiene niños:");
+
+                lblninosSioNo.setText("DESC CONVIVENCIA");
+
                 javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
                 jPanel2.setLayout(jPanel2Layout);
                 jPanel2Layout.setHorizontalGroup(
@@ -220,7 +234,19 @@ public class JPInfoResumen extends javax.swing.JPanel {
                                                                                                                                 .addComponent(jLabel11)
                                                                                                                                 .addPreferredGap(
                                                                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                                .addComponent(lblConvivencia)))))
+                                                                                                                                .addComponent(lblConvivencia))
+                                                                                                                .addGroup(jPanel2Layout
+                                                                                                                                .createSequentialGroup()
+                                                                                                                                .addComponent(Mascotas)
+                                                                                                                                .addPreferredGap(
+                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                                                .addComponent(lblMascotasSioNo))
+                                                                                                                .addGroup(jPanel2Layout
+                                                                                                                                .createSequentialGroup()
+                                                                                                                                .addComponent(Mascotas1)
+                                                                                                                                .addPreferredGap(
+                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                                                .addComponent(lblninosSioNo)))))
                                                                 .addGap(478, 478, 478))
                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGap(29, 29, 29)
@@ -254,7 +280,8 @@ public class JPInfoResumen extends javax.swing.JPanel {
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(27, 27, 27)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(jLabel4)
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(jPanel2Layout.createParallelGroup(
@@ -293,11 +320,24 @@ public class JPInfoResumen extends javax.swing.JPanel {
                                                                                 .addComponent(jLabel11)
                                                                                 .addComponent(lblConvivencia))
                                                                 .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(Mascotas)
+                                                                                .addComponent(lblMascotasSioNo))
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(Mascotas1)
+                                                                                .addComponent(lblninosSioNo))
+                                                                .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(jCheckBox1)
                                                                 .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                33, Short.MAX_VALUE)
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
                                                                 .addGroup(jPanel2Layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(btnAnterior)
@@ -312,33 +352,33 @@ public class JPInfoResumen extends javax.swing.JPanel {
                 jPanel1Layout.setHorizontalGroup(
                                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(246, 246, 246)
-                                                                .addComponent(jPanel2,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(270, Short.MAX_VALUE))
-                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(0, 121, Short.MAX_VALUE)
-                                                                                .addComponent(jLabel2)
-                                                                                .addGap(0, 743, Short.MAX_VALUE))));
+                                                                .addGroup(jPanel1Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createSequentialGroup()
+                                                                                                .addGap(243, 243, 243)
+                                                                                                .addComponent(jPanel2,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createSequentialGroup()
+                                                                                                .addGap(119, 119, 119)
+                                                                                                .addComponent(jLabel2)))
+                                                                .addContainerGap(275, Short.MAX_VALUE)));
                 jPanel1Layout.setVerticalGroup(
                                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
                                                                 .createSequentialGroup()
-                                                                .addGap(0, 48, Short.MAX_VALUE)
+                                                                .addContainerGap(18, Short.MAX_VALUE)
+                                                                .addComponent(jLabel2)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jPanel2,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(jLabel2)
-                                                                                .addGap(0, 519, Short.MAX_VALUE))));
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addContainerGap()));
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
                 this.setLayout(layout);
@@ -408,6 +448,82 @@ public class JPInfoResumen extends javax.swing.JPanel {
                         DTOS.SolicitudAdopcionDTO solicitud = controlPresentacion.getSolicitudActual();
                         DTOS.CitaDTO cita = controlPresentacion.getCitaSeleccionada();
 
+                        // Cargar datos de la mascota seleccionada
+                        String idMascota = controlPresentacion.getIdMascotaSeleccionada();
+                        if (idMascota != null) {
+                                DTOS.MascotaDTO mascota = controlPresentacion.getControlSubsistemas()
+                                                .obtenerMascotaPorId(idMascota);
+                                if (mascota != null) {
+                                        lblNombreMascota.setText(
+                                                        mascota.getNombre() != null ? mascota.getNombre() : "N/A");
+
+                                        // Formatear detalles de la mascota
+                                        String detalles = String.format("Especie: %s | Edad: %d años",
+                                                        mascota.getEspecie() != null ? mascota.getEspecie() : "N/A",
+                                                        mascota.getEdad());
+                                        lblDetallesMascota.setText(detalles);
+
+                                        // Cargar imagen de la mascota
+                                        if (mascota.getUrlImagen() != null && !mascota.getUrlImagen().isEmpty()) {
+                                                try {
+                                                        System.out.println("Intentando cargar imagen: "
+                                                                        + mascota.getUrlImagen());
+
+                                                        javax.swing.ImageIcon icon = null;
+
+                                                        // Detectar si es una URL externa o un recurso local
+                                                        if (mascota.getUrlImagen().startsWith("http://") || mascota
+                                                                        .getUrlImagen().startsWith("https://")) {
+                                                                // Cargar desde URL externa
+                                                                java.net.URL imageUrl = new java.net.URL(
+                                                                                mascota.getUrlImagen());
+                                                                icon = new javax.swing.ImageIcon(imageUrl);
+                                                        } else {
+                                                                // Cargar desde recursos locales
+                                                                java.net.URL resourceUrl = getClass()
+                                                                                .getResource(mascota.getUrlImagen());
+                                                                if (resourceUrl != null) {
+                                                                        icon = new javax.swing.ImageIcon(resourceUrl);
+                                                                } else {
+                                                                        System.err.println("Recurso no encontrado: "
+                                                                                        + mascota.getUrlImagen());
+                                                                        lblImagenMascota.setText("NO ENCONTRADO");
+                                                                        lblImagenMascota.setIcon(null);
+                                                                        return;
+                                                                }
+                                                        }
+
+                                                        // Verificar que la imagen se cargó correctamente
+                                                        if (icon != null && icon
+                                                                        .getImageLoadStatus() == java.awt.MediaTracker.COMPLETE) {
+                                                                // Redimensionar imagen
+                                                                java.awt.Image image = icon.getImage()
+                                                                                .getScaledInstance(87, 87,
+                                                                                                java.awt.Image.SCALE_SMOOTH);
+                                                                lblImagenMascota.setIcon(
+                                                                                new javax.swing.ImageIcon(image));
+                                                                lblImagenMascota.setText("");
+                                                                System.out.println("Imagen cargada exitosamente");
+                                                        } else {
+                                                                System.err.println(
+                                                                                "Error: La imagen no se cargó completamente");
+                                                                lblImagenMascota.setText("ERROR IMG");
+                                                                lblImagenMascota.setIcon(null);
+                                                        }
+                                                } catch (Exception e) {
+                                                        System.err.println("Error al cargar imagen: " + e.getMessage());
+                                                        e.printStackTrace();
+                                                        lblImagenMascota.setText("ERROR");
+                                                        lblImagenMascota.setIcon(null);
+                                                }
+                                        } else {
+                                                System.out.println("URL de imagen vacía o null");
+                                                lblImagenMascota.setText("SIN IMAGEN");
+                                                lblImagenMascota.setIcon(null);
+                                        }
+                                }
+                        }
+
                         if (usuario != null && usuario.getInfoPersonal() != null) {
                                 lblNombreSolicitante.setText(usuario.getInfoPersonal().getNombre());
                                 lblCURP.setText(usuario.getInfoPersonal().getCurp());
@@ -415,7 +531,25 @@ public class JPInfoResumen extends javax.swing.JPanel {
                         }
 
                         if (usuario != null && usuario.getInfoVivienda() != null) {
+                                System.out.println("DEBUG: Cargando info vivienda en resumen");
+                                System.out.println(
+                                                "DEBUG: Tipo vivienda: " + usuario.getInfoVivienda().getTipoVivienda());
+
                                 lblTipoVivienda.setText(usuario.getInfoVivienda().getTipoVivienda());
+
+                                // Mostrar si tiene mascotas
+                                lblMascotasSioNo.setText(
+                                                usuario.getInfoVivienda().isTieneOtrasMascotas() ? "Sí" : "No");
+
+                                // Mostrar si tiene niños
+                                lblninosSioNo.setText(usuario.getInfoVivienda().isTieneNinos() ? "Sí" : "No");
+                        } else {
+                                System.err.println("DEBUG: No se encontró info de vivienda");
+                                if (usuario == null) {
+                                        System.err.println("DEBUG: usuario es null");
+                                } else if (usuario.getInfoVivienda() == null) {
+                                        System.err.println("DEBUG: usuario.getInfoVivienda() es null");
+                                }
                         }
 
                         if (solicitud != null && solicitud.getRazones() != null) {
@@ -423,12 +557,18 @@ public class JPInfoResumen extends javax.swing.JPanel {
                         }
 
                         if (cita != null && cita.getFechaHora() != null) {
-                                lblCitaPref.setText(cita.getFechaHora().toString());
+                                // Formatear la fecha y hora de forma legible
+                                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter
+                                                .ofPattern("dd/MM/yyyy HH:mm");
+                                String fechaFormateada = cita.getFechaHora().format(formatter);
+                                lblCitaPref.setText(fechaFormateada);
                         }
                 }
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JLabel Mascotas;
+        private javax.swing.JLabel Mascotas1;
         private javax.swing.JButton btnAnterior;
         private javax.swing.JButton btnEnviarSolicitud;
         private javax.swing.JCheckBox jCheckBox1;
@@ -451,8 +591,10 @@ public class JPInfoResumen extends javax.swing.JPanel {
         private javax.swing.JLabel lblConvivencia;
         private javax.swing.JLabel lblDetallesMascota;
         private javax.swing.JLabel lblImagenMascota;
+        private javax.swing.JLabel lblMascotasSioNo;
         private javax.swing.JLabel lblNombreMascota;
         private javax.swing.JLabel lblNombreSolicitante;
         private javax.swing.JLabel lblTipoVivienda;
+        private javax.swing.JLabel lblninosSioNo;
         // End of variables declaration//GEN-END:variables
 }

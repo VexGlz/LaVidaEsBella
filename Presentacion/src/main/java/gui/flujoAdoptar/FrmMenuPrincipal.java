@@ -22,6 +22,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private FrmPerfil frmPerfil;
 
     private JPSolicitudes jpSolicitudes;
+    private gui.FrmCorreoConfirmacion frmCorreoConfirmacion;
+
+    private control.ControlPresentacion controlPresentacion;
 
     /**
      * Creates new form FrmMenuPrincipal
@@ -43,6 +46,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         frmInfoResumen = new JPInfoResumen();
         jpSolicitudes = new JPSolicitudes();
         frmPerfil = new FrmPerfil();
+        frmCorreoConfirmacion = new gui.FrmCorreoConfirmacion();
 
         // Agregar al CardLayout con identificadores clave
         panelContenidoDinamico.add(menuMostrarEspecies, "inicio");
@@ -53,12 +57,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         panelContenidoDinamico.add(frmRazonesAntecedentes, "razonesAntecedentes");
         panelContenidoDinamico.add(frmInfoResumen, "infoResumen");
         panelContenidoDinamico.add(frmPerfil, "perfil");
+        panelContenidoDinamico.add(frmCorreoConfirmacion, "confirmacion");
 
         cardLayout.show(panelContenidoDinamico, "inicio");
     }
 
     public void setControl(control.ControlPresentacion control) {
-        System.out.println("DEBUG: FrmMenuPrincipal.setControl called with " + control);
+        this.controlPresentacion = control; // Guardar referencia
+
         if (menuMostrarEspecies != null) {
             menuMostrarEspecies.setControlPresentacion(control);
         }
@@ -69,10 +75,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             frmInfoVivienda.setControlPresentacion(control);
         }
         if (frmRazonesAntecedentes != null) {
-            System.out.println("DEBUG: Setting control for FrmRazonesAntecedentes");
             frmRazonesAntecedentes.setControlPresentacion(control);
-        } else {
-            System.out.println("DEBUG: FrmRazonesAntecedentes is null in setControl");
         }
         if (frmInfoResumen != null) {
             frmInfoResumen.setControlPresentacion(control);
@@ -118,6 +121,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 frmInfoResumen.cargarDatos();
             }
             cardLayout.show(panelContenidoDinamico, "infoResumen");
+        }
+    }
+
+    public void mostrarConfirmacion() {
+        if (cardLayout != null) {
+            if (frmCorreoConfirmacion != null) {
+                frmCorreoConfirmacion.setControlPresentacion(controlPresentacion);
+                frmCorreoConfirmacion.cargarDatos();
+            }
+            cardLayout.show(panelContenidoDinamico, "confirmacion");
         }
     }
 

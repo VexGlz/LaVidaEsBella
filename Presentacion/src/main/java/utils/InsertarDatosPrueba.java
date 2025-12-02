@@ -23,8 +23,6 @@ public class InsertarDatosPrueba {
         try (MongoClient mongoClient = MongoClients.create(CONNECTION_STRING)) {
             MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
 
-            System.out.println("Conectado a la base de datos: " + DATABASE_NAME);
-
             // 1. Insertar Mascotas
             insertarMascotas(database);
 
@@ -33,8 +31,6 @@ public class InsertarDatosPrueba {
 
             // 3. Insertar Citas Disponibles
             insertarCitasDisponibles(database);
-
-            System.out.println("¡Datos de prueba insertados exitosamente!");
 
         } catch (Exception e) {
             System.err.println("Error al insertar datos: " + e.getMessage());
@@ -45,11 +41,8 @@ public class InsertarDatosPrueba {
     private static void insertarMascotas(MongoDatabase database) {
         MongoCollection<Document> collection = database.getCollection("mascotas");
 
-        // Verificar si ya existen datos
-        if (collection.countDocuments() > 0) {
-            System.out.println("La colección 'mascotas' ya tiene datos. Saltando inserción.");
-            return;
-        }
+        // Limpiar mascotas existentes para regenerar con datos actualizados
+        collection.deleteMany(new Document());
 
         Document m1 = new Document()
                 .append("nombre", "Max")
@@ -62,7 +55,7 @@ public class InsertarDatosPrueba {
                 .append("estadoSalud", "Vacunado y desparasitado")
                 .append("nivelEnergia", "Alto")
                 .append("convivencia", "Buena con otros perros")
-                .append("imagenUrl", "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500");
+                .append("urlImagen", "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500");
 
         Document m2 = new Document()
                 .append("nombre", "Luna")
@@ -75,7 +68,7 @@ public class InsertarDatosPrueba {
                 .append("estadoSalud", "Esterilizada")
                 .append("nivelEnergia", "Bajo")
                 .append("convivencia", "Prefiere ser hija única")
-                .append("imagenUrl", "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=500");
+                .append("urlImagen", "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=500");
 
         Document m3 = new Document()
                 .append("nombre", "Rocky")
@@ -88,10 +81,9 @@ public class InsertarDatosPrueba {
                 .append("estadoSalud", "Sano")
                 .append("nivelEnergia", "Medio")
                 .append("convivencia", "Se lleva bien con gatos")
-                .append("imagenUrl", "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500");
+                .append("urlImagen", "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500");
 
         collection.insertMany(Arrays.asList(m1, m2, m3));
-        System.out.println("Mascotas insertadas.");
     }
 
     private static void insertarUsuarioPrueba(MongoDatabase database) {
@@ -100,7 +92,6 @@ public class InsertarDatosPrueba {
         // Verificar si ya existe el usuario demo
         Document existente = collection.find(new Document("infoPersonal.correo", "demo@ejemplo.com")).first();
         if (existente != null) {
-            System.out.println("El usuario demo ya existe. Saltando inserción.");
             return;
         }
 
@@ -115,7 +106,6 @@ public class InsertarDatosPrueba {
                 .append("contrasena", "123456"); // En producción usar hash!
 
         collection.insertOne(usuario);
-        System.out.println("Usuario demo insertado.");
     }
 
     private static void insertarCitasDisponibles(MongoDatabase database) {
@@ -123,7 +113,6 @@ public class InsertarDatosPrueba {
 
         // Limpiar citas existentes para regenerar
         collection.deleteMany(new Document());
-        System.out.println("Colección 'citasDisponibles' limpiada.");
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_YEAR, 1); // Empezar mañana
@@ -159,7 +148,5 @@ public class InsertarDatosPrueba {
             }
             cal.add(Calendar.DAY_OF_YEAR, 1);
         }
-
-        System.out.println("Citas disponibles generadas.");
     }
 }

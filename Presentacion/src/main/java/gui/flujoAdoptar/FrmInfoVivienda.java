@@ -17,6 +17,35 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
      */
     public FrmInfoVivienda() {
         initComponents();
+        configurarCheckboxes();
+    }
+
+    private void configurarCheckboxes() {
+        // Hacer que los checkboxes de mascotas sean mutuamente excluyentes
+        CbSiTieneMasmascotas.addActionListener(e -> {
+            if (CbSiTieneMasmascotas.isSelected()) {
+                CbNoTieneMasmascotas.setSelected(false);
+            }
+        });
+
+        CbNoTieneMasmascotas.addActionListener(e -> {
+            if (CbNoTieneMasmascotas.isSelected()) {
+                CbSiTieneMasmascotas.setSelected(false);
+            }
+        });
+
+        // Hacer que los checkboxes de niños sean mutuamente excluyentes
+        CbSiTieneNinos.addActionListener(e -> {
+            if (CbSiTieneNinos.isSelected()) {
+                CbNoTieneninos.setSelected(false);
+            }
+        });
+
+        CbNoTieneninos.addActionListener(e -> {
+            if (CbNoTieneninos.isSelected()) {
+                CbSiTieneNinos.setSelected(false);
+            }
+        });
     }
 
     public void setControlPresentacion(control.ControlPresentacion controlPresentacion) {
@@ -35,7 +64,8 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -48,13 +78,18 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         tfCondicionesHogar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        tfAnimalesONiños = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         btnSeleccionarReferencia = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        CbSiTieneMasmascotas = new javax.swing.JCheckBox();
+        CbNoTieneMasmascotas = new javax.swing.JCheckBox();
+        CbSiTieneNinos = new javax.swing.JCheckBox();
+        CbNoTieneninos = new javax.swing.JCheckBox();
+        jLabel10 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(219, 213, 195));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,15 +125,12 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("¿Hay otros animales o niños en casa?");
 
-        tfAnimalesONiños.setBackground(new java.awt.Color(204, 204, 204));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Disponibilidad de Tiempo(Horas en que la mascota estará sola)");
 
         jComboBox1.setBackground(new java.awt.Color(204, 204, 204));
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "0 - 2 Horas", "2 - 4 Horas", "4 - 6 Horas", "6 - 8 Horas", "8+ horas" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - 2 Horas", "2 - 4 Horas", "4 - 6 Horas", "6 - 8 Horas", "8+ horas" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -117,11 +149,6 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         });
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
 
         btnSiguiente.setBackground(new java.awt.Color(0, 102, 51));
         btnSiguiente.setText("Siguiente");
@@ -131,107 +158,128 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Tienes más mascotas");
+
+        CbSiTieneMasmascotas.setText("Si");
+
+        CbNoTieneMasmascotas.setText("No");
+
+        CbSiTieneNinos.setText("Si");
+
+        CbNoTieneninos.setText("No");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Tienes niños");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addGroup(jPanel2Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(jCheckBox1)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jCheckBox2))
-                                                        .addComponent(jLabel4)
-                                                        .addComponent(jLabel5)
-                                                        .addComponent(jLabel6)
-                                                        .addComponent(jLabel7)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(6, 6, 6)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jLabel8)
-                                                                        .addComponent(tfCondicionesHogar,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                334,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(tfAnimalesONiños,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                475,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(btnSeleccionarReferencia)
-                                                                        .addComponent(jComboBox1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addComponent(btnCancelar)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                        492, Short.MAX_VALUE)
-                                                                                .addComponent(btnSiguiente)))))))
-                                .addGap(39, 39, 39)));
-        jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(tfCondicionesHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSeleccionarReferencia)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnCancelar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 492, Short.MAX_VALUE)
+                                        .addComponent(btnSiguiente))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jCheckBox1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jCheckBox2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCondicionesHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 48,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfAnimalesONiños, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSeleccionarReferencia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35,
-                                        Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnSiguiente)
-                                        .addComponent(btnCancelar))
-                                .addGap(27, 27, 27)));
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(CbSiTieneNinos)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(CbNoTieneninos))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(CbSiTieneMasmascotas)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(CbNoTieneMasmascotas))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(39, 39, 39))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfCondicionesHogar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(CbSiTieneMasmascotas)
+                    .addComponent(CbNoTieneMasmascotas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(CbSiTieneNinos)
+                    .addComponent(CbNoTieneninos))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSeleccionarReferencia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSiguiente)
+                    .addComponent(btnCancelar))
+                .addGap(27, 27, 27))
+        );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 82, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1220,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 610,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -280,7 +328,6 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         if (controlPresentacion != null) {
             // Obtener datos del formulario
             String condicionesHogar = tfCondicionesHogar.getText().trim();
-            String animalesONinos = tfAnimalesONiños.getText().trim();
             String tiempoDisponibilidad = (String) jComboBox1.getSelectedItem();
 
             // Determinar tipo de vivienda
@@ -318,13 +365,21 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
                 return;
             }
 
-            // 3. Validar información sobre animales o niños
-            if (animalesONinos.isEmpty()) {
+            // 3. Validar selección de mascotas
+            if (!CbSiTieneMasmascotas.isSelected() && !CbNoTieneMasmascotas.isSelected()) {
                 javax.swing.JOptionPane.showMessageDialog(this,
-                        "Por favor indique si hay otros animales o niños en casa",
+                        "Por favor indique si tiene otras mascotas",
                         "Campo requerido",
                         javax.swing.JOptionPane.WARNING_MESSAGE);
-                tfAnimalesONiños.requestFocus();
+                return;
+            }
+
+            // 4. Validar selección de niños
+            if (!CbSiTieneNinos.isSelected() && !CbNoTieneninos.isSelected()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Por favor indique si tiene niños en casa",
+                        "Campo requerido",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
@@ -333,16 +388,11 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
             info.setTipoVivienda(tipoVivienda);
             info.setCondicionesHogar(condicionesHogar);
             info.setTiempoDisponibilidad(tiempoDisponibilidad);
-            info.setUrlImagenVivienda(rutaImagenSeleccionada); // Guardar la ruta de la imagen
+            info.setUrlImagenVivienda(rutaImagenSeleccionada);
 
-            // Determinar si tiene mascotas o niños basándose en la respuesta
-            String respuesta = animalesONinos.toLowerCase();
-            info.setTieneOtrasMascotas(respuesta.contains("si") || respuesta.contains("sí") ||
-                    respuesta.contains("mascota") || respuesta.contains("perro") ||
-                    respuesta.contains("gato") || respuesta.contains("animal"));
-            info.setTieneNinos(respuesta.contains("niño") || respuesta.contains("niña") ||
-                    respuesta.contains("hijo") || respuesta.contains("hija") ||
-                    respuesta.contains("bebe") || respuesta.contains("bebé"));
+            // Obtener valores de los checkboxes
+            info.setTieneOtrasMascotas(CbSiTieneMasmascotas.isSelected());
+            info.setTieneNinos(CbSiTieneNinos.isSelected());
 
             // Guardar la información de vivienda
             controlPresentacion.guardarInfoVivienda(info);
@@ -358,12 +408,17 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CbNoTieneMasmascotas;
+    private javax.swing.JCheckBox CbNoTieneninos;
+    private javax.swing.JCheckBox CbSiTieneMasmascotas;
+    private javax.swing.JCheckBox CbSiTieneNinos;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSeleccionarReferencia;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -371,9 +426,9 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField tfAnimalesONiños;
     private javax.swing.JTextField tfCondicionesHogar;
     // End of variables declaration//GEN-END:variables
 }

@@ -79,16 +79,8 @@ public class ControlPresentacion {
     }
 
     public void mostrarInformacionMascota(String idMascota) {
-        System.out.println("DEBUG: Solicitando información para mascota ID: " + idMascota);
-
         // Buscar la mascota por ID
         MascotaDTO mascota = controlSubsistemas.obtenerMascotaPorId(idMascota);
-
-        if (mascota != null) {
-            System.out.println("DEBUG: Mascota encontrada: " + mascota.getNombre());
-        } else {
-            System.err.println("DEBUG: No se encontró mascota con ID: " + idMascota);
-        }
 
         // Crear ventana pasando la referencia al control
         frmInformacionMascota = new FrmInformacionMascota(mascota, this);
@@ -123,7 +115,6 @@ public class ControlPresentacion {
             if (usuarioActual.getId() != null) {
                 try {
                     controlSubsistemas.actualizarUsuario(usuarioActual);
-                    System.out.println("✓ Usuario actualizado en BD con info personal");
                 } catch (Exception e) {
                     System.err.println("Error al actualizar usuario en BD: " + e.getMessage());
                 }
@@ -139,9 +130,6 @@ public class ControlPresentacion {
                     solicitudActual.setMascota(mascota);
                 }
             }
-
-            String nombreUsuario = (infoPersonal.getNombre() != null) ? infoPersonal.getNombre() : "Usuario";
-            System.out.println("✓ Información personal guardada: " + nombreUsuario);
 
             // La navegación ahora es responsabilidad de la vista (FrmInfoPersonal)
             // para permitir saltar pasos si es necesario
@@ -165,10 +153,7 @@ public class ControlPresentacion {
         try {
             // Asegurar que existe usuario y solicitud
             if (usuarioActual == null) {
-                System.out.println("DEBUG: usuarioActual es null en guardarInfoVivienda. Creando nuevo.");
                 usuarioActual = new UsuarioDTO();
-            } else {
-                System.out.println("DEBUG: usuarioActual ID: " + usuarioActual.getId());
             }
 
             if (solicitudActual == null) {
@@ -183,13 +168,10 @@ public class ControlPresentacion {
             if (usuarioActual.getId() != null) {
                 try {
                     controlSubsistemas.actualizarUsuario(usuarioActual);
-                    System.out.println("✓ Usuario actualizado en BD con info vivienda");
                 } catch (Exception e) {
                     System.err.println("Error al actualizar usuario en BD: " + e.getMessage());
                 }
             }
-
-            System.out.println("✓ Información de vivienda guardada: " + infoVivienda.getTipoVivienda());
 
             // Navegar al siguiente panel
             if (frmMenuPrincipal != null) {
@@ -217,8 +199,6 @@ public class ControlPresentacion {
             // Guardar razones en la solicitud
             solicitudActual.setRazones(razones);
 
-            System.out.println("✓ Razones y antecedentes guardados: " + razones.getMotivoAdopcion());
-
             // Navegar al siguiente panel
             if (frmMenuPrincipal != null) {
                 frmMenuPrincipal.mostrarInfoResumen();
@@ -236,7 +216,6 @@ public class ControlPresentacion {
         }
     }
 
-
     // --- MÉTODOS PARA CITAS ---
     public java.util.List<DTOS.CitaDisponibleDTO> obtenerCitasDisponibles() {
         return controlSubsistemas.obtenerCitasDisponibles();
@@ -250,8 +229,6 @@ public class ControlPresentacion {
         try {
             // Recuperación de estado si solicitudActual es null
             if (solicitudActual == null) {
-                System.out.println(
-                        "⚠️ Advertencia: solicitudActual era null en procesarCita. Intentando recuperar estado.");
                 solicitudActual = new SolicitudAdopcionDTO();
 
                 if (usuarioActual != null) {
@@ -293,7 +270,6 @@ public class ControlPresentacion {
 
             // Si todo fue exitoso, mostrar pantalla de confirmación
             mostrarConfirmacion();
-            System.out.println("✓ Solicitud procesada exitosamente");
 
         } catch (Exception e) {
             // Si ocurre un error, mostrar pantalla de error
@@ -308,12 +284,12 @@ public class ControlPresentacion {
         // NO limpiamos usuarioActual para mantener al usuario logueado
         // y que sus datos estén disponibles para la siguiente solicitud
         idMascotaSeleccionada = null;
-        System.out.println("→ Datos de solicitud limpiados (usuario logueado se mantiene)");
     }
 
     public void mostrarConfirmacion() {
-        frmCorreoConfirmacion = new FrmCorreoConfirmacion();
-        frmCorreoConfirmacion.setVisible(true);
+        if (frmMenuPrincipal != null) {
+            frmMenuPrincipal.mostrarConfirmacion();
+        }
     }
 
     /**
@@ -332,7 +308,6 @@ public class ControlPresentacion {
         }
 
         frmError.setVisible(true);
-        System.out.println("✗ Mostrando pantalla de error: " + mensajeError);
     }
 
     /**
@@ -442,7 +417,6 @@ public class ControlPresentacion {
         this.usuarioActual = usuario;
         if (usuario != null && usuario.getId() != null) {
             this.idUsuarioActual = usuario.getId().toString();
-            System.out.println("✓ Usuario logueado: " + usuario.getInfoPersonal().getNombre());
         }
     }
 
@@ -492,8 +466,6 @@ public class ControlPresentacion {
         // Mostrar formulario de inicio de sesión
         gui.FrmInicioSesion frmInicioSesion = new gui.FrmInicioSesion();
         frmInicioSesion.setVisible(true);
-
-        System.out.println("✓ Sesión cerrada correctamente");
     }
 
     /**
@@ -607,7 +579,6 @@ public class ControlPresentacion {
      */
     public void guardarBorradorInfoPersonal(InfoPersonalDTO info) {
         this.borradorInfoPersonal = info;
-        System.out.println("Borrador de información personal guardado");
     }
 
     /**
@@ -615,7 +586,6 @@ public class ControlPresentacion {
      */
     public void guardarBorradorCita(CitaDisponibleDTO cita) {
         this.borradorCita = cita;
-        System.out.println("Borrador de cita guardado");
     }
 
     /**
@@ -638,7 +608,6 @@ public class ControlPresentacion {
      * Obtiene todas las solicitudes del usuario actual
      */
     public List<SolicitudAdopcionDTO> obtenerSolicitudesUsuario() {
-        System.out.println("DEBUG: Obteniendo solicitudes para usuario ID: " + idUsuarioActual);
         if (idUsuarioActual == null) {
             System.err.println("No hay usuario logueado");
             return new java.util.ArrayList<>();
@@ -662,8 +631,7 @@ public class ControlPresentacion {
         }
 
         controlSubsistemas.cancelarSolicitudAdopcion(idSolicitud);
-        System.out.println("✓ Solicitud " + idSolicitud + " cancelada");
-        
+
         // Actualizar el catálogo para mostrar la mascota liberada
         actualizarCatalogo();
     }
@@ -690,8 +658,7 @@ public class ControlPresentacion {
 
         // Vamos a llamar a un nuevo método en controlSubsistemas
         controlSubsistemas.cancelarCitaDeSolicitud(idSolicitud);
-        System.out.println("✓ Cita de solicitud " + idSolicitud + " cancelada");
-        
+
         // Actualizar el catálogo para mostrar la mascota liberada
         actualizarCatalogo();
     }
@@ -750,6 +717,10 @@ public class ControlPresentacion {
 
             // 1. Cargar Info Vivienda
             if (sol.getUsuario() != null && sol.getUsuario().getInfoVivienda() != null) {
+                System.out.println("DEBUG: Encontrada solicitud previa con InfoVivienda");
+                System.out.println("DEBUG: Tipo vivienda de solicitud previa: "
+                        + sol.getUsuario().getInfoVivienda().getTipoVivienda());
+
                 if (usuarioActual == null) {
                     usuarioActual = new UsuarioDTO();
                     usuarioActual.setId(idUsuarioActual);
@@ -757,8 +728,19 @@ public class ControlPresentacion {
                 // Solo cargar si no tenemos ya info (o sobrescribir, según requerimiento. Aquí
                 // sobrescribimos para "precargar")
                 usuarioActual.setInfoVivienda(sol.getUsuario().getInfoVivienda());
+
+                System.out.println("DEBUG: Info vivienda precargada en usuarioActual");
+                System.out.println(
+                        "DEBUG: Tipo vivienda en usuarioActual: " + usuarioActual.getInfoVivienda().getTipoVivienda());
+
                 datosEncontrados = true;
-                System.out.println("✓ Info Vivienda recuperada de solicitud previa: " + sol.getId());
+            } else {
+                System.out.println("DEBUG: Solicitud no tiene InfoVivienda");
+                if (sol.getUsuario() == null) {
+                    System.out.println("DEBUG: sol.getUsuario() es null");
+                } else if (sol.getUsuario().getInfoVivienda() == null) {
+                    System.out.println("DEBUG: sol.getUsuario().getInfoVivienda() es null");
+                }
             }
 
             // 2. Cargar Razones y Antecedentes
@@ -773,7 +755,6 @@ public class ControlPresentacion {
                 }
                 solicitudActual.setRazones(sol.getRazones());
                 datosEncontrados = true;
-                System.out.println("✓ Razones recuperadas de solicitud previa: " + sol.getId());
             }
 
             if (datosEncontrados) {

@@ -24,7 +24,6 @@ public class InsertarMascotasPrueba {
             mascota1.setDisponible(true);
             mascota1.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota1);
-            System.out.println("✓ Mascota 1 registrada: " + mascota1.getNombre());
 
             // Mascota 2: Gato
             MascotaDTO mascota2 = new MascotaDTO();
@@ -37,7 +36,6 @@ public class InsertarMascotasPrueba {
             mascota2.setDisponible(true);
             mascota2.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota2);
-            System.out.println("✓ Mascota 2 registrada: " + mascota2.getNombre());
 
             // Mascota 3: Perro
             MascotaDTO mascota3 = new MascotaDTO();
@@ -50,7 +48,6 @@ public class InsertarMascotasPrueba {
             mascota3.setDisponible(true);
             mascota3.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota3);
-            System.out.println("✓ Mascota 3 registrada: " + mascota3.getNombre());
 
             // Mascota 4: Gato
             MascotaDTO mascota4 = new MascotaDTO();
@@ -63,7 +60,6 @@ public class InsertarMascotasPrueba {
             mascota4.setDisponible(true);
             mascota4.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota4);
-            System.out.println("✓ Mascota 4 registrada: " + mascota4.getNombre());
 
             // Mascota 5: Pájaro
             MascotaDTO mascota5 = new MascotaDTO();
@@ -76,7 +72,6 @@ public class InsertarMascotasPrueba {
             mascota5.setDisponible(true);
             mascota5.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota5);
-            System.out.println("✓ Mascota 5 registrada: " + mascota5.getNombre());
 
             // Mascota 6: Reptil
             MascotaDTO mascota6 = new MascotaDTO();
@@ -89,11 +84,6 @@ public class InsertarMascotasPrueba {
             mascota6.setDisponible(true);
             mascota6.setEstado("Disponible");
             fachadaMascotas.registrarMascota(mascota6);
-            System.out.println("✓ Mascota 6 registrada: " + mascota6.getNombre());
-
-            System.out.println("\n========================================");
-            System.out.println("✓ TODAS LAS MASCOTAS HAN SIDO REGISTRADAS EXITOSAMENTE");
-            System.out.println("========================================");
 
         } catch (Exception e) {
             System.err.println("Error al insertar mascotas: " + e.getMessage());

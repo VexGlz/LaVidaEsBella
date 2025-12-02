@@ -69,7 +69,6 @@ public class CitaDisponibleDAO {
                             Updates.set("disponible", false),
                             Updates.set("idUsuario", usuarioObjId)));
 
-            System.out.println("✓ Cita marcada como ocupada: " + idCita);
             return true;
         } catch (Exception e) {
             System.err.println("Error al marcar cita como ocupada: " + e.getMessage());
@@ -94,7 +93,6 @@ public class CitaDisponibleDAO {
                             Updates.set("disponible", true),
                             Updates.set("idUsuario", null)));
 
-            System.out.println("✓ Cita liberada: " + idCita);
             return true;
         } catch (Exception e) {
             System.err.println("Error al liberar cita: " + e.getMessage());

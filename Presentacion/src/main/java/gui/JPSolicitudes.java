@@ -49,7 +49,6 @@ public class JPSolicitudes extends javax.swing.JPanel {
     }
 
     private void cargarSolicitudes() {
-        System.out.println("DEBUG: Entrando a cargarSolicitudes()");
         if (controlPresentacion == null) {
             System.err.println("DEBUG: ControlPresentacion no está configurado");
             return;
@@ -59,13 +58,9 @@ public class JPSolicitudes extends javax.swing.JPanel {
         modeloTabla.setRowCount(0);
 
         try {
-            System.out.println("DEBUG: Llamando a controlPresentacion.obtenerSolicitudesUsuario()");
             List<SolicitudAdopcionDTO> solicitudes = controlPresentacion.obtenerSolicitudesUsuario();
-            System.out
-                    .println("DEBUG: Solicitudes recuperadas: " + (solicitudes != null ? solicitudes.size() : "null"));
 
             if (solicitudes == null || solicitudes.isEmpty()) {
-                System.out.println("DEBUG: No hay solicitudes para mostrar.");
                 JOptionPane.showMessageDialog(
                         this,
                         "No tienes solicitudes de adopción registradas.",
@@ -75,7 +70,6 @@ public class JPSolicitudes extends javax.swing.JPanel {
             }
 
             for (SolicitudAdopcionDTO solicitud : solicitudes) {
-                System.out.println("DEBUG: Procesando solicitud ID: " + solicitud.getId());
                 Object[] fila = new Object[4];
                 fila[0] = solicitud.getId(); // ID (oculto)
                 String nombreMascota = "N/A";
@@ -84,12 +78,20 @@ public class JPSolicitudes extends javax.swing.JPanel {
                             : solicitud.getMascota().getId();
                 }
                 fila[1] = nombreMascota;
-                fila[2] = solicitud.getFechaSolicitud() != null ? solicitud.getFechaSolicitud().toString() : "N/A";
+
+                // Formatear fecha de solicitud
+                if (solicitud.getFechaSolicitud() != null) {
+                    java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter
+                            .ofPattern("dd/MM/yyyy HH:mm");
+                    fila[2] = solicitud.getFechaSolicitud().format(formatter);
+                } else {
+                    fila[2] = "N/A";
+                }
+
                 fila[3] = solicitud.getEstado() != null ? solicitud.getEstado() : "Pendiente";
 
                 modeloTabla.addRow(fila);
             }
-            System.out.println("DEBUG: Tabla actualizada con " + solicitudes.size() + " filas.");
 
         } catch (Exception e) {
             System.err.println("DEBUG: Excepción en cargarSolicitudes: " + e.getMessage());
