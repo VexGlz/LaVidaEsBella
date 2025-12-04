@@ -80,6 +80,12 @@ public class FrmError extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setMensajeError(String mensaje) {
+        if (lblDetalle != null) {
+            lblDetalle.setText(mensaje);
+        }
+    }
+
     private void cbAdoptadoPreviamenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbAdoptadoPreviamenteActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_cbAdoptadoPreviamenteActionPerformed

@@ -10,7 +10,6 @@ package gui.flujoAdoptar;
  */
 public class FrmInfoVivienda extends javax.swing.JPanel {
     private control.ControlPresentacion controlPresentacion;
-    private control.ControlPresentacion control;
 
     /**
      * Creates new form JPInfoVivienda
@@ -149,6 +148,11 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnSiguiente.setBackground(new java.awt.Color(0, 102, 51));
         btnSiguiente.setText("Siguiente");
@@ -282,6 +286,12 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        if (controlPresentacion != null) {
+            controlPresentacion.regresarDesdeFrmInfoVivienda();
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jCheckBox1ActionPerformed
@@ -290,12 +300,6 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        if (control != null) {
-            control.regresarDesdeFrmInfoVivienda();
-        }
-    }// GEN-LAST:event_jButton1ActionPerformed//
-     // GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSeleccionarReferenciaActionPerformed(java.awt.event.ActionEvent evt) {
         // Crear selector de archivos
@@ -401,11 +405,6 @@ public class FrmInfoVivienda extends javax.swing.JPanel {
         }
     }// GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-        if (controlPresentacion != null) {
-            controlPresentacion.regresarDesdeFrmInfoVivienda();
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CbNoTieneMasmascotas;

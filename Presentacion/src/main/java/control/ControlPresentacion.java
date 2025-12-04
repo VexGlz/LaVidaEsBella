@@ -289,6 +289,9 @@ public class ControlPresentacion {
     public void mostrarConfirmacion() {
         if (frmMenuPrincipal != null) {
             frmMenuPrincipal.mostrarConfirmacion();
+
+            // Recargar el catálogo de mascotas para que la mascota adoptada ya no aparezca
+            frmMenuPrincipal.getMenuMostrarEspecies().cargarMascotas();
         }
     }
 
@@ -660,7 +663,7 @@ public class ControlPresentacion {
         controlSubsistemas.cancelarCitaDeSolicitud(idSolicitud);
 
         // Actualizar el catálogo para mostrar la mascota liberada
-        actualizarCatalogo();
+        frmMenuPrincipal.getMenuMostrarEspecies().cargarMascotas();
     }
 
     /**
@@ -697,54 +700,38 @@ public class ControlPresentacion {
             return false;
         }
 
-        List<SolicitudAdopcionDTO> solicitudes = obtenerSolicitudesUsuario();
+        java.util.List<SolicitudAdopcionDTO> solicitudes = obtenerSolicitudesUsuario();
         if (solicitudes == null || solicitudes.isEmpty()) {
             return false;
         }
 
+        boolean viviendaEncontrada = false;
+        boolean razonesEncontradas = false;
+
         // Buscar la última solicitud válida (que tenga datos)
-        // Orden inverso para obtener la más reciente si la lista está ordenada
-        // cronológicamente
-        // O simplemente iterar y tomar la primera que tenga datos completos
+        // Iteramos sobre todas las solicitudes para encontrar la información más
+        // reciente disponible
         for (SolicitudAdopcionDTO sol : solicitudes) {
-            // Ignorar la solicitud actual si ya está en la lista (aunque no debería estar
-            // guardada aún)
+            // Ignorar la solicitud actual si ya está en la lista
             if (solicitudActual != null && sol.getId() != null && sol.getId().equals(solicitudActual.getId())) {
                 continue;
             }
 
-            boolean datosEncontrados = false;
-
-            // 1. Cargar Info Vivienda
-            if (sol.getUsuario() != null && sol.getUsuario().getInfoVivienda() != null) {
+            // 1. Cargar Info Vivienda (si no la hemos encontrado ya)
+            if (!viviendaEncontrada && sol.getUsuario() != null && sol.getUsuario().getInfoVivienda() != null) {
                 System.out.println("DEBUG: Encontrada solicitud previa con InfoVivienda");
-                System.out.println("DEBUG: Tipo vivienda de solicitud previa: "
-                        + sol.getUsuario().getInfoVivienda().getTipoVivienda());
 
                 if (usuarioActual == null) {
                     usuarioActual = new UsuarioDTO();
                     usuarioActual.setId(idUsuarioActual);
                 }
-                // Solo cargar si no tenemos ya info (o sobrescribir, según requerimiento. Aquí
-                // sobrescribimos para "precargar")
+
                 usuarioActual.setInfoVivienda(sol.getUsuario().getInfoVivienda());
-
-                System.out.println("DEBUG: Info vivienda precargada en usuarioActual");
-                System.out.println(
-                        "DEBUG: Tipo vivienda en usuarioActual: " + usuarioActual.getInfoVivienda().getTipoVivienda());
-
-                datosEncontrados = true;
-            } else {
-                System.out.println("DEBUG: Solicitud no tiene InfoVivienda");
-                if (sol.getUsuario() == null) {
-                    System.out.println("DEBUG: sol.getUsuario() es null");
-                } else if (sol.getUsuario().getInfoVivienda() == null) {
-                    System.out.println("DEBUG: sol.getUsuario().getInfoVivienda() es null");
-                }
+                viviendaEncontrada = true;
             }
 
-            // 2. Cargar Razones y Antecedentes
-            if (sol.getRazones() != null) {
+            // 2. Cargar Razones y Antecedentes (si no las hemos encontrado ya)
+            if (!razonesEncontradas && sol.getRazones() != null) {
                 if (solicitudActual == null) {
                     solicitudActual = new SolicitudAdopcionDTO();
                     solicitudActual.setUsuario(usuarioActual);
@@ -754,15 +741,29 @@ public class ControlPresentacion {
                     }
                 }
                 solicitudActual.setRazones(sol.getRazones());
-                datosEncontrados = true;
+                razonesEncontradas = true;
             }
 
-            if (datosEncontrados) {
-                return true;
+            // Si ya encontramos ambos, podemos terminar
+            if (viviendaEncontrada && razonesEncontradas) {
+                break;
             }
         }
 
-        return false;
+        // AGREGAR ESTE BLOQUE AQUÍ ↓↓↓
+        // Guardar los datos precargados en la BD para que estén disponibles la próxima
+        // vez
+        if (viviendaEncontrada && usuarioActual != null && usuarioActual.getId() != null) {
+            try {
+                controlSubsistemas.actualizarUsuario(usuarioActual);
+                System.out.println("✓ Datos de vivienda precargados guardados en BD");
+            } catch (Exception e) {
+                System.err.println("Error al actualizar usuario con datos precargados: " + e.getMessage());
+            }
+        }
+        // FIN DEL BLOQUE ↑↑↑
+
+        return viviendaEncontrada || razonesEncontradas;
     }
 
     /**
