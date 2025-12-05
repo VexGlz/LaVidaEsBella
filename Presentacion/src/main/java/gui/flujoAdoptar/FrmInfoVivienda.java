@@ -6,7 +6,7 @@ package gui.flujoAdoptar;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmInfoVivienda extends javax.swing.JPanel {
     private control.ControlPresentacion controlPresentacion;

@@ -80,8 +80,25 @@ public class ControlSubsistemas {
         return citaDisponibleBO.verificarDisponibilidad(idCita);
     }
 
+    /**
+     * Libera una cita que fue reservada temporalmente
+     * 
+     * @param idCita ID de la cita a liberar
+     * @return true si se liberó exitosamente
+     */
+    public boolean liberarCita(String idCita) {
+        return citaDisponibleBO.liberarCita(idCita);
+    }
+
     // --- MÉTODOS PARA EL FLUJO DE ADOPCIÓN ---
     public void procesarSolicitudCompleta(SolicitudAdopcionDTO solicitud, CitaDTO cita) throws Exception {
+        // 0. IMPORTANTE: Guardar el ID de la cita en la solicitud para poder liberarla
+        // después
+        if (cita != null && cita.getId() != null) {
+            solicitud.setIdCita(cita.getId());
+            System.out.println("→ ID de cita guardado en solicitud: " + cita.getId());
+        }
+
         // 1. Guardar la solicitud de adopción (Negocio -> Persistencia)
         controlAdopcion.crearSolicitud(solicitud);
 
@@ -137,6 +154,16 @@ public class ControlSubsistemas {
             mascota.setDisponible(true);
             subsistemaMascotas.actualizarMascota(mascota);
             System.out.println("Mascota " + mascota.getId() + " liberada (disponible) por cancelación de cita.");
+        }
+
+        // 2.5. Liberar la cita (marcarla como disponible)
+        if (solicitud != null && solicitud.getIdCita() != null && !solicitud.getIdCita().isEmpty()) {
+            String idCita = solicitud.getIdCita();
+            if (citaDisponibleBO.liberarCita(idCita)) {
+                System.out.println("✓ Cita " + idCita + " liberada (disponible) por cancelación.");
+            } else {
+                System.err.println("⚠ No se pudo liberar la cita: " + idCita);
+            }
         }
 
         // 3. Actualizar estado de la solicitud

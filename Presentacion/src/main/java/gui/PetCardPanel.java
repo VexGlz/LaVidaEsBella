@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class PetCardPanel extends javax.swing.JPanel {
 

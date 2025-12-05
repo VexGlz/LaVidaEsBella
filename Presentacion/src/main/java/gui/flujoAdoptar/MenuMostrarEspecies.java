@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class MenuMostrarEspecies extends javax.swing.JPanel {
 

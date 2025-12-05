@@ -61,8 +61,6 @@ public class UsuarioDAO {
         }
 
         Document doc = usuarioToDocument(usuario);
-        // Remover _id del documento de actualización para evitar errores de
-        // inmutabilidad
         doc.remove("_id");
 
         collection.updateOne(Filters.eq("_id", usuario.getId()), new Document("$set", doc));
@@ -86,7 +84,6 @@ public class UsuarioDAO {
         usuario.setId(doc.getObjectId("_id"));
         usuario.setContrasena(doc.getString("contrasena"));
 
-        // Convertir infoPersonal
         Document infoPersonalDoc = doc.get("infoPersonal", Document.class);
         if (infoPersonalDoc != null) {
             entities.InfoPersonal infoPersonal = new entities.InfoPersonal();
@@ -98,7 +95,6 @@ public class UsuarioDAO {
             usuario.setInfoPersonal(infoPersonal);
         }
 
-        // Convertir infoVivienda
         Document infoViviendaDoc = doc.get("infoVivienda", Document.class);
         if (infoViviendaDoc != null) {
             entities.InfoVivienda infoVivienda = new entities.InfoVivienda();
@@ -126,7 +122,6 @@ public class UsuarioDAO {
 
         doc.append("contrasena", usuario.getContrasena());
 
-        // Convertir infoPersonal
         if (usuario.getInfoPersonal() != null) {
             Document infoPersonalDoc = new Document()
                     .append("nombre", usuario.getInfoPersonal().getNombre())
@@ -136,7 +131,6 @@ public class UsuarioDAO {
             doc.append("infoPersonal", infoPersonalDoc);
         }
 
-        // Convertir infoVivienda
         if (usuario.getInfoVivienda() != null) {
             Document infoViviendaDoc = new Document()
                     .append("tipoVivienda", usuario.getInfoVivienda().getTipoVivienda())

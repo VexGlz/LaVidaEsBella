@@ -8,7 +8,7 @@ import gui.flujoAdoptar.*;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmError extends javax.swing.JPanel {
 

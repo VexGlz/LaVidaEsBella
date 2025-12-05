@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Sistema
+ * @author angel
  */
 public class FrmSeleccionarCita extends javax.swing.JDialog {
 
@@ -192,6 +192,15 @@ public class FrmSeleccionarCita extends javax.swing.JDialog {
                     "Selección requerida",
                     javax.swing.JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        if (visible) {
+            // Recargar citas cada vez que se abre el diálogo
+            cargarCitasDisponibles();
+        }
+        super.setVisible(visible);
     }
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {

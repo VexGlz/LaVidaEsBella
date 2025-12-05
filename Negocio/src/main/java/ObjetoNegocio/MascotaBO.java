@@ -13,31 +13,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Business Object para gestionar la lógica de negocio relacionada con Mascotas
+ * Proporciona operaciones CRUD y conversión entre DTOs y entidades
+ * 
  * @author Josel
  */
 public class MascotaBO implements IMascotaBO {
 
     private MascotaDAO mascotaDAO;
 
+    /**
+     * Constructor que inicializa el DAO con la conexión a MongoDB
+     */
     public MascotaBO() {
         this.mascotaDAO = new MascotaDAO(ConexionMongoDB.getInstancia().getDatabase());
     }
 
+    /**
+     * Registra una nueva mascota en el sistema
+     * 
+     * @param mascotaDTO DTO con los datos de la mascota a registrar
+     */
     @Override
     public void registrarMascota(MascotaDTO mascotaDTO) {
         if (mascotaDTO != null) {
             Mascota mascota = convertirAEntidad(mascotaDTO);
             ObjectId id = mascotaDAO.guardar(mascota);
-            // Actualizar ID en DTO si es necesario, aunque el hashcode es limitado
             System.out.println("Mascota registrada con ID: " + id);
         }
     }
 
+    /**
+     * Busca una mascota por su identificador único
+     * 
+     * @param id Identificador hexadecimal de la mascota
+     * @return MascotaDTO con los datos de la mascota o null si no existe
+     */
     @Override
     public MascotaDTO buscarMascotaPorId(String id) {
         try {
-            // Convertir el String hex a ObjectId y buscar en MongoDB
             ObjectId objectId = new ObjectId(id);
             Mascota mascota = mascotaDAO.buscarPorId(objectId);
             return convertirADTO(mascota);
@@ -50,12 +64,22 @@ public class MascotaBO implements IMascotaBO {
         }
     }
 
-    // Método auxiliar para buscar por ObjectId (String)
+    /**
+     * Método auxiliar para buscar mascota usando ObjectId de MongoDB
+     * 
+     * @param idHex Identificador hexadecimal de MongoDB
+     * @return MascotaDTO con los datos de la mascota
+     */
     public MascotaDTO buscarMascotaPorIdMongo(String idHex) {
         Mascota mascota = mascotaDAO.buscarPorId(new ObjectId(idHex));
         return convertirADTO(mascota);
     }
 
+    /**
+     * Obtiene todas las mascotas registradas en el sistema
+     * 
+     * @return Lista de DTOs con todas las mascotas
+     */
     @Override
     public List<MascotaDTO> buscarTodasLasMascotas() {
         List<Mascota> mascotas = mascotaDAO.buscarTodas();
@@ -66,6 +90,11 @@ public class MascotaBO implements IMascotaBO {
         return dtos;
     }
 
+    /**
+     * Obtiene todas las mascotas disponibles para adopción
+     * 
+     * @return Lista de DTOs con mascotas disponibles
+     */
     @Override
     public List<MascotaDTO> buscarMascotasDisponibles() {
         List<Mascota> mascotas = mascotaDAO.buscarDisponibles();
@@ -76,6 +105,11 @@ public class MascotaBO implements IMascotaBO {
         return dtos;
     }
 
+    /**
+     * Actualiza los datos de una mascota existente
+     * 
+     * @param mascotaDTO DTO con los datos actualizados de la mascota
+     */
     @Override
     public void actualizarMascota(MascotaDTO mascotaDTO) {
         if (mascotaDTO != null) {
@@ -85,6 +119,12 @@ public class MascotaBO implements IMascotaBO {
         }
     }
 
+    /**
+     * Actualiza el estado de salud de una mascota
+     * 
+     * @param mascota     DTO de la mascota a actualizar
+     * @param nuevoEstado Nuevo estado de salud
+     */
     @Override
     public void actualizaEstadoSalud(MascotaDTO mascota, String nuevoEstado) {
         if (mascota != null) {
@@ -93,15 +133,26 @@ public class MascotaBO implements IMascotaBO {
         }
     }
 
+    /**
+     * Registra el dueño de una mascota, marcándola como no disponible
+     * 
+     * @param mascota DTO de la mascota adoptada
+     * @param idDueño Identificador del nuevo dueño
+     */
     @Override
     public void registraDueño(MascotaDTO mascota, Long idDueño) {
         if (mascota != null) {
-            // Lógica de negocio: al tener dueño, deja de estar disponible
             mascota.setDisponible(false);
             actualizarMascota(mascota);
         }
     }
 
+    /**
+     * Convierte una entidad Mascota a un DTO
+     * 
+     * @param entidad Entidad Mascota de la capa de persistencia
+     * @return MascotaDTO para la capa de presentación
+     */
     private MascotaDTO convertirADTO(Mascota entidad) {
         if (entidad == null)
             return null;
@@ -120,6 +171,12 @@ public class MascotaBO implements IMascotaBO {
         return dto;
     }
 
+    /**
+     * Convierte un DTO de Mascota a una entidad
+     * 
+     * @param dto MascotaDTO de la capa de presentación
+     * @return Entidad Mascota para la capa de persistencia
+     */
     private Mascota convertirAEntidad(MascotaDTO dto) {
         if (dto == null)
             return null;

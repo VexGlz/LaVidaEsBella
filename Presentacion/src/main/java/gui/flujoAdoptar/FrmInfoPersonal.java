@@ -6,7 +6,7 @@ package gui.flujoAdoptar;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmInfoPersonal extends javax.swing.JPanel {
 
@@ -492,13 +492,12 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
                                 idUsuarioStr = controlPresentacion.getUsuarioActual().getId();
                         }
 
-                        if (!controlPresentacion.reservarCita(citaSeleccionada.getId(), idUsuarioStr)) {
-                                javax.swing.JOptionPane.showMessageDialog(this,
-                                                "La cita seleccionada ya no está disponible. Por favor seleccione otra.",
-                                                "Cita no disponible",
-                                                javax.swing.JOptionPane.WARNING_MESSAGE);
-                                return;
-                        }
+                    if (!controlPresentacion.verificarDisponibilidadCita(citaSeleccionada.getId())) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Cita no disponible...");
+                        citaSeleccionada = null;
+                        abrirSelectorCitas();
+                        return;
+                    }
 
                         // Guardar la cita seleccionada en el control para usarla al final
                         DTOS.CitaDTO citaDTO = new DTOS.CitaDTO();

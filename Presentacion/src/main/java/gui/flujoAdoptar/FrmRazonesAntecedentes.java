@@ -6,7 +6,7 @@ package gui.flujoAdoptar;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmRazonesAntecedentes extends javax.swing.JPanel {
         private control.ControlPresentacion controlPresentacion;

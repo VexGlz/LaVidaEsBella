@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmInformacionMascota extends javax.swing.JFrame {
 

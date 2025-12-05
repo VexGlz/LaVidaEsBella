@@ -6,7 +6,7 @@ package gui;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class JPAdmin extends javax.swing.JPanel {
 

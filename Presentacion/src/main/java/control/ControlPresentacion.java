@@ -24,6 +24,10 @@ import gui.flujoAdoptar.MenuMostrarEspecies;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ *
+ * @author angel
+ */
 public class ControlPresentacion {
 
     private ControlSubsistemas controlSubsistemas;
@@ -224,6 +228,10 @@ public class ControlPresentacion {
     public boolean reservarCita(String idCita, String idUsuario) {
         return controlSubsistemas.reservarCita(idCita, idUsuario);
     }
+    
+    public boolean verificarDisponibilidadCita(String idCita) {
+        return controlSubsistemas.verificarDisponibilidadCita(idCita);
+    }
 
     public void procesarCita(DTOS.CitaDTO cita) {
         try {
@@ -240,7 +248,14 @@ public class ControlPresentacion {
                     solicitudActual.setMascota(mascota);
                 }
             }
-
+            
+            if (cita != null && cita.getId() != null) {
+                System.out.println("→ Intentando reservar cita: " + cita.getId());
+                if (!controlSubsistemas.reservarCita(cita.getId(), idUsuarioActual)) {
+                    throw new Exception("No se pudo reservar la cita");
+                }
+            }
+            
             // Asignar fecha de solicitud
             solicitudActual.setFechaSolicitud(java.time.LocalDateTime.now());
             solicitudActual.setEstado("Pendiente");
@@ -532,8 +547,7 @@ public class ControlPresentacion {
      */
     public void regresarDesdeFrmInfoPersonal() {
         if (frmMenuPrincipal != null && idMascotaSeleccionada != null) {
-            // Volver a mostrar la información de la mascota
-            mostrarInformacionMascota(idMascotaSeleccionada);
+            frmMenuPrincipal.mostrarInicio();
         }
     }
 
@@ -744,26 +758,25 @@ public class ControlPresentacion {
                 razonesEncontradas = true;
             }
 
-            // Si ya encontramos ambos, podemos terminar
-            if (viviendaEncontrada && razonesEncontradas) {
-                break;
-            }
+          // Si ya encontramos ambos, podemos terminar
+        if (viviendaEncontrada && razonesEncontradas) {
+            break;
         }
+    }
 
-        // AGREGAR ESTE BLOQUE AQUÍ ↓↓↓
-        // Guardar los datos precargados en la BD para que estén disponibles la próxima
-        // vez
-        if (viviendaEncontrada && usuarioActual != null && usuarioActual.getId() != null) {
-            try {
-                controlSubsistemas.actualizarUsuario(usuarioActual);
-                System.out.println("✓ Datos de vivienda precargados guardados en BD");
-            } catch (Exception e) {
-                System.err.println("Error al actualizar usuario con datos precargados: " + e.getMessage());
-            }
+    // AGREGAR ESTE BLOQUE AQUÍ ↓↓↓
+    // Guardar los datos precargados en la BD para que estén disponibles la próxima vez
+    if (viviendaEncontrada && usuarioActual != null && usuarioActual.getId() != null) {
+        try {
+            controlSubsistemas.actualizarUsuario(usuarioActual);
+            System.out.println("✓ Datos de vivienda precargados guardados en BD");
+        } catch (Exception e) {
+            System.err.println("Error al actualizar usuario con datos precargados: " + e.getMessage());
         }
-        // FIN DEL BLOQUE ↑↑↑
+    }
+    // FIN DEL BLOQUE ↑↑↑
 
-        return viviendaEncontrada || razonesEncontradas;
+    return viviendaEncontrada || razonesEncontradas;
     }
 
     /**

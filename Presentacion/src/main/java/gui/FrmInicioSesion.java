@@ -6,7 +6,7 @@ package gui;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 import control.ControlPresentacion;
 

@@ -8,7 +8,7 @@ import gui.flujoAdoptar.*;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmCorreoConfirmacion extends javax.swing.JPanel {
 

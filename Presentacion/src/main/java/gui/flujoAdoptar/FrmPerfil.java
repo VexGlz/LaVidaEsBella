@@ -6,7 +6,7 @@ package gui.flujoAdoptar;
 
 /**
  *
- * @author Erick
+ * @author angel
  */
 public class FrmPerfil extends javax.swing.JPanel {
 

@@ -4,6 +4,12 @@
  */
 package DTOS;
 
+/**
+ * Data Transfer Object para Mascota
+ * Contiene la información completa de una mascota disponible para adopción
+ * 
+ * @author System
+ */
 public class MascotaDTO {
 
     private String id;
