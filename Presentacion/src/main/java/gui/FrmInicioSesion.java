@@ -315,7 +315,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception e) {
-            PfContra.setText(""); // 👈 Agregar esta línea
+            PfContra.setText("");
             PfContra.requestFocus();
             javax.swing.JOptionPane.showMessageDialog(this,
                     e.getMessage(),
