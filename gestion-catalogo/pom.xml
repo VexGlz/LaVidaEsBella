@@ -8,6 +8,23 @@
     </parent>
     <artifactId>gestion-catalogo</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>error</groupId>
+            <artifactId>Persistencia</artifactId>
+            <version>25</version>
+        </dependency>
+        <dependency>
+            <groupId>error</groupId>
+            <artifactId>Negocio</artifactId>
+            <version>25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+        </dependency>
+    </dependencies>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>

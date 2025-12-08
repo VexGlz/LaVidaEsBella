@@ -14,7 +14,7 @@
         <module>Negocio</module>
         <module>Presentacion</module>
         <module>Infraestructura</module>
-        <module>GestionCatalogo</module>
+        <module>gestion-catalogo</module>
     </modules>
 
     <properties>
