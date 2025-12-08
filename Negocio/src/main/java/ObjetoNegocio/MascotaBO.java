@@ -148,6 +148,40 @@ public class MascotaBO implements IMascotaBO {
     }
 
     /**
+     * Elimina una mascota del catálogo (soft delete)
+     * Marca la mascota como no disponible en lugar de borrarla físicamente
+     * 
+     * @param id ID de la mascota a eliminar
+     * @return true si se eliminó correctamente
+     */
+    @Override
+    public boolean eliminarMascota(String id) {
+        try {
+            // Buscar la mascota
+            MascotaDTO mascota = buscarMascotaPorId(id);
+
+            if (mascota == null) {
+                System.err.println("No se encontró mascota con ID: " + id);
+                return false;
+            }
+
+            // Soft delete: marcar como no disponible
+            mascota.setDisponible(false);
+            mascota.setEstado("Eliminada del catálogo");
+
+            // Actualizar en BD
+            actualizarMascota(mascota);
+
+            System.out.println("✓ Mascota eliminada del catálogo (soft delete): " + id);
+            return true;
+
+        } catch (Exception e) {
+            System.err.println("Error al eliminar mascota: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Convierte una entidad Mascota a un DTO
      * 
      * @param entidad Entidad Mascota de la capa de persistencia
@@ -168,6 +202,10 @@ public class MascotaBO implements IMascotaBO {
         dto.setEdad(entidad.getEdad());
         dto.setDisponible(entidad.isDisponible());
         dto.setEstado(entidad.getEstado());
+        dto.setColor(entidad.getColor());
+        dto.setRaza(entidad.getRaza());
+        dto.setPeso(entidad.getPeso());
+
         return dto;
     }
 
@@ -197,6 +235,12 @@ public class MascotaBO implements IMascotaBO {
         entidad.setEdad(dto.getEdad());
         entidad.setDisponible(dto.isDisponible());
         entidad.setEstado(dto.getEstado());
+
+        // Nuevos campos
+        entidad.setColor(dto.getColor());
+        entidad.setRaza(dto.getRaza());
+        entidad.setPeso(dto.getPeso());
+
         return entidad;
     }
 }

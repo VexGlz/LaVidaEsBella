@@ -25,4 +25,12 @@ public interface IMascotaBO {
     void actualizaEstadoSalud(MascotaDTO mascota, String nuevoEstado);
 
     void registraDueño(MascotaDTO mascota, Long idDueño);
+
+    /**
+     * Elimina una mascota y su expediente médico (composición)
+     * 
+     * @param id ID de la mascota a eliminar
+     * @return true si se eliminó correctamente
+     */
+    boolean eliminarMascota(String id);
 }

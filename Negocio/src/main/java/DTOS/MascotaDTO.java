@@ -22,6 +22,11 @@ public class MascotaDTO {
     private boolean disponible;
     private String estado;
 
+    // Nuevos campos adicionales
+    private String color;
+    private String raza;
+    private double peso; // en kilogramos
+
     public MascotaDTO() {
     }
 
@@ -102,6 +107,30 @@ public class MascotaDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
     }
 
     @Override
