@@ -367,7 +367,7 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
      * Confirma la baja de una mascota
      *
      * @param mascotaDTO Datos de la mascota a dar de baja
-     * @param motivo Razón de la baja
+     * @param motivo     Razón de la baja
      */
     public void confirmarBajaMascota(CatalogoDTO mascotaDTO, String motivo) {
         try {
@@ -422,7 +422,7 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelContenidoDinamico = new javax.swing.JPanel();
@@ -432,21 +432,23 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
         lblUserImage = new javax.swing.JLabel();
         lblUserImage1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_cerrarSesion = new javax.swing.JButton();
+        btn_InicioAdmin = new javax.swing.JButton();
+        btn_cerrarSesion1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelContenidoDinamico.setBackground(new java.awt.Color(235, 229, 220));
-        panelContenidoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        panelContenidoDinamico.setBackground(new java.awt.Color(219, 213, 195));
 
         javax.swing.GroupLayout panelContenidoDinamicoLayout = new javax.swing.GroupLayout(panelContenidoDinamico);
         panelContenidoDinamico.setLayout(panelContenidoDinamicoLayout);
         panelContenidoDinamicoLayout.setHorizontalGroup(
-                panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE));
+            panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
         panelContenidoDinamicoLayout.setVerticalGroup(
-                panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 685, Short.MAX_VALUE));
+            panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 685, Short.MAX_VALUE)
+        );
 
         panelCabecera.setBackground(new java.awt.Color(255, 255, 255));
         panelCabecera.setForeground(new java.awt.Color(255, 255, 255));
@@ -457,7 +459,7 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
 
         btn_inicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn_inicio.setForeground(new java.awt.Color(0, 0, 0));
-        btn_inicio.setText("INICIO ADMIN");
+        btn_inicio.setText("INICIO");
         btn_inicio.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btn_inicio.setBorderPainted(false);
         btn_inicio.setContentAreaFilled(false);
@@ -483,84 +485,136 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Gestionar Catalogo");
 
-        btn_cerrarSesion.setBackground(new java.awt.Color(153, 0, 0));
-        btn_cerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_cerrarSesion.setText("Cerrar Sesion");
-        btn_cerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_InicioAdmin.setBackground(new java.awt.Color(153, 0, 0));
+        btn_InicioAdmin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_InicioAdmin.setText("Inicio Admin");
+        btn_InicioAdmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_InicioAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_InicioAdminActionPerformed(evt);
+            }
+        });
+
+        btn_cerrarSesion1.setBackground(new java.awt.Color(153, 0, 0));
+        btn_cerrarSesion1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_cerrarSesion1.setText("Cerrar Sesion");
+        btn_cerrarSesion1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_cerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cerrarSesion1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
         panelCabecera.setLayout(panelCabeceraLayout);
         panelCabeceraLayout.setHorizontalGroup(
-                panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel1)
-                                .addGroup(panelCabeceraLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                                .addGap(174, 174, 174)
-                                                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 182,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(212, 212, 212)
-                                                .addComponent(btn_cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                                .addGap(103, 103, 103)
-                                                .addComponent(jLabel2)))
-                                .addGap(68, 68, 68)
-                                .addComponent(lblUserImage)
-                                .addContainerGap(266, Short.MAX_VALUE))
-                        .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                        .addGap(597, 597, 597)
-                                        .addComponent(lblUserImage1)
-                                        .addContainerGap(598, Short.MAX_VALUE))));
+            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCabeceraLayout.createSequentialGroup()
+                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCabeceraLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel1)
+                        .addGap(251, 251, 251)
+                        .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(197, 197, 197)
+                        .addComponent(btn_InicioAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUserImage)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCabeceraLayout.createSequentialGroup()
+                        .addGap(506, 506, 506)
+                        .addComponent(jLabel2)))
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCabeceraLayout.createSequentialGroup()
+                    .addGap(597, 597, 597)
+                    .addComponent(lblUserImage1)
+                    .addContainerGap(598, Short.MAX_VALUE)))
+        );
         panelCabeceraLayout.setVerticalGroup(
-                panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout
-                                .createSequentialGroup()
-                                .addContainerGap(19, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelCabeceraLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panelCabeceraLayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabel1)
-                                                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(btn_cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18))
-                        .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
-                                        .addComponent(lblUserImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(33, Short.MAX_VALUE))));
+            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(8, 8, 8)
+                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_InicioAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(btn_cerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+            .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCabeceraLayout.createSequentialGroup()
+                    .addGap(32, 32, 32)
+                    .addComponent(lblUserImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(33, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelCabecera, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(panelCabecera, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_InicioAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InicioAdminActionPerformed
+        try {
+                // Usamos Reflection para cargar JPAdmin dinámicamente
+                Class<?> jpAdminClass = Class.forName("gui.JPAdmin");
+                javax.swing.JPanel jpAdmin = (javax.swing.JPanel) jpAdminClass.getDeclaredConstructor().newInstance();
+                
+                // Obtener el Frame actual
+                javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(btn_InicioAdmin);
+                if(frame != null) {
+                    frame.setContentPane(jpAdmin);
+                    frame.pack();
+                    frame.setLocationRelativeTo(null);
+                    frame.setTitle("Panel de Administración");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, "Error al volver al menú: " + ex.getMessage());
+            }
+    }//GEN-LAST:event_btn_InicioAdminActionPerformed
+
+    private void btn_cerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cerrarSesion1ActionPerformed
+       int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+                "¿Seguro que desea cerrar sesión?", 
+                "Cerrar Sesión", 
+                javax.swing.JOptionPane.YES_NO_OPTION);
+                
+            if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    // Usamos Reflection para crear nuevo FrmInicioSesion
+                    Class<?> loginClass = Class.forName("gui.FrmInicioSesion");
+                    javax.swing.JFrame loginFrame = (javax.swing.JFrame) loginClass.getDeclaredConstructor().newInstance();
+                    loginFrame.setVisible(true);
+                    
+                    // Cerrar ventana actual
+                    javax.swing.JFrame currentFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(btn_cerrarSesion1);
+                    if(currentFrame != null) currentFrame.dispose();
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+    }//GEN-LAST:event_btn_cerrarSesion1ActionPerformed
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_inicioActionPerformed
         // Recargar catálogo
@@ -621,7 +675,8 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cerrarSesion;
+    private javax.swing.JButton btn_InicioAdmin;
+    private javax.swing.JButton btn_cerrarSesion1;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

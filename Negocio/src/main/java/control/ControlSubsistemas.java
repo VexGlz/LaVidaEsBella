@@ -57,6 +57,35 @@ public class ControlSubsistemas {
         subsistemaInicioSesion.actualizarUsuario(usuario);
     }
 
+    public void InicializarAdminUser() {
+        try {
+            // Intentar buscar al admin
+            try {
+                UsuarioDTO admin = subsistemaInicioSesion.iniciarSesion("admin@gmail.com", "admin");
+                if (admin != null) {
+                    return;
+                }
+            } catch (Exception e) {
+
+            }
+
+            UsuarioDTO newAdmin = new UsuarioDTO();
+            newAdmin.setContrasena("admin");
+
+            DTOS.InfoPersonalDTO info = new DTOS.InfoPersonalDTO();
+            info.setNombre("Administrador");
+            info.setCorreo("admin@gmail.com");
+
+            newAdmin.setInfoPersonal(info);
+
+            subsistemaInicioSesion.registrarUsuario(newAdmin);
+            System.out.println("Admin creado correctamente");
+
+        } catch (Exception e) {
+            System.err.println("No se pudo inicializar el usuario Admin: " + e.getMessage());
+        }
+    }
+
     // --- MÉTODOS PARA MASCOTAS ---
     public MascotaDTO obtenerMascotaPorId(String id) {
         try {
