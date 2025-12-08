@@ -18,6 +18,11 @@ public class Mascota {
     private boolean disponible;
     private String estado;
 
+    // Nuevos campos agregados
+    private String color;
+    private String raza;
+    private double peso;
+
     public Mascota() {
     }
 
@@ -91,5 +96,29 @@ public class Mascota {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
     }
 }

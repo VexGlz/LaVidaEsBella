@@ -100,6 +100,13 @@ public class MascotaDAO {
         mascota.setEdad(doc.getInteger("edad"));
         mascota.setDisponible(doc.getBoolean("disponible"));
         mascota.setEstado(doc.getString("estado"));
+
+        // Nuevos campos
+        mascota.setColor(doc.getString("color"));
+        mascota.setRaza(doc.getString("raza"));
+        Double peso = doc.getDouble("peso");
+        mascota.setPeso(peso != null ? peso : 0.0);
+
         return mascota;
     }
 
@@ -133,7 +140,11 @@ public class MascotaDAO {
                 .append("urlImagen", mascota.getUrlImagen())
                 .append("edad", mascota.getEdad())
                 .append("disponible", mascota.isDisponible())
-                .append("estado", mascota.getEstado());
+                .append("estado", mascota.getEstado())
+                // Nuevos campos
+                .append("color", mascota.getColor())
+                .append("raza", mascota.getRaza())
+                .append("peso", mascota.getPeso());
         return doc;
     }
 }
