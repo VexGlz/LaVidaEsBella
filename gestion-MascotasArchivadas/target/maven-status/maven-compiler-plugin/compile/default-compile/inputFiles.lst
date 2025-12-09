@@ -1,12 +1,4 @@
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\DetallesMascota.java
-<<<<<<< HEAD
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\ReactivarMascota.java
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\CatalogoMascotasArchivadas.java
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\EliminarMascota.java
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\InicioAdmin.java
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\ExpedienteMedico.java
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\FramePrincipal.java
-=======
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\gestion\mascotasarchivadas\negocio\interfaces\IGestionMascotasArchivadas.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\gestion\mascotasarchivadas\dtos\ResultadoOperacion.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\EliminarMascota.java
@@ -18,10 +10,8 @@ C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivad
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\ReactivarMascota.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\gestion\mascotasarchivadas\persistencia\implementacion\MascotaArchivoDAO.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\CatalogoMascotasArchivadas.java
-C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\InicioAdmin.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\ExpedienteMedico.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\pantallas\FramePrincipal.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\gestion\mascotasarchivadas\control\ControlPresentacion.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\gestion\mascotasarchivadas\negocio\implementacion\GestionMascotasArchivadas.java
 C:\Users\angel\Documents\NetBeansProjects\LaVidaEsBella\gestion-MascotasArchivadas\src\main\java\gestion\mascotasarchivadas\control\ControlSubsistemas.java
->>>>>>> feature/mascotas-archivadas

@@ -304,23 +304,6 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
     }
 
     /**
-     * Regresa al menú principal de administrador
-     */
-    private void volverAMenuAdmin() {
-        int confirmacion = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea volver al menú de administrador?",
-                "Confirmar",
-                JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            InicioAdminFrame inicioAdmin = new InicioAdminFrame();
-            inicioAdmin.setVisible(true);
-            this.dispose();
-        }
-    }
-
-    /**
      * Carga el catálogo de mascotas y lo muestra en el panel dinámico
      */
     /**
@@ -624,55 +607,11 @@ public class PanelPrincipalGestionCatalogo extends javax.swing.JFrame {
 
     private void lblUserImageMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblUserImageMouseClicked
         // Volver al menú de administrador
-        volverAMenuAdmin();
     }// GEN-LAST:event_lblUserImageMouseClicked
 
     private void lblUserImage1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblUserImage1MouseClicked
         // TODO add your handling code here:
     }// GEN-LAST:event_lblUserImage1MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-        // (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelPrincipalGestionCatalogo.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelPrincipalGestionCatalogo.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelPrincipalGestionCatalogo.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelPrincipalGestionCatalogo.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        // </editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelPrincipalGestionCatalogo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_InicioAdmin;

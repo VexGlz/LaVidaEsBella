@@ -260,21 +260,23 @@ public class FramePrincipal extends javax.swing.JFrame {
     }// GEN-LAST:event_lblUserImage1MouseClicked
 
     private void btn_InicioAdminActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_InicioAdminActionPerformed
-        recargarCatalogo();
-        try { 
-
-            // Obtener el Frame actual
-            javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities
-                    .getWindowAncestor(btn_InicioAdmin);
-            if (frame != null) {
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setTitle("Panel de Administración");
+       try {
+                // Usamos Reflection para cargar JPAdmin dinámicamente
+                Class<?> jpAdminClass = Class.forName("gui.JPAdmin");
+                javax.swing.JPanel jpAdmin = (javax.swing.JPanel) jpAdminClass.getDeclaredConstructor().newInstance();
+                
+                // Obtener el Frame actual
+                javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(btn_InicioAdmin);
+                if(frame != null) {
+                    frame.setContentPane(jpAdmin);
+                    frame.pack();
+                    frame.setLocationRelativeTo(null);
+                    frame.setTitle("Panel de Administración");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, "Error al volver al menú: " + ex.getMessage());
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al volver al menú: " + ex.getMessage());
-        }
     }// GEN-LAST:event_btn_InicioAdminActionPerformed
 
     private void btn_cerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_cerrarSesion1ActionPerformed

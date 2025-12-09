@@ -378,26 +378,22 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                         return;
                 }
 
-                try {
-                        DTOS.UsuarioDTO usuario = controlPresentacion.validarLogin(correo, password);
-
-                        // --- VERIFICAR SI ES ADMIN ---
-                        if (usuario.getInfoPersonal().getCorreo().equalsIgnoreCase("admin@gmail.com")) {
-                                javax.swing.JOptionPane.showMessageDialog(this,
-                                                "¡Bienvenido Administrador!",
-                                                "Acceso Administrativo",
-                                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                                // Reutilizar la ventana actual
-                                this.setContentPane(new JPAdmin()); // Cambiar contenido
-                                this.setTitle("Panel de Administración"); // Cambiar título
-                                this.validate(); // Validar cambios
-                                this.pack(); // Ajustar tamaño al nuevo panel
-                                this.setLocationRelativeTo(null); // Centrar
-                                return;
-                        }
-                        // -----------------------------
-
+            try {
+                DTOS.UsuarioDTO usuario = controlPresentacion.validarLogin(correo, password);
+                if (usuario.getInfoPersonal().getCorreo().equalsIgnoreCase("admin@gmail.com")) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "¡Bienvenido Administrador!",
+                            "Acceso Administrativo",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    this.setContentPane(new JPAdmin());
+                    this.setTitle("Panel de Administración");
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setLocationRelativeTo(null);
+                    return;
+                }
+     
                         // Establecer el usuario logueado para pre-llenar formularios
                         controlPresentacion.setUsuarioLogueado(usuario);
 
