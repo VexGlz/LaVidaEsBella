@@ -4,17 +4,169 @@
  */
 package pantallas;
 
+import gestion.mascotasarchivadas.control.ControlPresentacion;
+import gestion.mascotasarchivadas.dtos.MascotaArchivoDTO;
+import java.util.List;
+
 /**
  *
  * @author angel
  */
 public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
 
+    private ControlPresentacion controlPresentacion;
+
     /**
      * Creates new form CatalogoMascotasArchivadas
      */
     public CatalogoMascotasArchivadas() {
         initComponents();
+
+        // Inicializar control
+        this.controlPresentacion = new gestion.mascotasarchivadas.control.ControlPresentacion();
+
+        // Configurar ComboBox de especies
+        configurarComboBoxEspecies();
+
+        // Cargar catálogo al iniciar
+        cargarCatalogo();
+
+        // Configurar scroll
+        JScrollPaneCatalogo.getVerticalScrollBar().setUnitIncrement(16);
+        JScrollPaneCatalogo.getVerticalScrollBar().setBlockIncrement(100);
+    }
+
+    public void cargarCatalogo() {
+        try {
+            // Limpiar panel
+            JPaneCatalogo.removeAll();
+
+            // Obtener mascotas ARCHIVADAS (disponible=false o estado="baja")
+            List<MascotaArchivoDTO> mascotasArchivadas = controlPresentacion.obtenerMascotasArchivadas();
+
+            if (mascotasArchivadas == null || mascotasArchivadas.isEmpty()) {
+                System.out.println("No hay mascotas archivadas");
+                JPaneCatalogo.revalidate();
+                JPaneCatalogo.repaint();
+                return;
+            }
+
+            System.out.println("Cargando " + mascotasArchivadas.size() + " mascotas archivadas...");
+
+            // Crear PetCard por cada mascota archivada
+            for (MascotaArchivoDTO mascota : mascotasArchivadas) {
+                System.out.println("Creando card para: " + mascota.getNombre()
+                        + " (ID: " + mascota.getId() + ")");
+
+                PetCardPanel card = new PetCardPanel();
+
+                // Setear datos de la mascota
+                card.setMascotaId(mascota.getId());
+                card.setNombreMascota(mascota.getNombre());
+                card.setImagenMascota(mascota.getUrlImagen());
+
+                // Listener para ver detalles
+                card.agregarListenerDetalle(e -> {
+                    FramePrincipal frame = (FramePrincipal) javax.swing.SwingUtilities.getWindowAncestor(this);
+                    if (frame != null) {
+                        // Obtener panel de detalles y pasarle el ID
+                        DetallesMascota detalles = frame.obtenerPanelDetalles();
+                        if (detalles != null) {
+                            detalles.setMascotaId(mascota.getId());
+                        }
+                        frame.mostrarPanel("DETALLES");
+                    }
+                });
+
+                JPaneCatalogo.add(card);
+            }
+
+            // Refrescar UI
+            JPaneCatalogo.revalidate();
+            JPaneCatalogo.repaint();
+
+            System.out.println("Catálogo de mascotas archivadas cargado exitosamente");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error al cargar catálogo: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void configurarComboBoxEspecies() {
+        cbFiltro.removeAllItems();
+        cbFiltro.addItem("TODAS");
+        cbFiltro.addItem("Perro");
+        cbFiltro.addItem("Gato");
+        cbFiltro.addItem("Ave");
+        cbFiltro.addItem("Reptil");
+        cbFiltro.addItem("Otro");
+    }
+
+    /**
+     * Aplica el filtro de especie seleccionado y recarga el catálogo
+     */
+    private void aplicarFiltro() {
+        try {
+            // Limpiar panel
+            JPaneCatalogo.removeAll();
+
+            // Obtener especie seleccionada
+            String especieSeleccionada = cbFiltro.getSelectedItem() != null
+                    ? cbFiltro.getSelectedItem().toString()
+                    : "Todas las especies";
+
+            // Obtener todas las mascotas archivadas
+            List<MascotaArchivoDTO> todasLasMascotas = controlPresentacion.obtenerMascotasArchivadas();
+
+            if (todasLasMascotas == null || todasLasMascotas.isEmpty()) {
+                System.out.println("No hay mascotas archivadas");
+                JPaneCatalogo.revalidate();
+                JPaneCatalogo.repaint();
+                return;
+            }
+
+            System.out.println("Filtrando por especie: " + especieSeleccionada);
+
+            // Crear cards solo para las mascotas que coincidan con el filtro
+            for (MascotaArchivoDTO mascota : todasLasMascotas) {
+                // Aplicar filtro: si es "Todas" mostrar todo, sino filtrar por especie
+                if (!especieSeleccionada.equals("Todas las especies")
+                        && !mascota.getEspecie().equalsIgnoreCase(especieSeleccionada)) {
+                    continue; // Saltar esta mascota si no coincide con el filtro
+                }
+
+                PetCardPanel card = new PetCardPanel();
+                card.setMascotaId(mascota.getId());
+                card.setNombreMascota(mascota.getNombre());
+                card.setImagenMascota(mascota.getUrlImagen());
+
+                card.agregarListenerDetalle(e -> {
+                    FramePrincipal frame = (FramePrincipal) javax.swing.SwingUtilities.getWindowAncestor(this);
+                    if (frame != null) {
+                        frame.mostrarPanel("DETALLES");
+                    }
+                });
+
+                JPaneCatalogo.add(card);
+            }
+
+            // Refrescar UI
+            JPaneCatalogo.revalidate();
+            JPaneCatalogo.repaint();
+
+            System.out.println("Catálogo filtrado actualizado");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error al filtrar catálogo: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -23,23 +175,13 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JScrollPaneCatalogo = new javax.swing.JScrollPane();
         JPaneCatalogo = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        perro6 = new javax.swing.JLabel();
-        btn_infoMascota2 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        perro5 = new javax.swing.JLabel();
-        btn_infoMascota1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        perro3 = new javax.swing.JLabel();
-        btn_infoMascota = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         cbFiltro = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
@@ -49,130 +191,10 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
 
         JPaneCatalogo.setBackground(new java.awt.Color(235, 229, 220));
         JPaneCatalogo.setLayout(new java.awt.GridLayout(0, 3, 15, 15));
-
-        btn_infoMascota2.setText("VER DETALLES");
-        btn_infoMascota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_infoMascota2ActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setText("Cacao");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(perro6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btn_infoMascota2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(107, 107, 107))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(perro6)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
-                .addComponent(btn_infoMascota2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
-
-        JPaneCatalogo.add(jPanel3);
-
-        btn_infoMascota1.setText("VER DETALLES");
-        btn_infoMascota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_infoMascota1ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Pinto");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_infoMascota1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(perro5)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel4)))
-                .addContainerGap(258, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(perro5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-                .addComponent(btn_infoMascota1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-        );
-
-        JPaneCatalogo.add(jPanel2);
-
-        btn_infoMascota.setText("VER DETALLES");
-        btn_infoMascota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_infoMascotaActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Rufus");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(perro3))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(btn_infoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel3)))
-                .addContainerGap(226, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(perro3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
-                .addComponent(btn_infoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-        );
-
-        JPaneCatalogo.add(jPanel4);
-
         JScrollPaneCatalogo.setViewportView(JPaneCatalogo);
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFiltro.setModel(
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFiltroActionPerformed(evt);
@@ -186,51 +208,42 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JScrollPaneCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 1350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(17, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(89, 89, 89))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(JScrollPaneCatalogo,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 1350,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap(17, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                layout.createSequentialGroup()
+                                                        .addGap(0, 0, Short.MAX_VALUE)
+                                                        .addComponent(jLabel2)
+                                                        .addGap(89, 89, 89))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 126,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(JScrollPaneCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(JScrollPaneCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 420,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(83, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_infoMascota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_infoMascota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_infoMascota2ActionPerformed
-
-    private void btn_infoMascota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_infoMascota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_infoMascota1ActionPerformed
-
-    private void btn_infoMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_infoMascotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_infoMascotaActionPerformed
-
-    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbFiltroActionPerformed
-
+    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbFiltroActionPerformed
+        aplicarFiltro(); // Filtrar en tiempo real al cambiar la selección
+    }// GEN-LAST:event_cbFiltroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPaneCatalogo;

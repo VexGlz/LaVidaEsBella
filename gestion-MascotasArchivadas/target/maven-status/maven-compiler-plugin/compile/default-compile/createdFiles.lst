@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pantallas\ExpedienteMedico$3.class
 pantallas\FramePrincipal$2.class
 pantallas\FramePrincipal$5.class
@@ -10,18 +11,49 @@ pantallas\EliminarMascota.class
 pantallas\FramePrincipal.class
 pantallas\ReactivarMascota$3.class
 pantallas\CatalogoMascotasArchivadas$4.class
+=======
+pantallas\PetCardPanel$1.class
+pantallas\ExpedienteMedico$3.class
+gestion\mascotasarchivadas\control\ControlSubsistemas.class
+gestion\mascotasarchivadas\dtos\MascotaArchivoDTO.class
+pantallas\FramePrincipal$2.class
+gestion\mascotasarchivadas\dtos\ResultadoOperacion.class
+pantallas\PetCardPanel.class
+pantallas\FramePrincipal$5.class
+gestion\mascotasarchivadas\persistencia\interfaces\IMascotaArchivoDAO.class
+gestion\mascotasarchivadas\persistencia\implementacion\MascotaArchivoDAO.class
+pantallas\DetallesMascota$3.class
+pantallas\EliminarMascota$2.class
+pantallas\ExpedienteMedico$5.class
+gestion\mascotasarchivadas\control\ControlPresentacion.class
+pantallas\InicioAdmin$1.class
+gestion\mascotasarchivadas\negocio\interfaces\IGestionMascotasArchivadas.class
+pantallas\DetallesMascota.class
+pantallas\EliminarMascota.class
+pantallas\FramePrincipal.class
+gestion\mascotasarchivadas\negocio\objetonegocio\ObjetoNegocio.class
+pantallas\ReactivarMascota$3.class
+>>>>>>> feature/mascotas-archivadas
 pantallas\DetallesMascota$1.class
 pantallas\FramePrincipal$3.class
 pantallas\CatalogoMascotasArchivadas.class
 pantallas\DetallesMascota$2.class
 pantallas\CatalogoMascotasArchivadas$1.class
+<<<<<<< HEAD
 pantallas\ReactivarMascota$4.class
+=======
+>>>>>>> feature/mascotas-archivadas
 pantallas\ExpedienteMedico$7.class
 pantallas\FramePrincipal$6.class
 pantallas\ExpedienteMedico$2.class
 pantallas\ReactivarMascota$1.class
+<<<<<<< HEAD
 pantallas\FramePrincipal$1.class
 pantallas\CatalogoMascotasArchivadas$3.class
+=======
+gestion\mascotasarchivadas\negocio\adaptadores\Adaptadores.class
+pantallas\FramePrincipal$1.class
+>>>>>>> feature/mascotas-archivadas
 pantallas\InicioAdmin.class
 pantallas\FramePrincipal$4.class
 pantallas\ExpedienteMedico$6.class
@@ -31,3 +63,8 @@ pantallas\ExpedienteMedico$1.class
 pantallas\EliminarMascota$1.class
 pantallas\ExpedienteMedico$4.class
 pantallas\ReactivarMascota.class
+<<<<<<< HEAD
+=======
+gestion\mascotasarchivadas\negocio\implementacion\GestionMascotasArchivadas.class
+pantallas\InicioAdmin$2.class
+>>>>>>> feature/mascotas-archivadas

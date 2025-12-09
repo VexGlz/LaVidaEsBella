@@ -123,6 +123,22 @@ public class MascotaDAO {
     }
 
     /**
+     * Elimina permanentemente una mascota de la base de datos.
+     * Esta operación es irreversible y elimina físicamente el documento de MongoDB.
+     * 
+     * @param id ObjectId de la mascota a eliminar
+     * @return true si se eliminó correctamente, false si no se encontró
+     */
+    public boolean eliminar(ObjectId id) {
+        if (id == null) {
+            return false;
+        }
+
+        long deletedCount = collection.deleteOne(Filters.eq("_id", id)).getDeletedCount();
+        return deletedCount > 0;
+    }
+
+    /**
      * Convierte una entidad Mascota a un Document de MongoDB
      * 
      * @param mascota Entidad Mascota a convertir
