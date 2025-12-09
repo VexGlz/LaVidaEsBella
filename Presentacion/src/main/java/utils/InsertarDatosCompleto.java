@@ -3,13 +3,10 @@ package utils;
 import DTOS.MascotaDTO;
 import DTOS.UsuarioDTO;
 import DTOS.InfoPersonalDTO;
-import DTOS.CitaDisponibleDTO;
 import negocio.subsistemas.mascotas.FachadaMascotas;
 import negocio.subsistemas.mascotas.IMascotas;
 import negocio.subsistemas.iniciosesion.FachadaInicioSesion;
 import negocio.subsistemas.iniciosesion.IInicioSesion;
-import ObjetoNegocio.CitaDisponibleBO;
-import ObjetoNegocio.ICitaDisponibleBO;
 
 import java.util.Calendar;
 import java.util.Date;

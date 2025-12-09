@@ -44,11 +44,28 @@ public class ExpedienteMedicoDAO {
      * @param mascotaId ObjectId de la mascota
      * @return Expediente médico encontrado o null si no existe
      */
+    /**
+     * Busca un expediente por el ID de la mascota
+     * Soporta tanto esquema antiguo (mascotaId: ObjectId) como nuevo (idMascota:
+     * String)
+     * 
+     * @param mascotaId ObjectId de la mascota
+     * @return Expediente médico encontrado o null si no existe
+     */
     public ExpedienteMedico buscarPorMascotaId(ObjectId mascotaId) {
-        Document doc = collection.find(Filters.eq("mascotaId", mascotaId)).first();
+        System.out.println("DEBUG DAO: Buscando expediente para MascotaID (ObjectId): " + mascotaId);
+        System.out.println("DEBUG DAO: Buscando expediente para idMascota (String): " + mascotaId.toHexString());
+
+        // Buscar por ambos campos posibles
+        Document doc = collection.find(Filters.or(
+                Filters.eq("mascotaId", mascotaId),
+                Filters.eq("idMascota", mascotaId.toHexString()))).first();
+
         if (doc == null) {
+            System.out.println("DEBUG DAO: No se encontró ningún expediente.");
             return null;
         }
+        System.out.println("DEBUG DAO: Expediente encontrado! ID: " + doc.get("_id"));
         return documentToExpediente(doc);
     }
 
@@ -73,7 +90,19 @@ public class ExpedienteMedicoDAO {
     private ExpedienteMedico documentToExpediente(Document doc) {
         ExpedienteMedico expediente = new ExpedienteMedico();
         expediente.setId(doc.getObjectId("_id"));
-        expediente.setMascotaId(doc.getObjectId("mascotaId"));
+
+        // Manejo híbrido de ID de mascota
+        if (doc.containsKey("mascotaId")) {
+            expediente.setMascotaId(doc.getObjectId("mascotaId"));
+        } else if (doc.containsKey("idMascota")) {
+            try {
+                expediente.setMascotaId(new ObjectId(doc.getString("idMascota")));
+            } catch (Exception e) {
+                // Si falla conversión, loguear pero continuar (id será null)
+                System.err.println("Error convirtiendo idMascota string a ObjectId: " + doc.getString("idMascota"));
+            }
+        }
+
         expediente.setCondicion(doc.getString("condicion"));
         expediente.setNivelEnergia(doc.getString("nivelEnergia"));
         expediente.setVacunaRabia(doc.getBoolean("vacunaRabia", false));
@@ -98,7 +127,9 @@ public class ExpedienteMedicoDAO {
         if (expediente.getId() != null) {
             doc.append("_id", expediente.getId());
         }
+        // Guardar ambos estilos para máxima compatibilidad
         doc.append("mascotaId", expediente.getMascotaId())
+                .append("idMascota", expediente.getMascotaId() != null ? expediente.getMascotaId().toString() : null)
                 .append("condicion", expediente.getCondicion())
                 .append("nivelEnergia", expediente.getNivelEnergia())
                 .append("vacunaRabia", expediente.isVacunaRabia())

@@ -8,7 +8,6 @@ import DTOS.MascotaDTO;
 import gui.PetCardPanel;
 import negocio.subsistemas.mascotas.FachadaMascotas;
 import negocio.subsistemas.mascotas.IMascotas;
-import java.awt.FlowLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
 
