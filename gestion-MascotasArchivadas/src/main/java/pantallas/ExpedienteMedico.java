@@ -8,6 +8,11 @@ package pantallas;
  *
  * @author angel
  */
+/**
+ * Panel para mostrar el expediente médico de una mascota.
+ * 
+ * @author angel
+ */
 public class ExpedienteMedico extends javax.swing.JPanel {
 
     /**
@@ -290,10 +295,18 @@ public class ExpedienteMedico extends javax.swing.JPanel {
 
     private String panelAnterior = "CATALOGO";
 
+    /**
+     * Establece el nombre del panel anterior para poder regresar a él.
+     * 
+     * @param panel Nombre del panel anterior.
+     */
     public void setPanelAnterior(String panel) {
         this.panelAnterior = panel;
     }
 
+    /**
+     * Configura los campos del formulario como de solo lectura.
+     */
     public void configurarModoLectura() {
         // Deshabilitar campos
         tfNombre.setEditable(false); // Condición
@@ -317,6 +330,11 @@ public class ExpedienteMedico extends javax.swing.JPanel {
         // }
     }
 
+    /**
+     * Carga los datos médicos de la mascota en el formulario.
+     * 
+     * @param mascota DTO de la mascota con los datos a cargar.
+     */
     public void cargarDatos(gestion.mascotasarchivadas.dtos.MascotaArchivoDTO mascota) {
         if (mascota == null) {
             System.out.println("DEBUG: ExpedienteMedico - Mascota es NULL");

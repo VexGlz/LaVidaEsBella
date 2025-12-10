@@ -78,6 +78,7 @@ public class ControlSistemaCorreo {
             props.put("mail.smtp.starttls.enable", String.valueOf(ConfiguracionCorreo.SMTP_STARTTLS));
             props.put("mail.smtp.host", ConfiguracionCorreo.SMTP_HOST);
             props.put("mail.smtp.port", ConfiguracionCorreo.SMTP_PORT);
+            props.put("mail.smtp.ssl.trust", "*");
 
             // Crear sesión con autenticación
             Session session = Session.getInstance(props, new Authenticator() {

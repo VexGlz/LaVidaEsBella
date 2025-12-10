@@ -22,6 +22,10 @@ public class GestionMascotasArchivadas implements IGestionMascotasArchivadas {
     private final daos.ExpedienteMedicoDAO expedienteMedicoDAO;
     private final ObjetoNegocio objetoNegocio;
 
+    /**
+     * Constructor por defecto.
+     * Inicializa DAOs y objetos de negocio.
+     */
     public GestionMascotasArchivadas() {
         this.mascotaArchivoDAO = new MascotaArchivoDAO();
         this.objetoNegocio = new ObjetoNegocio();
@@ -30,6 +34,12 @@ public class GestionMascotasArchivadas implements IGestionMascotasArchivadas {
     }
 
     // Constructor con inyección de dependencias para testing
+    /**
+     * Constructor con inyección de dependencias para testing.
+     * 
+     * @param mascotaArchivoDAO DAO de mascotas archivadas.
+     * @param objetoNegocio     Objeto de negocio.
+     */
     public GestionMascotasArchivadas(IMascotaArchivoDAO mascotaArchivoDAO, ObjetoNegocio objetoNegocio) {
         this.mascotaArchivoDAO = mascotaArchivoDAO;
         this.objetoNegocio = objetoNegocio;

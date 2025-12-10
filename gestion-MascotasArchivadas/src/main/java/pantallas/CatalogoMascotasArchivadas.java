@@ -14,6 +14,9 @@ import java.util.List;
  */
 public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
 
+    /**
+     * Controlador de presentación.
+     */
     private ControlPresentacion controlPresentacion;
 
     /**
@@ -36,6 +39,10 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
         JScrollPaneCatalogo.getVerticalScrollBar().setBlockIncrement(100);
     }
 
+    /**
+     * Carga el catálogo de mascotas archivadas desde la base de datos.
+     * Muestra las cartas de mascotas en el panel.
+     */
     public void cargarCatalogo() {
         try {
             // Limpiar panel
@@ -246,11 +253,14 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
     }// GEN-LAST:event_cbFiltroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /** Panel de catálogo */
     private javax.swing.JPanel JPaneCatalogo;
+    /** Scroll pane del catálogo */
     private javax.swing.JScrollPane JScrollPaneCatalogo;
     private javax.swing.JButton btn_infoMascota;
     private javax.swing.JButton btn_infoMascota1;
     private javax.swing.JButton btn_infoMascota2;
+    /** ComboBox de filtro */
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -22,6 +22,8 @@ public interface IMascotas {
 
     List<MascotaDTO> buscarMascotasDisponibles() throws Exception;
 
+    List<MascotaDTO> buscarMascotasDisponiblesPorEspecie(String especie) throws Exception;
+
     void actualizarMascota(MascotaDTO mascota) throws Exception;
 
 }

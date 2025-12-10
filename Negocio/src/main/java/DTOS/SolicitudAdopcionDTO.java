@@ -78,4 +78,15 @@ public class SolicitudAdopcionDTO {
     public void setIdCita(String idCita) {
         this.idCita = idCita;
     }
+
+    // Nuevo campo para mostrar fecha de cita en tabla
+    private LocalDateTime fechaCita;
+
+    public LocalDateTime getFechaCita() {
+        return fechaCita;
+    }
+
+    public void setFechaCita(LocalDateTime fechaCita) {
+        this.fechaCita = fechaCita;
+    }
 }

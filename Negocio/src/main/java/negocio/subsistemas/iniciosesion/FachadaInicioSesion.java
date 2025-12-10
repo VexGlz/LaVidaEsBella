@@ -67,8 +67,9 @@ public class FachadaInicioSesion implements IInicioSesion {
                 fachadaCorreo.enviarCorreo(correoBienvenida);
                 System.out.println("Correo de bienvenida enviado a: " + usuarioDTO.getInfoPersonal().getCorreo());
             } catch (Exception emailException) {
-                // Si falla el envío del correo, no afectar el registro
-                System.err.println("Error al enviar correo de bienvenida: " + emailException.getMessage());
+                // Si falla el envío del correo, lanzar excepción con prefijo especial
+                // para que la UI sepa que el usuario SÍ se registró pero el correo falló.
+                throw new Exception("REGISTRO_EXITOSO_CORREO_FALLIDO: " + emailException.getMessage());
             }
         } catch (RuntimeException e) {
             // Convertir RuntimeException a Exception con el mensaje

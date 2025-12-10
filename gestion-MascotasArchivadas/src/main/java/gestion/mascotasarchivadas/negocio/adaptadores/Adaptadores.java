@@ -14,6 +14,12 @@ import java.util.List;
 public class Adaptadores {
 
     /**
+     * Constructor privado para evitar instanciación.
+     */
+    private Adaptadores() {
+    }
+
+    /**
      * Convierte una entidad Mascota a MascotaArchivoDTO.
      *
      * @param mascota Entidad de dominio

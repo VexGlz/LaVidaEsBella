@@ -26,6 +26,7 @@ public class EditarMascotaPanel extends javax.swing.JPanel {
         private PanelPrincipalGestionCatalogo panelPrincipal;
         private File imagenSeleccionada;
         private CatalogoDTO mascotaActual;
+        private boolean imagenCambiada = false;
 
         /**
          * Creates new form AgregarMascotaDialog
@@ -43,6 +44,7 @@ public class EditarMascotaPanel extends javax.swing.JPanel {
          */
         public void setDatosMascota(CatalogoDTO mascota) {
                 this.mascotaActual = mascota;
+                this.imagenCambiada = false;
 
                 // Limpiar modelo si tiene items por defecto (Item 1...) o está vacío
                 javax.swing.DefaultComboBoxModel<String> model = (javax.swing.DefaultComboBoxModel<String>) cb_especie
@@ -148,6 +150,7 @@ public class EditarMascotaPanel extends javax.swing.JPanel {
                 int resultado = fileChooser.showOpenDialog(this);
                 if (resultado == JFileChooser.APPROVE_OPTION) {
                         imagenSeleccionada = fileChooser.getSelectedFile();
+                        imagenCambiada = true;
                         cargarImagenEnLabel(imagenSeleccionada);
                 }
         }
@@ -162,10 +165,8 @@ public class EditarMascotaPanel extends javax.swing.JPanel {
                                 mascotaActual.setEstadoSalud(tfDescripcion.getText().trim());
                                 mascotaActual.setPersonalidad(tfPeso1.getText().trim());
 
-                                // Procesa nueva imagen si fue seleccionada
-                                if (imagenSeleccionada != null && !imagenSeleccionada
-                                                .equals(new File("src/main/resources/images/mascotas/"
-                                                                + mascotaActual.getUrlImagen()))) {
+                                // Procesa nueva imagen si fue seleccionada y marcada como cambiada
+                                if (imagenCambiada && imagenSeleccionada != null) {
                                         String destinoDir = "src/main/resources/images/mascotas/";
                                         File directorio = new File(destinoDir);
                                         if (!directorio.exists()) {
@@ -664,7 +665,7 @@ public class EditarMascotaPanel extends javax.swing.JPanel {
         }// GEN-LAST:event_btnSiguienteActionPerformed
 
         private void btnAgregarImgActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarImgActionPerformed
-                // TODO add your handling code here:
+                seleccionarImagen();
         }// GEN-LAST:event_btnAgregarImgActionPerformed
 
         private void btnAgregarExpActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarExpActionPerformed

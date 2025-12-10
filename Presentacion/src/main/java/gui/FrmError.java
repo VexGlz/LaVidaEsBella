@@ -7,23 +7,29 @@ package gui;
 import gui.flujoAdoptar.*;
 
 /**
- *
+ * Panel para mostrar mensajes de error al usuario de manera amigable.
+ * Permite visualizar el detalle del error ocurrido.
+ * 
  * @author angel
  */
 public class FrmError extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPInfoPersonal
-     */
+    /** Controlador de presentación. */
     private control.ControlPresentacion controlPresentacion;
 
     /**
-     * Creates new form JPInfoPersonal
+     * Crea una nueva instancia del panel de error.
+     * Inicializa los componentes gráficos.
      */
     public FrmError() {
         initComponents();
     }
 
+    /**
+     * Establece el controlador de presentación.
+     * 
+     * @param controlPresentacion El controlador de presentación.
+     */
     public void setControlPresentacion(control.ControlPresentacion controlPresentacion) {
         this.controlPresentacion = controlPresentacion;
     }
@@ -80,6 +86,11 @@ public class FrmError extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Establece el mensaje de error a mostrar en el panel.
+     * 
+     * @param mensaje El mensaje de error detallado.
+     */
     public void setMensajeError(String mensaje) {
         if (lblDetalle != null) {
             lblDetalle.setText(mensaje);
@@ -93,6 +104,7 @@ public class FrmError extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
+    /** Etiqueta para mostrar el detalle del error */
     private javax.swing.JLabel lblDetalle;
     private javax.swing.JLabel lblError;
     // End of variables declaration//GEN-END:variables

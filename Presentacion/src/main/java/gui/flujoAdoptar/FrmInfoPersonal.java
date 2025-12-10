@@ -8,6 +8,11 @@ package gui.flujoAdoptar;
  *
  * @author angel
  */
+/**
+ * Panel para capturar la información personal del solicitante de adopción.
+ * 
+ * @author angel
+ */
 public class FrmInfoPersonal extends javax.swing.JPanel {
 
         /**
@@ -19,10 +24,18 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
         /**
          * Creates new form JPInfoPersonal
          */
+        /**
+         * Constructor que inicializa el formulario.
+         */
         public FrmInfoPersonal() {
                 initComponents();
         }
 
+        /**
+         * Establece el controlador y precarga datos si hay usuario logueado o borrador.
+         * 
+         * @param controlPresentacion El controlador de presentación.
+         */
         public void setControlPresentacion(control.ControlPresentacion controlPresentacion) {
                 this.controlPresentacion = controlPresentacion;
                 // Pre-llenar datos si el usuario ya está logueado
@@ -408,6 +421,9 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
                 abrirSelectorCitas();
         }// GEN-LAST:event_btnFechaActionPerformed
 
+        /**
+         * Abre el diálogo para seleccionar una cita disponible.
+         */
         private void abrirSelectorCitas() {
                 if (controlPresentacion == null)
                         return;
@@ -492,12 +508,12 @@ public class FrmInfoPersonal extends javax.swing.JPanel {
                                 idUsuarioStr = controlPresentacion.getUsuarioActual().getId();
                         }
 
-                    if (!controlPresentacion.verificarDisponibilidadCita(citaSeleccionada.getId())) {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Cita no disponible...");
-                        citaSeleccionada = null;
-                        abrirSelectorCitas();
-                        return;
-                    }
+                        if (!controlPresentacion.verificarDisponibilidadCita(citaSeleccionada.getId())) {
+                                javax.swing.JOptionPane.showMessageDialog(this, "Cita no disponible...");
+                                citaSeleccionada = null;
+                                abrirSelectorCitas();
+                                return;
+                        }
 
                         // Guardar la cita seleccionada en el control para usarla al final
                         DTOS.CitaDTO citaDTO = new DTOS.CitaDTO();

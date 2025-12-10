@@ -71,6 +71,7 @@ public class GestionCatalogo implements IGestionCatalogo {
 
         if (exito && mascota.getId() != null) {
             String idMascota = mascota.getId().toString();
+            mascotaDTO.setId(idMascota);
 
             // Crear expediente médico automáticamente
             try {

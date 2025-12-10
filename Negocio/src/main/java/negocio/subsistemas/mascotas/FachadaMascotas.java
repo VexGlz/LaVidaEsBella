@@ -43,6 +43,11 @@ public class FachadaMascotas implements IMascotas {
     }
 
     @Override
+    public List<MascotaDTO> buscarMascotasDisponiblesPorEspecie(String especie) throws Exception {
+        return mascotaBO.buscarMascotasDisponiblesPorEspecie(especie);
+    }
+
+    @Override
     public void actualizarMascota(MascotaDTO mascota) throws Exception {
         mascotaBO.actualizarMascota(mascota);
     }

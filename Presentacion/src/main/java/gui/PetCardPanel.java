@@ -10,30 +10,38 @@ import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Panel que representa una tarjeta individual de mascota en el catálogo.
+ * Muestra la imagen, nombre y un botón para ver detalles.
+ * 
  * @author angel
  */
 public class PetCardPanel extends javax.swing.JPanel {
 
+    /** Identificador único de la mascota mostrada. */
     private String mascotaId;
 
     /**
-     * Creates new form PetCardPanel
+     * Crea una nueva instancia de PetCardPanel.
+     * Inicializa los componentes gráficos.
      */
     public PetCardPanel() {
         initComponents();
     }
 
     /**
-     * Establece el nombre de la mascota
+     * Establece el nombre de la mascota en la tarjeta.
+     * 
+     * @param nombre El nombre de la mascota.
      */
     public void setNombreMascota(String nombre) {
         lbNombreMascota.setText(nombre);
     }
 
     /**
-     * Establece la imagen de la mascota
-     * Soporta rutas relativas (desde resources) y absolutas
+     * Establece la imagen de la mascota.
+     * Soporta rutas relativas (desde resources) y rutas absolutas locales o URLs.
+     * 
+     * @param urlImagen La ruta o URL de la imagen.
      */
     public void setImagenMascota(String urlImagen) {
         try {
@@ -88,21 +96,28 @@ public class PetCardPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Establece el ID de la mascota
+     * Establece el identificador de la mascota asociada a esta tarjeta.
+     * 
+     * @param id El ID de la mascota.
      */
     public void setMascotaId(String id) {
         this.mascotaId = id;
     }
 
     /**
-     * Obtiene el ID de la mascota
+     * Obtiene el identificador de la mascota asociada.
+     * 
+     * @return El ID de la mascota.
      */
     public String getMascotaId() {
         return mascotaId;
     }
 
     /**
-     * Agrega un listener al botón de detalle
+     * Agrega un listener al botón de "Ver Detalles".
+     * Permite manejar el evento de click desde componentes padres.
+     * 
+     * @param listener El ActionListener a agregar.
      */
     public void agregarListenerDetalle(ActionListener listener) {
         btn_infoMascota.addActionListener(listener);
@@ -115,7 +130,8 @@ public class PetCardPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -143,42 +159,45 @@ public class PetCardPanel extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(btn_infoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(lbNombreMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(lbImagenMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(110, 110, 110)
+                                                .addComponent(btn_infoMascota, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(96, 96, 96)
+                                                .addComponent(lbNombreMascota, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(53, 53, 53)
+                                                .addComponent(lbImagenMascota, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(62, Short.MAX_VALUE)));
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(lbImagenMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbNombreMascota)
-                .addGap(18, 18, 18)
-                .addComponent(btn_infoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(19, Short.MAX_VALUE)
+                                .addComponent(lbImagenMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 180,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbNombreMascota)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_infoMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 53,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(91, 91, 91)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_infoMascotaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_infoMascotaActionPerformed
@@ -186,9 +205,12 @@ public class PetCardPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_btn_infoMascotaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /** Botón para ver los detalles de la mascota */
     private javax.swing.JButton btn_infoMascota;
     private javax.swing.JPanel jPanel1;
+    /** Etiqueta para la imagen de la mascota */
     private javax.swing.JLabel lbImagenMascota;
+    /** Etiqueta para el nombre de la mascota */
     private javax.swing.JLabel lbNombreMascota;
     // End of variables declaration//GEN-END:variables
 }

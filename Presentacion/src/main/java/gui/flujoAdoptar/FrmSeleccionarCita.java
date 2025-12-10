@@ -14,6 +14,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author angel
  */
+/**
+ * Diálogo modal para seleccionar una cita disponible de una lista.
+ * 
+ * @author angel
+ */
 public class FrmSeleccionarCita extends javax.swing.JDialog {
 
     private ControlPresentacion control;
@@ -21,7 +26,11 @@ public class FrmSeleccionarCita extends javax.swing.JDialog {
     private DefaultTableModel modeloTabla;
 
     /**
-     * Creates new form FrmSeleccionarCita
+     * Crea un nuevo formulario FrmSeleccionarCita.
+     * 
+     * @param parent  Frame padre.
+     * @param modal   Si es modal o no.
+     * @param control Controlador de presentación.
      */
     public FrmSeleccionarCita(java.awt.Frame parent, boolean modal, ControlPresentacion control) {
         super(parent, modal);
@@ -32,6 +41,9 @@ public class FrmSeleccionarCita extends javax.swing.JDialog {
         this.setLocationRelativeTo(parent);
     }
 
+    /**
+     * Inicializa el modelo de la tabla de citas.
+     */
     private void inicializarTabla() {
         modeloTabla = new DefaultTableModel() {
             @Override
@@ -51,6 +63,9 @@ public class FrmSeleccionarCita extends javax.swing.JDialog {
         tblCitas.getColumnModel().getColumn(0).setWidth(0);
     }
 
+    /**
+     * Carga las citas disponibles desde el controlador.
+     */
     private void cargarCitasDisponibles() {
         if (control == null)
             return;
@@ -69,6 +84,11 @@ public class FrmSeleccionarCita extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Obtiene la cita seleccionada.
+     * 
+     * @return DTO de la cita seleccionada.
+     */
     public CitaDisponibleDTO getCitaSeleccionada() {
         return citaSeleccionada;
     }

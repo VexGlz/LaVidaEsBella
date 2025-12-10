@@ -18,12 +18,21 @@ public class ControlPresentacion {
     private final ControlSubsistemas controlSubsistemas;
     private final IGestionMascotasArchivadas gestionMascotasArchivadas;
 
+    /**
+     * Constructor por defecto.
+     * Inicializa las dependencias internas.
+     */
     public ControlPresentacion() {
         this.gestionMascotasArchivadas = new GestionMascotasArchivadas();
         this.controlSubsistemas = new ControlSubsistemas(gestionMascotasArchivadas);
     }
 
     // Constructor con inyección de dependencias para testing
+    /**
+     * Constructor con inyección de dependencias para testing.
+     * 
+     * @param gestionMascotasArchivadas Implementación de la gestión de mascotas
+     */
     public ControlPresentacion(IGestionMascotasArchivadas gestionMascotasArchivadas) {
         this.gestionMascotasArchivadas = gestionMascotasArchivadas;
         this.controlSubsistemas = new ControlSubsistemas(gestionMascotasArchivadas);
@@ -76,6 +85,12 @@ public class ControlPresentacion {
 
     /**
      * Alias de obtenerDetalles para compatibilidad.
+     */
+    /**
+     * Alias de obtenerDetalles para compatibilidad.
+     * 
+     * @param id Identificador de la mascota.
+     * @return DTO con los detalles de la mascota.
      */
     public MascotaArchivoDTO obtenerDetalleMascota(String id) {
         return obtenerDetalles(id);

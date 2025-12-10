@@ -20,6 +20,8 @@ public interface IMascotaBO {
 
     java.util.List<MascotaDTO> buscarMascotasDisponibles();
 
+    java.util.List<MascotaDTO> buscarMascotasDisponiblesPorEspecie(String especie);
+
     void actualizarMascota(MascotaDTO mascota);
 
     void actualizaEstadoSalud(MascotaDTO mascota, String nuevoEstado);

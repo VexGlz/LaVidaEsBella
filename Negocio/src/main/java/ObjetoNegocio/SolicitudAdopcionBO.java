@@ -13,6 +13,8 @@ import daos.MascotaDAO;
 import conexion.ConexionMongoDB;
 import entities.SolicitudAdopcion;
 import entities.RazonesAntecedentes;
+import entities.Cita;
+import daos.CitaDAO;
 import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,12 +98,28 @@ public class SolicitudAdopcionBO implements ISolicitudAdopcionBO {
             List<SolicitudAdopcion> solicitudes = solicitudDAO.buscarPorUsuario(objectId);
 
             daos.MascotaDAO mascotaDAO = new daos.MascotaDAO(ConexionMongoDB.getInstancia().getDatabase());
+            CitaDAO citaDAO = new CitaDAO(ConexionMongoDB.getInstancia().getDatabase());
+
+            // Obtener todas las citas del usuario para cruzar información
+            List<Cita> citasUsuario = citaDAO.buscarPorUsuario(objectId);
 
             for (SolicitudAdopcion entidad : solicitudes) {
                 SolicitudAdopcionDTO dto = new SolicitudAdopcionDTO();
                 dto.setId(entidad.getId().toHexString());
                 dto.setEstado(entidad.getEstado());
                 dto.setFechaSolicitud(entidad.getFechaSolicitud());
+
+                // Buscar si existe una cita para esta solicitud (mismo usuario y mascota)
+                if (citasUsuario != null) {
+                    for (Cita c : citasUsuario) {
+                        if (c.getIdMascota() != null && entidad.getIdMascota() != null &&
+                                c.getIdMascota().equals(entidad.getIdMascota())) {
+                            dto.setFechaCita(c.getFechaHora());
+                            dto.setIdCita(c.getId().toHexString());
+                            break;
+                        }
+                    }
+                }
 
                 // Mapear Usuario (solo ID por ahora)
                 UsuarioDTO usuarioDTO = new UsuarioDTO();

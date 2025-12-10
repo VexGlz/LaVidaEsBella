@@ -8,32 +8,50 @@ import gui.JPContacto;
 import gui.JPSolicitudes;
 
 /**
- *
+ * Ventana principal de la aplicación para el flujo de adopción.
+ * Utiliza un CardLayout para gestionar la navegación entre las diferentes
+ * pantallas
+ * (catálogo, solicitudes, perfil, formularios, etc.).
+ * 
  * @author angel
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
+    /** Layout manager para cambiar entre paneles */
     private java.awt.CardLayout cardLayout;
+    /** Panel del catálogo de especies */
     private MenuMostrarEspecies menuMostrarEspecies;
+    /** Formulario de información personal */
     private FrmInfoPersonal frmInfoPersonal;
+    /** Formulario de información de vivienda */
     private FrmInfoVivienda frmInfoVivienda;
+    /** Formulario de razones y antecedentes */
     private FrmRazonesAntecedentes frmRazonesAntecedentes;
+    /** Panel de resumen de la solicitud */
     private JPInfoResumen frmInfoResumen;
+    /** Panel de perfil de usuario */
     private FrmPerfil frmPerfil;
 
+    /** Panel para listar solicitudes del usuario */
     private JPSolicitudes jpSolicitudes;
+    /** Pantalla de confirmación de correo (placeholder) */
     private gui.FrmCorreoConfirmacion frmCorreoConfirmacion;
 
+    /** Controlador de presentación */
     private control.ControlPresentacion controlPresentacion;
 
     /**
-     * Creates new form FrmMenuPrincipal
+     * Crea una nueva instancia de FrmMenuPrincipal.
+     * Inicializa los componentes gráficos y el layout de tarjetas.
      */
     public FrmMenuPrincipal() {
         initComponents();
         initCardLayout();
     }
 
+    /**
+     * Inicializa el CardLayout y añade todos los paneles de la aplicación.
+     */
     private void initCardLayout() {
         cardLayout = new java.awt.CardLayout();
         panelContenidoDinamico.setLayout(cardLayout);
@@ -62,6 +80,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         cardLayout.show(panelContenidoDinamico, "inicio");
     }
 
+    /**
+     * Establece el controlador de presentación y lo propaga a los paneles hijos.
+     * 
+     * @param control El controlador de presentación.
+     */
     public void setControl(control.ControlPresentacion control) {
         this.controlPresentacion = control; // Guardar referencia
 
@@ -88,33 +111,43 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Obtiene el panel del menú de especies.
+     * 
+     * @return El panel MenuMostrarEspecies.
+     */
     public MenuMostrarEspecies getMenuMostrarEspecies() {
         return menuMostrarEspecies;
     }
 
+    /** Muestra el panel de inicio (catálogo de especies). */
     public void mostrarInicio() {
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "inicio");
         }
     }
 
+    /** Muestra el formulario de información personal. */
     public void mostrarInfoPersonal() {
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "infoPersonal");
         }
     }
 
+    /** Muestra el formulario de información de vivienda. */
     public void mostrarInfoVivienda() {
         if (cardLayout != null)
             cardLayout.show(panelContenidoDinamico, "infoVivienda");
     }
 
+    /** Muestra el formulario de razones y antecedentes. */
     public void mostrarRazonesAntecedentes() {
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "razonesAntecedentes");
         }
     }
 
+    /** Muestra el panel de resumen de la solicitud. */
     public void mostrarInfoResumen() {
         if (cardLayout != null) {
             if (frmInfoResumen != null) {
@@ -124,6 +157,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         }
     }
 
+    /** Muestra la pantalla de confirmación. */
     public void mostrarConfirmacion() {
         if (cardLayout != null) {
             if (frmCorreoConfirmacion != null) {
@@ -144,7 +178,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelCabecera = new javax.swing.JPanel();
@@ -197,7 +232,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblUserImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sources/icon-7797704_1280.png"))); // NOI18N
+        lblUserImage
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sources/icon-7797704_1280.png"))); // NOI18N
         lblUserImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblUserImageMouseClicked(evt);
@@ -207,33 +243,41 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
         panelCabecera.setLayout(panelCabeceraLayout);
         panelCabeceraLayout.setHorizontalGroup(
-            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel1)
-                .addGap(122, 122, 122)
-                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(lblUserImage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCabeceraLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabel1)
+                                .addGap(122, 122, 122)
+                                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 127,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 194,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 194,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(lblUserImage)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         panelCabeceraLayout.setVerticalGroup(
-            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25))
-        );
+                panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout
+                                .createSequentialGroup()
+                                .addContainerGap(40, Short.MAX_VALUE)
+                                .addGroup(panelCabeceraLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelCabeceraLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel1)
+                                                .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btn_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 41,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(25, 25, 25)));
 
         panelContenidoDinamico.setBackground(new java.awt.Color(235, 229, 220));
         panelContenidoDinamico.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,53 +285,73 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout panelContenidoDinamicoLayout = new javax.swing.GroupLayout(panelContenidoDinamico);
         panelContenidoDinamico.setLayout(panelContenidoDinamicoLayout);
         panelContenidoDinamicoLayout.setHorizontalGroup(
-            panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1255, Short.MAX_VALUE)
-        );
+                panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1255, Short.MAX_VALUE));
         panelContenidoDinamicoLayout.setVerticalGroup(
-            panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
-        );
+                panelContenidoDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 607, Short.MAX_VALUE));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelCabecera, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelCabecera, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(panelContenidoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Muestra el perfil del usuario al hacer clic en su imagen de perfil.
+     * 
+     * @param evt El evento del mouse.
+     */
     private void lblUserImageMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblUserImageMouseClicked
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "perfil");
         }
     }// GEN-LAST:event_lblUserImageMouseClicked
 
+    /**
+     * Navega a la sección de inicio (catálogo) al pulsar el botón Inicio.
+     * 
+     * @param evt El evento de acción.
+     */
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_inicioActionPerformed
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "inicio");
         }
     }// GEN-LAST:event_btn_inicioActionPerformed
 
+    /**
+     * Navega a la sección de solicitudes del usuario.
+     * 
+     * @param evt El evento de acción.
+     */
     private void btn_solicitudesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_solicitudesActionPerformed
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "solicitudes");
         }
     }// GEN-LAST:event_btn_solicitudesActionPerformed
 
+    /**
+     * Navega a la sección de contacto.
+     * 
+     * @param evt El evento de acción.
+     */
     private void btn_contactoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_contactoActionPerformed
         if (cardLayout != null) {
             cardLayout.show(panelContenidoDinamico, "contacto");
@@ -295,12 +359,18 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// GEN-LAST:event_btn_contactoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /** Botón de navegación a Contacto */
     private javax.swing.JButton btn_contacto;
+    /** Botón de navegación a Inicio */
     private javax.swing.JButton btn_inicio;
+    /** Botón de navegación a Mis Solicitudes */
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JLabel jLabel1;
+    /** Etiqueta con la imagen de perfil del usuario */
     private javax.swing.JLabel lblUserImage;
+    /** Panel de cabecera con logo y navegación */
     private javax.swing.JPanel panelCabecera;
+    /** Panel contenedor para el contenido cambiante (CardLayout) */
     private javax.swing.JPanel panelContenidoDinamico;
     // End of variables declaration//GEN-END:variables
 }

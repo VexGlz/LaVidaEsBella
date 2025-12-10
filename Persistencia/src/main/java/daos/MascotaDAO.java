@@ -84,6 +84,22 @@ public class MascotaDAO {
     }
 
     /**
+     * Busca mascotas disponibles filtradas por especie
+     * 
+     * @param especie Especie a buscar (exact match)
+     * @return Lista de mascotas disponibles de esa especie
+     */
+    public List<Mascota> buscarDisponiblesPorEspecie(String especie) {
+        List<Mascota> mascotas = new ArrayList<>();
+        // Filtro compuesto: disponible = true AND especie = especie
+        for (Document doc : collection
+                .find(Filters.and(Filters.eq("disponible", true), Filters.eq("especie", especie)))) {
+            mascotas.add(documentToMascota(doc));
+        }
+        return mascotas;
+    }
+
+    /**
      * Convierte un Document de MongoDB a una entidad Mascota
      * 
      * @param doc Document de MongoDB con los datos de la mascota

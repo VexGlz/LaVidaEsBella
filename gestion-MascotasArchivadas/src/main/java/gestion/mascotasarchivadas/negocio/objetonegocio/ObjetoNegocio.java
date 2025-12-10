@@ -10,6 +10,12 @@ import gestion.mascotasarchivadas.dtos.MascotaArchivoDTO;
 public class ObjetoNegocio {
 
     /**
+     * Constructor por defecto.
+     */
+    public ObjetoNegocio() {
+    }
+
+    /**
      * Verifica si una mascota puede ser eliminada permanentemente.
      * Solo se pueden eliminar mascotas que estén en estado "baja".
      * 

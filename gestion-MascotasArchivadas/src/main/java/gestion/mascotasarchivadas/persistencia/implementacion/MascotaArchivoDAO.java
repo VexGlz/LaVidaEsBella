@@ -18,6 +18,11 @@ public class MascotaArchivoDAO implements IMascotaArchivoDAO {
 
     private final daos.MascotaDAO mascotaDAOCompartido;
 
+    /**
+     * Constructor por defecto.
+     * Inicializa la conexión a la base de datos reutilizando la instancia
+     * compartida.
+     */
     public MascotaArchivoDAO() {
         // Reutilizar la conexión compartida
         MongoDatabase database = ConexionMongoDB.getInstancia().getDatabase();

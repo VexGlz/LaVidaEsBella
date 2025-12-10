@@ -39,6 +39,7 @@ public class MascotaBO implements IMascotaBO {
         if (mascotaDTO != null) {
             Mascota mascota = convertirAEntidad(mascotaDTO);
             ObjectId id = mascotaDAO.guardar(mascota);
+            mascotaDTO.setId(id.toHexString());
             System.out.println("Mascota registrada con ID: " + id);
         }
     }
@@ -98,6 +99,26 @@ public class MascotaBO implements IMascotaBO {
     @Override
     public List<MascotaDTO> buscarMascotasDisponibles() {
         List<Mascota> mascotas = mascotaDAO.buscarDisponibles();
+        List<MascotaDTO> dtos = new ArrayList<>();
+        for (Mascota m : mascotas) {
+            dtos.add(convertirADTO(m));
+        }
+        return dtos;
+    }
+
+    /**
+     * Obtiene mascotas disponibles filtradas por especie
+     * 
+     * @param especie Especie a filtrar
+     * @return Lista de DTOs
+     */
+    @Override
+    public List<MascotaDTO> buscarMascotasDisponiblesPorEspecie(String especie) {
+        if (especie == null || especie.isEmpty() || "Todas".equalsIgnoreCase(especie)) {
+            return buscarMascotasDisponibles();
+        }
+
+        List<Mascota> mascotas = mascotaDAO.buscarDisponiblesPorEspecie(especie);
         List<MascotaDTO> dtos = new ArrayList<>();
         for (Mascota m : mascotas) {
             dtos.add(convertirADTO(m));

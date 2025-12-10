@@ -21,6 +21,14 @@ public class FachadaCorreo implements ISistemaCorreo {
 
     @Override
     public void enviarCorreo(CorreoDTO correo) throws Exception {
+        if (ConfiguracionCorreo.MODO_DEBUG) {
+            System.out.println("=== MODO SIMULACIÓN: CORREO NO ENVIADO REALMENTE ===");
+            System.out.println("Destinatario: " + correo.getDestinatario());
+            System.out.println("Asunto: " + correo.getAsunto());
+            System.out.println("Mensaje: \n" + correo.getMensaje());
+            System.out.println("====================================================");
+            return; // Detener ejecución real
+        }
         controlCorreo.enviarCorreo(correo);
     }
 }

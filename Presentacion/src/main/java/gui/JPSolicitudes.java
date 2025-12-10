@@ -14,27 +14,41 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author angel
  */
+/**
+ * Panel para visualizar y gestionar las solicitudes de adopción del usuario.
+ * 
+ * @author angel
+ */
 public class JPSolicitudes extends javax.swing.JPanel {
 
     private ControlPresentacion controlPresentacion;
     private DefaultTableModel modeloTabla;
 
     /**
-     * Creates new form JPSolicitudes
+     * Constructor del panel.
+     * Configura la tabla y los componentes visuales.
      */
     public JPSolicitudes() {
         initComponents();
         configurarTabla();
     }
 
+    /**
+     * Establece el controlador de presentación y carga las solicitudes.
+     * 
+     * @param controlPresentacion El controlador de presentación.
+     */
     public void setControlPresentacion(ControlPresentacion controlPresentacion) {
         this.controlPresentacion = controlPresentacion;
         cargarSolicitudes();
     }
 
+    /**
+     * Configura el modelo y las columnas de la tabla.
+     */
     private void configurarTabla() {
         modeloTabla = new DefaultTableModel(
-                new Object[] { "ID", "Mascota", "Fecha Solicitud", "Estado" }, 0) {
+                new Object[] { "ID", "Mascota", "Fecha Solicitud", "Fecha Cita", "Estado" }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Hacer la tabla de solo lectura
@@ -48,6 +62,9 @@ public class JPSolicitudes extends javax.swing.JPanel {
         tablaSolicitudes.getColumnModel().getColumn(0).setWidth(0);
     }
 
+    /**
+     * Carga las solicitudes del usuario en la tabla.
+     */
     private void cargarSolicitudes() {
         if (controlPresentacion == null) {
             System.err.println("DEBUG: ControlPresentacion no está configurado");
@@ -65,7 +82,7 @@ public class JPSolicitudes extends javax.swing.JPanel {
             }
 
             for (SolicitudAdopcionDTO solicitud : solicitudes) {
-                Object[] fila = new Object[4];
+                Object[] fila = new Object[5];
                 fila[0] = solicitud.getId(); // ID (oculto)
                 String nombreMascota = "N/A";
                 if (solicitud.getMascota() != null) {
@@ -75,15 +92,23 @@ public class JPSolicitudes extends javax.swing.JPanel {
                 fila[1] = nombreMascota;
 
                 // Formatear fecha de solicitud
+                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter
+                        .ofPattern("dd/MM/yyyy HH:mm");
+
                 if (solicitud.getFechaSolicitud() != null) {
-                    java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter
-                            .ofPattern("dd/MM/yyyy HH:mm");
                     fila[2] = solicitud.getFechaSolicitud().format(formatter);
                 } else {
                     fila[2] = "N/A";
                 }
 
-                fila[3] = solicitud.getEstado() != null ? solicitud.getEstado() : "Pendiente";
+                // Fecha Cita
+                if (solicitud.getFechaCita() != null) {
+                    fila[3] = solicitud.getFechaCita().format(formatter);
+                } else {
+                    fila[3] = "Sin Cita";
+                }
+
+                fila[4] = solicitud.getEstado() != null ? solicitud.getEstado() : "Pendiente";
 
                 modeloTabla.addRow(fila);
             }
@@ -275,7 +300,7 @@ public class JPSolicitudes extends javax.swing.JPanel {
         }
 
         String idSolicitud = (String) modeloTabla.getValueAt(filaSeleccionada, 0);
-        String estado = (String) modeloTabla.getValueAt(filaSeleccionada, 3);
+        String estado = (String) modeloTabla.getValueAt(filaSeleccionada, 4);
 
         // Verificar que no esté ya cancelada
         if ("Cancelada".equalsIgnoreCase(estado)) {
@@ -325,11 +350,14 @@ public class JPSolicitudes extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /** Botón para actualizar la lista de solicitudes */
     private javax.swing.JButton btnActualizar;
+    /** Botón para cancelar la cita */
     private javax.swing.JButton btncancelarcita;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    /** Tabla de solicitudes */
     private javax.swing.JTable tablaSolicitudes;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,18 +4,23 @@
  */
 package gui;
 
-/**
- *
- * @author angel
- */
 import control.ControlPresentacion;
 
+/**
+ * Ventana principal de inicio de sesión de la aplicación.
+ * Permite a los usuarios ingresar con su correo y contraseña, o navegar al
+ * registro de nuevos usuarios.
+ * También maneja el acceso especial para administradores.
+ * 
+ * @author angel
+ */
 public class FrmInicioSesion extends javax.swing.JFrame {
 
         private ControlPresentacion controlPresentacion;
 
         /**
-         * Creates new form FrmInicioSesion
+         * Crea una nueva instancia de FrmInicioSesion.
+         * Inicializa los componentes y el controlador de presentación.
          */
         public FrmInicioSesion() {
                 initComponents();
@@ -324,19 +329,42 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        /**
+         * Maneja el evento de pulsación de tecla en el campo de correo.
+         * Actualmente no realiza ninguna acción.
+         * 
+         * @param evt El evento de teclado.
+         */
         private void TfCorreoKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_TfCorreoKeyPressed
                 // TODO add your handling code here:
         }// GEN-LAST:event_TfCorreoKeyPressed
 
+        /**
+         * Maneja el evento de acción en el campo de contraseña.
+         * Simula un clic en el botón de iniciar sesión cuando se presiona Enter.
+         * 
+         * @param evt El evento de acción.
+         */
         private void PfContraActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_PfContraActionPerformed
                 btnIniciarS.doClick();
         }// GEN-LAST:event_PfContraActionPerformed
 
+        /**
+         * Limpia el contenido del campo de texto del correo electrónico.
+         * 
+         * @param evt El evento de acción.
+         */
         private void limpiarCorreoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_limpiarCorreoActionPerformed
                 TfCorreo.setText("");
                 TfCorreo.requestFocus();
         }// GEN-LAST:event_limpiarCorreoActionPerformed
 
+        /**
+         * Abre el formulario de registro de nuevos usuarios.
+         * Oculta la ventana actual de inicio de sesión.
+         * 
+         * @param evt El evento de acción.
+         */
         private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistroActionPerformed
                 // Abrir formulario de registro
                 FrmRegistro frmRegistro = new FrmRegistro(this);
@@ -344,6 +372,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 this.setVisible(false);
         }// GEN-LAST:event_btnRegistroActionPerformed
 
+        /**
+         * Maneja el proceso de inicio de sesión.
+         * Valida las credenciales ingresadas, gestiona el acceso de administradores
+         * y redirige al menú principal si el login es exitoso.
+         * 
+         * @param evt El evento de acción.
+         */
         private void btnIniciarSActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnIniciarSActionPerformed
                 // Obtener datos del formulario
                 String correo = TfCorreo.getText().trim();
@@ -378,22 +413,22 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                         return;
                 }
 
-            try {
-                DTOS.UsuarioDTO usuario = controlPresentacion.validarLogin(correo, password);
-                if (usuario.getInfoPersonal().getCorreo().equalsIgnoreCase("admin@gmail.com")) {
-                    javax.swing.JOptionPane.showMessageDialog(this,
-                            "¡Bienvenido Administrador!",
-                            "Acceso Administrativo",
-                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    this.setContentPane(new JPAdmin());
-                    this.setTitle("Panel de Administración");
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setLocationRelativeTo(null);
-                    return;
-                }
-     
+                try {
+                        DTOS.UsuarioDTO usuario = controlPresentacion.validarLogin(correo, password);
+                        if (usuario.getInfoPersonal().getCorreo().equalsIgnoreCase("admin@gmail.com")) {
+                                javax.swing.JOptionPane.showMessageDialog(this,
+                                                "¡Bienvenido Administrador!",
+                                                "Acceso Administrativo",
+                                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                this.setContentPane(new JPAdmin());
+                                this.setTitle("Panel de Administración");
+                                this.revalidate();
+                                this.repaint();
+                                this.pack();
+                                this.setLocationRelativeTo(null);
+                                return;
+                        }
+
                         // Establecer el usuario logueado para pre-llenar formularios
                         controlPresentacion.setUsuarioLogueado(usuario);
 
@@ -415,12 +450,21 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 }
         }
 
+        /**
+         * Maneja las acciones sobre el campo de texto del correo.
+         * Actualmente vacío.
+         * 
+         * @param evt El evento de acción.
+         */
         private void TfCorreoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_TfCorreoActionPerformed
 
         }// GEN-LAST:event_TfCorreoActionPerformed
 
         /**
-         * @param args the command line arguments
+         * Método principal para ejecutar la aplicación.
+         * Configura el Look and Feel y muestra la ventana de inicio de sesión.
+         * 
+         * @param args Argumentos de la línea de comandos.
          */
         public static void main(String args[]) {
                 /* Set the Nimbus look and feel */
@@ -468,20 +512,35 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        /** Panel de cabecera con el título */
         private javax.swing.JPanel PanelHead;
+        /** Panel que contiene los elementos de registro */
         private javax.swing.JPanel PanelRegistro;
+        /** Campo de texto para la contraseña */
         private javax.swing.JPasswordField PfContra;
+        /** Campo de texto para el correo */
         private javax.swing.JTextField TfCorreo;
+        /** Botón para iniciar sesión */
         private javax.swing.JButton btnIniciarS;
+        /** Botón para ir al registro */
         private javax.swing.JButton btnRegistro;
+        /** Título de la aplicación */
         private javax.swing.JLabel jLabel1;
+        /** Etiqueta para la contraseña */
         private javax.swing.JLabel jLabel2;
+        /** Pregunta de registro */
         private javax.swing.JLabel jLabel3;
+        /** Link de registro */
         private javax.swing.JLabel jLabel4;
+        /** Panel principal */
         private javax.swing.JPanel jPanel1;
+        /** Separador visual 1 */
         private javax.swing.JSeparator jSeparator1;
+        /** Separador visual 2 */
         private javax.swing.JSeparator jSeparator2;
+        /** Etiqueta de correo */
         private javax.swing.JLabel lblCorreo;
+        /** Botón para limpiar el campo de correo */
         private javax.swing.JButton limpiarCorreo;
         // End of variables declaration//GEN-END:variables
 }

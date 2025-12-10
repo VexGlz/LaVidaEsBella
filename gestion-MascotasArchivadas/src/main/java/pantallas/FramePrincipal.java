@@ -49,28 +49,56 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
 
     // Método para cambiar de panel
+    /**
+     * Muestra el panel especificado por su nombre.
+     * 
+     * @param nombrePanel Nombre del panel a mostrar ("CATALOGO", "DETALLES", etc.)
+     */
     public void mostrarPanel(String nombrePanel) {
         java.awt.CardLayout cl = (java.awt.CardLayout) panelContenidoDinamico.getLayout();
         cl.show(panelContenidoDinamico, nombrePanel);
     }
 
+    /**
+     * Obtiene el panel de detalles.
+     * 
+     * @return El panel de detalles.
+     */
     public DetallesMascota obtenerPanelDetalles() {
         return panelDetalles;
     }
 
+    /**
+     * Obtiene el panel de eliminar.
+     * 
+     * @return El panel de eliminar.
+     */
     public EliminarMascota obtenerPanelEliminar() {
         return panelEliminar;
     }
 
+    /**
+     * Obtiene el panel de reactivar.
+     * 
+     * @return El panel de reactivar.
+     */
     public ReactivarMascota obtenerPanelReactivar() {
         return panelReactivar;
     }
 
+    /**
+     * Obtiene el panel de expediente médico.
+     * 
+     * @return El panel de expediente médico.
+     */
     public ExpedienteMedico obtenerPanelExpediente() {
         return panelExpediente;
     }
 
     // Método para recargar el catálogo después de eliminar/reactivar
+    /**
+     * Recarga el catálogo de mascotas.
+     */
     public void recargarCatalogo() {
         if (panelCatalogo != null) {
             panelCatalogo.cargarCatalogo();

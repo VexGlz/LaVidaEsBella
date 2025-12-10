@@ -22,16 +22,11 @@ import java.util.Random;
 public class InsertarDatosCompleto {
 
     public static void main(String[] args) {
-        System.out.println("=== Iniciando inserción de datos de prueba ===\n");
-
         try {
             insertarMascotas();
             insertarUsuarioPrueba();
             insertarCitasDisponibles();
-
-            System.out.println("\n=== Datos insertados exitosamente ===");
         } catch (Exception e) {
-            System.err.println("\n=== Error al insertar datos ===");
             e.printStackTrace();
         }
     }
@@ -41,7 +36,7 @@ public class InsertarDatosCompleto {
      * Esto valida que toda la lógica de negocio funcione correctamente
      */
     private static void insertarMascotas() {
-        System.out.println("→ Insertando mascotas...");
+        System.out.println("Insertando mascotas...");
         IMascotas fachadaMascotas = new FachadaMascotas();
 
         try {
@@ -176,7 +171,7 @@ public class InsertarDatosCompleto {
             coleccion.deleteMany(new org.bson.Document());
 
             Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DAY_OF_YEAR, 1);
+            cal.add(Calendar.DAY_OF_YEAR, 2);
 
             String[] horas = { "09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00" };
             Random rand = new Random();

@@ -7,27 +7,38 @@ package gui;
 import gui.flujoAdoptar.*;
 
 /**
- *
+ * Panel de confirmación que notifica al usuario que su solicitud ha sido
+ * enviada.
+ * Muestra el correo electrónico al cual se envió la confirmación.
+ * 
  * @author angel
  */
 public class FrmCorreoConfirmacion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPInfoPersonal
-     */
+    /** Controlador de presentación. */
     private control.ControlPresentacion controlPresentacion;
 
     /**
-     * Creates new form JPInfoPersonal
+     * Crea una nueva instancia del panel de confirmación.
+     * Inicializa los componentes visuales.
      */
     public FrmCorreoConfirmacion() {
         initComponents();
     }
 
+    /**
+     * Establece el controlador de presentación.
+     * 
+     * @param controlPresentacion El controlador a asociar.
+     */
     public void setControlPresentacion(control.ControlPresentacion controlPresentacion) {
         this.controlPresentacion = controlPresentacion;
     }
 
+    /**
+     * Carga los datos confirma la visualización del correo del usuario.
+     * Obtiene el correo del usuario actual desde el controlador y lo muestra.
+     */
     public void cargarDatos() {
         if (controlPresentacion != null) {
             DTOS.UsuarioDTO usuario = controlPresentacion.getUsuarioActual();
@@ -52,7 +63,8 @@ public class FrmCorreoConfirmacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -87,13 +99,12 @@ public class FrmCorreoConfirmacion extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbAdoptadoPreviamenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbAdoptadoPreviamenteActionPerformed
@@ -105,6 +116,7 @@ public class FrmCorreoConfirmacion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCorreo;
+    /** Etiqueta que muestra el correo electrónico del usuario */
     private javax.swing.JLabel lblCorreo1;
     // End of variables declaration//GEN-END:variables
 }

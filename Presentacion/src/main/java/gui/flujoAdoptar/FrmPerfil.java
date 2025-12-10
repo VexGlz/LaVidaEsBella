@@ -8,6 +8,11 @@ package gui.flujoAdoptar;
  *
  * @author angel
  */
+/**
+ * Panel para visualizar la información de perfil del usuario actual.
+ * 
+ * @author angel
+ */
 public class FrmPerfil extends javax.swing.JPanel {
 
     /**
@@ -16,12 +21,17 @@ public class FrmPerfil extends javax.swing.JPanel {
     private control.ControlPresentacion controlPresentacion;
 
     /**
-     * Creates new form JPInfoPersonal
+     * Crea un nuevo formulario FrmPerfil.
      */
     public FrmPerfil() {
         initComponents();
     }
 
+    /**
+     * Establece el controlador de presentación y carga los datos del usuario.
+     * 
+     * @param controlPresentacion El controlador.
+     */
     public void setControlPresentacion(control.ControlPresentacion controlPresentacion) {
         this.controlPresentacion = controlPresentacion;
         cargarDatosUsuario();
@@ -66,6 +76,7 @@ public class FrmPerfil extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -85,37 +96,37 @@ public class FrmPerfil extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("PERFIL");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 310, 80));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 310, 80));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CURP:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 100, 40));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 100, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre:");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, 40));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 100, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Correo:");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 100, 40));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 100, 40));
 
         lblCurp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCurp.setForeground(new java.awt.Color(0, 0, 0));
         lblCurp.setText("nombre");
-        jPanel3.add(lblCurp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 610, -1));
+        jPanel3.add(lblCurp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 420, -1));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setText("nombre");
-        jPanel3.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 600, -1));
+        jPanel3.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 410, -1));
 
         lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreo.setText("nombre");
-        jPanel3.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 590, -1));
+        jPanel3.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 410, -1));
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -131,10 +142,14 @@ public class FrmPerfil extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE));
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE));
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCerrarSesionActionPerformed

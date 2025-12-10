@@ -28,6 +28,12 @@ import java.util.List;
  *
  * @author angel
  */
+/**
+ * Controlador principal de la capa de presentación.
+ * Gestiona la navegación entre pantallas y la comunicación con el subsistema.
+ * 
+ * @author angel
+ */
 public class ControlPresentacion {
 
     private ControlSubsistemas controlSubsistemas;
@@ -53,16 +59,26 @@ public class ControlPresentacion {
     private InfoPersonalDTO borradorInfoPersonal;
     private CitaDisponibleDTO borradorCita;
 
+    /**
+     * Constructor por defecto.
+     * Inicializa el controlador de subsistemas.
+     */
     public ControlPresentacion() {
         this.controlSubsistemas = new ControlSubsistemas();
         this.idUsuarioActual = null;
         this.controlSubsistemas.InicializarAdminUser();
     }
 
+    /**
+     * Inicia el sistema mostrando el menú principal.
+     */
     public void iniciarSistema() {
         mostrarMenuPrincipal();
     }
 
+    /**
+     * Muestra la ventana del menú principal.
+     */
     public void mostrarMenuPrincipal() {
         if (frmMenuPrincipal == null) {
             frmMenuPrincipal = new FrmMenuPrincipal();
@@ -72,17 +88,30 @@ public class ControlPresentacion {
         frmMenuPrincipal.setVisible(true);
     }
 
+    /**
+     * Muestra el menú de mascotas en el menú principal.
+     */
     public void mostrarMenuMascotas() {
         if (frmMenuPrincipal != null) {
             frmMenuPrincipal.mostrarInicio();
         }
     }
 
+    /**
+     * Procesa la selección de una mascota.
+     * 
+     * @param idMascota ID de la mascota seleccionada.
+     */
     public void procesarSeleccionMascota(String idMascota) {
         this.idMascotaSeleccionada = idMascota;
         mostrarInformacionMascota(idMascota);
     }
 
+    /**
+     * Muestra la información detallada de una mascota.
+     * 
+     * @param idMascota ID de la mascota.
+     */
     public void mostrarInformacionMascota(String idMascota) {
         // Buscar la mascota por ID
         MascotaDTO mascota = controlSubsistemas.obtenerMascotaPorId(idMascota);
@@ -92,17 +121,28 @@ public class ControlPresentacion {
         frmInformacionMascota.setVisible(true);
     }
 
+    /**
+     * Continúa con el flujo de solicitud de adopción.
+     */
     public void continuarConSolicitud() {
         cerrarVentana(frmInformacionMascota);
         mostrarInfoPersonal();
     }
 
+    /**
+     * Muestra el formulario de información personal.
+     */
     public void mostrarInfoPersonal() {
         if (frmMenuPrincipal != null) {
             frmMenuPrincipal.mostrarInfoPersonal();
         }
     }
 
+    /**
+     * Guarda la información personal del usuario.
+     * 
+     * @param infoPersonal DTO con la información personal.
+     */
     public void guardarInfoPersonal(InfoPersonalDTO infoPersonal) {
         try {
             // Validar que infoPersonal no sea nulo
@@ -148,12 +188,20 @@ public class ControlPresentacion {
         }
     }
 
+    /**
+     * Muestra el formulario de información de vivienda.
+     */
     public void mostrarInfoVivienda() {
         if (frmMenuPrincipal != null) {
             frmMenuPrincipal.mostrarInfoVivienda();
         }
     }
 
+    /**
+     * Guarda la información de vivienda del usuario.
+     * 
+     * @param infoVivienda DTO con la información de vivienda.
+     */
     public void guardarInfoVivienda(InfoViviendaDTO infoVivienda) {
         try {
             // Asegurar que existe usuario y solicitud
@@ -189,11 +237,19 @@ public class ControlPresentacion {
         }
     }
 
+    /**
+     * Muestra el formulario de razones y antecedentes.
+     */
     public void mostrarRazonesAntecedentes() {
         frmRazonesAntecedentes = new FrmRazonesAntecedentes();
         frmRazonesAntecedentes.setVisible(true);
     }
 
+    /**
+     * Guarda las razones y antecedentes de la solicitud.
+     * 
+     * @param razones DTO con las razones y antecedentes.
+     */
     public void guardarRazonesAntecedentes(RazonesAntecedentesDTO razones) {
         try {
             // Asegurar que existe solicitud
@@ -215,6 +271,9 @@ public class ControlPresentacion {
         }
     }
 
+    /**
+     * Muestra el resumen de la solicitud.
+     */
     public void mostrarInfoResumen() {
         if (frmMenuPrincipal != null) {
             frmMenuPrincipal.mostrarInfoResumen();
@@ -222,18 +281,41 @@ public class ControlPresentacion {
     }
 
     // --- MÉTODOS PARA CITAS ---
+    /**
+     * Obtiene la lista de citas disponibles.
+     * 
+     * @return Lista de DTOs de citas disponibles.
+     */
     public java.util.List<DTOS.CitaDisponibleDTO> obtenerCitasDisponibles() {
         return controlSubsistemas.obtenerCitasDisponibles();
     }
 
+    /**
+     * Reserva una cita para un usuario.
+     * 
+     * @param idCita    ID de la cita.
+     * @param idUsuario ID del usuario.
+     * @return true si la reserva fue exitosa, false en caso contrario.
+     */
     public boolean reservarCita(String idCita, String idUsuario) {
         return controlSubsistemas.reservarCita(idCita, idUsuario);
     }
 
+    /**
+     * Verifica la disponibilidad de una cita.
+     * 
+     * @param idCita ID de la cita.
+     * @return true si la cita está disponible, false en caso contrario.
+     */
     public boolean verificarDisponibilidadCita(String idCita) {
         return controlSubsistemas.verificarDisponibilidadCita(idCita);
     }
 
+    /**
+     * Procesa la solicitud completa incluyendo la cita seleccionada.
+     * 
+     * @param cita DTO de la cita seleccionada.
+     */
     public void procesarCita(DTOS.CitaDTO cita) {
         try {
             // Recuperación de estado si solicitudActual es null
@@ -302,6 +384,9 @@ public class ControlPresentacion {
         idMascotaSeleccionada = null;
     }
 
+    /**
+     * Muestra la pantalla de confirmación.
+     */
     public void mostrarConfirmacion() {
         if (frmMenuPrincipal != null) {
             frmMenuPrincipal.mostrarConfirmacion();
@@ -349,6 +434,9 @@ public class ControlPresentacion {
         return null;
     }
 
+    /**
+     * Finaliza el proceso de adopción.
+     */
     public void finalizarProceso() {
         if (frmCorreoConfirmacion != null)
             frmCorreoConfirmacion.setVisible(false);
@@ -357,6 +445,9 @@ public class ControlPresentacion {
         mostrarMenuPrincipal();
     }
 
+    /**
+     * Cancela el proceso de adopción.
+     */
     public void cancelarProceso() {
         int opcion = JOptionPane.showConfirmDialog(null,
                 "¿Está seguro que desea cancelar el proceso de adopción?",
@@ -395,6 +486,11 @@ public class ControlPresentacion {
             frmCorreoConfirmacion.setVisible(false);
     }
 
+    /**
+     * Obtiene el controlador de subsistemas.
+     * 
+     * @return El controlador de subsistemas.
+     */
     public ControlSubsistemas getControlSubsistemas() {
         return controlSubsistemas;
     }
@@ -497,18 +593,38 @@ public class ControlPresentacion {
         return usuarioActual;
     }
 
+    /**
+     * Obtiene la cita seleccionada actualmente.
+     * 
+     * @return El DTO de la cita seleccionada.
+     */
     public CitaDTO getCitaSeleccionada() {
         return citaSeleccionada;
     }
 
+    /**
+     * Establece la cita seleccionada.
+     * 
+     * @param citaSeleccionada La cita seleccionada.
+     */
     public void setCitaSeleccionada(CitaDTO citaSeleccionada) {
         this.citaSeleccionada = citaSeleccionada;
     }
 
+    /**
+     * Obtiene la solicitud de adopción actual.
+     * 
+     * @return El DTO de la solicitud de adopción.
+     */
     public SolicitudAdopcionDTO getSolicitudActual() {
         return solicitudActual;
     }
 
+    /**
+     * Obtiene el ID de la mascota seleccionada.
+     * 
+     * @return El ID de la mascota seleccionada.
+     */
     public String getIdMascotaSeleccionada() {
         return idMascotaSeleccionada;
     }
@@ -544,7 +660,7 @@ public class ControlPresentacion {
     }
 
     /**
-     * Regresa desde FrmInfoPersonal a la información de la mascota
+     * Regresa desde FrmInfoPersonal a la información de la mascota.
      */
     public void regresarDesdeFrmInfoPersonal() {
         if (frmMenuPrincipal != null && idMascotaSeleccionada != null) {
@@ -553,7 +669,7 @@ public class ControlPresentacion {
     }
 
     /**
-     * Regresa desde FrmInfoVivienda a FrmInfoPersonal
+     * Regresa desde FrmInfoVivienda a FrmInfoPersonal.
      */
     public void regresarDesdeFrmInfoVivienda() {
         if (frmMenuPrincipal != null) {
@@ -562,7 +678,7 @@ public class ControlPresentacion {
     }
 
     /**
-     * Regresa desde FrmRazonesAntecedentes a FrmInfoVivienda
+     * Regresa desde FrmRazonesAntecedentes a FrmInfoVivienda.
      */
     public void regresarDesdeFrmRazonesAntecedentes() {
         if (frmMenuPrincipal != null) {
@@ -571,7 +687,7 @@ public class ControlPresentacion {
     }
 
     /**
-     * Regresa desde JPInfoResumen a FrmRazonesAntecedentes
+     * Regresa desde JPInfoResumen a FrmRazonesAntecedentes.
      */
     public void regresarDesdeInfoResumen() {
         if (frmMenuPrincipal != null) {
@@ -580,7 +696,7 @@ public class ControlPresentacion {
     }
 
     /**
-     * Regresa al menú de selección de especies
+     * Regresa al menú de selección de especies.
      */
     public void regresarAlMenuEspecies() {
         if (menuMostrarEspecies == null) {
@@ -593,28 +709,36 @@ public class ControlPresentacion {
     // --- MÉTODOS PARA BORRADORES ---
 
     /**
-     * Guarda el borrador de información personal
+     * Guarda el borrador de información personal.
+     * 
+     * @param info DTO con la información personal.
      */
     public void guardarBorradorInfoPersonal(InfoPersonalDTO info) {
         this.borradorInfoPersonal = info;
     }
 
     /**
-     * Guarda el borrador de cita seleccionada
+     * Guarda el borrador de cita seleccionada.
+     * 
+     * @param cita DTO con la cita disponible.
      */
     public void guardarBorradorCita(CitaDisponibleDTO cita) {
         this.borradorCita = cita;
     }
 
     /**
-     * Obtiene el borrador de información personal
+     * Obtiene el borrador de información personal.
+     * 
+     * @return El DTO con la información personal.
      */
     public InfoPersonalDTO getBorradorInfoPersonal() {
         return borradorInfoPersonal;
     }
 
     /**
-     * Obtiene el borrador de cita
+     * Obtiene el borrador de cita.
+     * 
+     * @return El DTO con la cita disponible.
      */
     public CitaDisponibleDTO getBorradorCita() {
         return borradorCita;
@@ -623,7 +747,9 @@ public class ControlPresentacion {
     // --- MÉTODOS PARA GESTIÓN DE SOLICITUDES ---
 
     /**
-     * Obtiene todas las solicitudes del usuario actual
+     * Obtiene todas las solicitudes del usuario actual.
+     * 
+     * @return Lista de solicitudes del usuario.
      */
     public List<SolicitudAdopcionDTO> obtenerSolicitudesUsuario() {
         if (idUsuarioActual == null) {
@@ -641,7 +767,10 @@ public class ControlPresentacion {
     }
 
     /**
-     * Cancela una solicitud de adopción
+     * Cancela una solicitud de adopción.
+     * 
+     * @param idSolicitud ID de la solicitud a cancelar.
+     * @throws Exception Si hay un error al cancelar la solicitud.
      */
     public void cancelarSolicitudAdopcion(String idSolicitud) throws Exception {
         if (idSolicitud == null || idSolicitud.isEmpty()) {
@@ -655,7 +784,10 @@ public class ControlPresentacion {
     }
 
     /**
-     * Cancela la cita asociada a una solicitud
+     * Cancela la cita asociada a una solicitud.
+     * 
+     * @param idSolicitud ID de la solicitud.
+     * @throws Exception Si hay un error al cancelar la cita.
      */
     public void cancelarCita(String idSolicitud) throws Exception {
         if (idSolicitud == null || idSolicitud.isEmpty()) {
@@ -682,7 +814,10 @@ public class ControlPresentacion {
     }
 
     /**
-     * Inicia el proceso de reprogramación de cita para una solicitud existente
+     * Inicia el proceso de reprogramación de cita para una solicitud existente.
+     * 
+     * @param idSolicitud ID de la solicitud.
+     * @throws Exception Si hay un error al iniciar la reprogramación.
      */
     public void iniciarReprogramacionCita(String idSolicitud) throws Exception {
         if (idSolicitud == null || idSolicitud.isEmpty()) {
@@ -782,7 +917,7 @@ public class ControlPresentacion {
     }
 
     /**
-     * Actualiza el catálogo de mascotas
+     * Actualiza el catálogo de mascotas.
      */
     public void actualizarCatalogo() {
         if (menuMostrarEspecies != null) {

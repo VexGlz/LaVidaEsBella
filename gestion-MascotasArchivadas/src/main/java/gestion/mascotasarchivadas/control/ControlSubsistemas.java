@@ -13,6 +13,11 @@ public class ControlSubsistemas {
 
     private final IGestionMascotasArchivadas gestionMascotasArchivadas;
 
+    /**
+     * Constructor con inyección de dependencias.
+     * 
+     * @param gestionMascotasArchivadas Instancia de la gestión de mascotas.
+     */
     public ControlSubsistemas(IGestionMascotasArchivadas gestionMascotasArchivadas) {
         this.gestionMascotasArchivadas = gestionMascotasArchivadas;
     }
