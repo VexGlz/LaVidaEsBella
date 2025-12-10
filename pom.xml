@@ -16,6 +16,8 @@
         <module>Infraestructura</module>
         <module>gestion-catalogo</module>
         <module>gestion-MascotasArchivadas</module>
+        <module>CUAceptarSolicitudes</module>
+        <module>CUBuscarMascotaIdeal</module>
     </modules>
 
     <properties>
