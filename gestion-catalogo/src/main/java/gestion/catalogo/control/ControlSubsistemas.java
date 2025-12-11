@@ -1,7 +1,7 @@
 package gestion.catalogo.control;
 
 import gestion.catalogo.dtos.CatalogoDTO;
-import gestion.catalogo.negocio.interfaces.IGestionCatalogo;
+import negocio.gestioncatalogo.subsistema.implementacion.IGestionCatalogo;
 
 import java.util.List;
 

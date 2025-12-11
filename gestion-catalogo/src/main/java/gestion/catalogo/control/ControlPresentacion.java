@@ -3,8 +3,8 @@ package gestion.catalogo.control;
 
 import gestion.catalogo.dtos.CatalogoDTO;
 import gestion.catalogo.dtos.ResultadoOperacion;
-import gestion.catalogo.negocio.implementacion.GestionCatalogo;
-import gestion.catalogo.negocio.interfaces.IGestionCatalogo;
+import negocio.gestioncatalogo.subsistema.implementacion.GestionCatalogo;
+import negocio.gestioncatalogo.subsistema.implementacion.IGestionCatalogo;
 
 import java.util.List;
 
@@ -166,7 +166,7 @@ public class ControlPresentacion {
             // OR ideally, instantiate the BO directly for this specific fix since the user
             // asked me to "take charge".
 
-            gestion.catalogo.negocio.implementacion.ExpedienteBO expedienteBO = new gestion.catalogo.negocio.implementacion.ExpedienteBO();
+            negocio.gestioncatalogo.objetonegocio.ExpedienteBO expedienteBO = new negocio.gestioncatalogo.objetonegocio.ExpedienteBO();
             boolean exito = expedienteBO.actualizarExpediente(expediente);
 
             if (exito) {
