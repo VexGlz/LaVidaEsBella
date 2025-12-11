@@ -84,6 +84,21 @@ public class MascotaDAO {
     }
 
     /**
+     * Busca mascotas por su estado de disponibilidad
+     * 
+     * @param disponible true para buscar mascotas disponibles, false para no
+     *                   disponibles
+     * @return Lista de mascotas con el estado de disponibilidad especificado
+     */
+    public List<Mascota> buscarPorDisponibilidad(boolean disponible) {
+        List<Mascota> mascotas = new ArrayList<>();
+        for (Document doc : collection.find(Filters.eq("disponible", disponible))) {
+            mascotas.add(documentToMascota(doc));
+        }
+        return mascotas;
+    }
+
+    /**
      * Busca mascotas disponibles filtradas por especie
      * 
      * @param especie Especie a buscar (exact match)
@@ -122,6 +137,14 @@ public class MascotaDAO {
         mascota.setRaza(doc.getString("raza"));
         Double peso = doc.getDouble("peso");
         mascota.setPeso(peso != null ? peso : 0.0);
+
+        // Campos para búsqueda de mascota ideal
+        mascota.setTamano(doc.getString("tamano"));
+        mascota.setNivelActividad(doc.getString("nivelActividad"));
+        Boolean peludo = doc.getBoolean("peludo");
+        mascota.setPeludo(peludo != null ? peludo : false);
+        mascota.setCostoMantenimiento(doc.getString("costoMantenimiento"));
+        mascota.setDescripcion(doc.getString("descripcion"));
 
         return mascota;
     }
@@ -176,7 +199,13 @@ public class MascotaDAO {
                 // Nuevos campos
                 .append("color", mascota.getColor())
                 .append("raza", mascota.getRaza())
-                .append("peso", mascota.getPeso());
+                .append("peso", mascota.getPeso())
+                // Campos para búsqueda de mascota ideal
+                .append("tamano", mascota.getTamano())
+                .append("nivelActividad", mascota.getNivelActividad())
+                .append("peludo", mascota.isPeludo())
+                .append("costoMantenimiento", mascota.getCostoMantenimiento())
+                .append("descripcion", mascota.getDescripcion());
         return doc;
     }
 }

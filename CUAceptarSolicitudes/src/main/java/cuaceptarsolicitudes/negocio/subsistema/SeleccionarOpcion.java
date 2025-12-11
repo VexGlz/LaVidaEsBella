@@ -8,9 +8,11 @@ import conexion.ConexionMongoDB;
 import daos.SolicitudAdopcionDAO;
 import daos.MascotaDAO;
 import daos.UsuarioDAO;
+import daos.CitaDAO;
 import entities.SolicitudAdopcion;
 import entities.Mascota;
 import entities.Usuario;
+import entities.Cita;
 import infraestructura.dto.CorreoDTO;
 import infraestructura.sistemacorreo.FachadaCorreo;
 import infraestructura.sistemacorreo.ISistemaCorreo;
@@ -34,6 +36,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
     private final SolicitudAdopcionDAO solicitudDAO;
     private final MascotaDAO mascotaDAO;
     private final UsuarioDAO usuarioDAO;
+    private final CitaDAO citaDAO;
     private final ISolicitudBO solicitudBO;
     private final ISistemaCorreo sistemaCorreo;
 
@@ -41,6 +44,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
         this.solicitudDAO = new SolicitudAdopcionDAO(ConexionMongoDB.getInstancia().getDatabase());
         this.mascotaDAO = new MascotaDAO(ConexionMongoDB.getInstancia().getDatabase());
         this.usuarioDAO = new UsuarioDAO(ConexionMongoDB.getInstancia().getDatabase());
+        this.citaDAO = new CitaDAO(ConexionMongoDB.getInstancia().getDatabase());
         this.solicitudBO = new SolicitudBO();
         this.sistemaCorreo = new FachadaCorreo();
     }
@@ -51,6 +55,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
         this.solicitudDAO = solicitudDAO;
         this.mascotaDAO = mascotaDAO;
         this.usuarioDAO = usuarioDAO;
+        this.citaDAO = new CitaDAO(ConexionMongoDB.getInstancia().getDatabase());
         this.solicitudBO = solicitudBO;
         this.sistemaCorreo = sistemaCorreo;
     }
@@ -74,6 +79,37 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
             }
 
             SolicitudDTO dto = AdaptadorSolicitud.entidadADTO(solicitud, usuario, mascota);
+
+            // Buscar la cita para obtener la fecha
+            // Primero intentar por idCita, si no existe buscar por usuario+mascota
+            try {
+                Cita citaEncontrada = null;
+
+                // Método 1: Buscar por idCita si existe
+                if (solicitud.getIdCita() != null) {
+                    citaEncontrada = citaDAO.buscarPorId(solicitud.getIdCita());
+                }
+
+                // Método 2: Si no hay idCita o no se encontró, buscar por usuario+mascota
+                if (citaEncontrada == null && solicitud.getIdUsuario() != null && solicitud.getIdMascota() != null) {
+                    java.util.List<Cita> citasUsuario = citaDAO.buscarPorUsuario(solicitud.getIdUsuario());
+                    for (Cita c : citasUsuario) {
+                        if (c.getIdMascota() != null && c.getIdMascota().equals(solicitud.getIdMascota())) {
+                            citaEncontrada = c;
+                            dto.setIdCita(c.getId().toString());
+                            break;
+                        }
+                    }
+                }
+
+                // Setear la fecha de la cita si se encontró
+                if (citaEncontrada != null && citaEncontrada.getFechaHora() != null) {
+                    dto.setFechaCita(citaEncontrada.getFechaHora());
+                }
+            } catch (Exception e) {
+                System.err.println("Error al obtener cita: " + e.getMessage());
+            }
+
             solicitudesDTO.add(dto);
         }
 
@@ -177,7 +213,8 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
         }
 
         // 2. Actualizar estado a pendiente de modificación
-        solicitud.setEstado("PENDIENTE_MODIFICACION");
+        solicitud.setEstado("Requiere Modificación");
+        solicitud.setMensajeCorreccion(razonModificacion);
         solicitudDAO.actualizar(solicitud);
 
         // 3. Obtener usuario para enviar correo
@@ -212,14 +249,23 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
             }
 
             String asunto = "¡Felicidades! Tu solicitud de adopción ha sido aceptada";
+
+            // Obtener fecha de cita si existe
+            String infoCita = "";
+            if (solicitud.getFechaSolicitud() != null) {
+                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter
+                        .ofPattern("dd/MM/yyyy HH:mm");
+                infoCita = "\n\nFecha de tu cita: " + solicitud.getFechaSolicitud().format(formatter);
+            }
+
             String mensaje = String.format(
                     "Hola %s,\n\n" +
-                            "¡Tenemos excelentes noticias! Tu solicitud de adopción para %s ha sido ACEPTADA.\n\n" +
-                            "En breve nos pondremos en contacto contigo para coordinar los siguientes pasos.\n\n" +
+                            "¡Tenemos excelentes noticias! Tu solicitud de adopción para %s ha sido ACEPTADA.%s\n\n" +
+                            "Por favor, preséntate en la fecha y hora indicada en nuestra oficina.\n\n" +
                             "Gracias por dar un hogar a uno de nuestros amigos peludos.\n\n" +
                             "Atentamente,\n" +
                             "El equipo de La Vida es Bella",
-                    nombreUsuario, nombreMascota);
+                    nombreUsuario, nombreMascota, infoCita);
 
             CorreoDTO correo = new CorreoDTO(destinatario, asunto, mensaje);
             sistemaCorreo.enviarCorreo(correo);

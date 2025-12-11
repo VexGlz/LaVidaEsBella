@@ -55,7 +55,7 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnNoAlergias">
           <Properties>
-            <Property name="text" type="java.lang.String" value="SI"/>
+            <Property name="text" type="java.lang.String" value="No"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNoAlergiasActionPerformed"/>
@@ -219,6 +219,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarMascotasActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="150" y="450" width="-1" height="-1"/>
@@ -250,7 +253,7 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnNotiempoFuera">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jRadioButton1"/>
+            <Property name="text" type="java.lang.String" value="No"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

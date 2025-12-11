@@ -13,7 +13,7 @@ public class ConfiguracionCorreo {
 
     // Bandera para modo de pruebas (evita enviar correos reales y bloqueo de
     // Google)
-    public static final boolean MODO_DEBUG = true;
+    public static final boolean MODO_DEBUG = false;
 
     // Configuración del servidor SMTP (Gmail)
     public static final String SMTP_HOST = "smtp.gmail.com";
@@ -22,8 +22,8 @@ public class ConfiguracionCorreo {
     public static final boolean SMTP_STARTTLS = true;
 
     // Credenciales del remitente
-    public static final String CORREO_REMITENTE = "lavidaesbellavet@gmail.com";
-    public static final String PASSWORD_REMITENTE = "iursbfcnjxoksddq"; // Contraseña de aplicación (sin espacios)
+    public static final String CORREO_REMITENTE = "beltranfraijo.joseluis.cb37@gmail.com";
+    public static final String PASSWORD_REMITENTE = "ciijtzlfnwuefczp"; // Contraseña de aplicación (sin espacios)
 
     // Nombre del remitente que aparecerá en el correo
     public static final String NOMBRE_REMITENTE = "La Vida es Bella - Sistema de Adopciones";

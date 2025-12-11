@@ -630,6 +630,32 @@ public class ControlPresentacion {
     }
 
     /**
+     * Establece el ID de la mascota seleccionada.
+     * 
+     * @param id El ID de la mascota seleccionada.
+     */
+    public void setIdMascotaSeleccionada(String id) {
+        this.idMascotaSeleccionada = id;
+    }
+
+    /**
+     * Obtiene las solicitudes del usuario actual.
+     * 
+     * @return Lista de solicitudes del usuario actual.
+     */
+    public List<SolicitudAdopcionDTO> obtenerSolicitudesUsuarioActual() {
+        try {
+            if (usuarioActual != null && usuarioActual.getId() != null) {
+                return controlSubsistemas.buscarSolicitudesPorUsuario(usuarioActual.getId());
+            }
+            return new java.util.ArrayList<>();
+        } catch (Exception e) {
+            System.err.println("Error al obtener solicitudes del usuario: " + e.getMessage());
+            return new java.util.ArrayList<>();
+        }
+    }
+
+    /**
      * Cancela el proceso de solicitud de adopción actual
      * Limpia todos los datos temporales y regresa al menú principal
      */

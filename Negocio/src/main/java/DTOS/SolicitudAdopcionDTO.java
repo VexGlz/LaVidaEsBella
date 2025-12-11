@@ -16,6 +16,7 @@ public class SolicitudAdopcionDTO {
     private LocalDateTime fechaSolicitud;
     private String estado; // PENDIENTE, APROBADA, etc.
     private String idCita; // ID de la cita asociada
+    private String mensajeCorreccion; // Mensaje del admin para modificación
 
     public SolicitudAdopcionDTO() {
         this.razones = new RazonesAntecedentesDTO();
@@ -88,5 +89,20 @@ public class SolicitudAdopcionDTO {
 
     public void setFechaCita(LocalDateTime fechaCita) {
         this.fechaCita = fechaCita;
+    }
+
+    public String getMensajeCorreccion() {
+        return mensajeCorreccion;
+    }
+
+    public void setMensajeCorreccion(String mensajeCorreccion) {
+        this.mensajeCorreccion = mensajeCorreccion;
+    }
+
+    /**
+     * Helper method to get mascota ID
+     */
+    public String getIdMascota() {
+        return mascota != null ? mascota.getId() : null;
     }
 }

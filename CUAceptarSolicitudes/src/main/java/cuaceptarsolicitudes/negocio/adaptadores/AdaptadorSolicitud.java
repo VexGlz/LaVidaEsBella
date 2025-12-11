@@ -61,6 +61,14 @@ public class AdaptadorSolicitud {
         dto.setEstado(solicitud.getEstado());
         dto.setFechaSolicitud(solicitud.getFechaSolicitud());
 
+        // Mapear idCita
+        if (solicitud.getIdCita() != null) {
+            dto.setIdCita(solicitud.getIdCita().toString());
+        }
+
+        // Mapear mensaje de corrección
+        dto.setMensajeCorreccion(solicitud.getMensajeCorreccion());
+
         return dto;
     }
 

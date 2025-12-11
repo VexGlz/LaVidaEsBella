@@ -50,6 +50,12 @@ public class InsertarDatosCompleto {
             mascota1.setUrlImagen("/images/mascotas/perro1.jpg");
             mascota1.setDisponible(true);
             mascota1.setEstado("Disponible");
+            // Campos para búsqueda de mascota ideal
+            mascota1.setTamano("mediano");
+            mascota1.setNivelActividad("alto");
+            mascota1.setPeludo(true);
+            mascota1.setCostoMantenimiento("medio");
+            mascota1.setDescripcion("Perro juguetón perfecto para familias activas");
             fachadaMascotas.registrarMascota(mascota1);
 
             // Mascota 2: Luna - Gato
@@ -62,6 +68,12 @@ public class InsertarDatosCompleto {
             mascota2.setUrlImagen("/images/mascotas/gato1.jpg");
             mascota2.setDisponible(true);
             mascota2.setEstado("Disponible");
+            // Campos para búsqueda de mascota ideal
+            mascota2.setTamano("pequeño");
+            mascota2.setNivelActividad("bajo");
+            mascota2.setPeludo(true);
+            mascota2.setCostoMantenimiento("bajo");
+            mascota2.setDescripcion("Gata tranquila, ideal para apartamentos");
             fachadaMascotas.registrarMascota(mascota2);
 
             // Mascota 3: Rocky - Perro
@@ -74,6 +86,12 @@ public class InsertarDatosCompleto {
             mascota3.setUrlImagen("/images/mascotas/perro2.jpg");
             mascota3.setDisponible(true);
             mascota3.setEstado("Disponible");
+            // Campos para búsqueda de mascota ideal
+            mascota3.setTamano("grande");
+            mascota3.setNivelActividad("alto");
+            mascota3.setPeludo(true);
+            mascota3.setCostoMantenimiento("alto");
+            mascota3.setDescripcion("Perro enérgico que necesita mucho ejercicio y espacio");
             fachadaMascotas.registrarMascota(mascota3);
 
             // Mascota 4: Michi - Gato
@@ -86,6 +104,12 @@ public class InsertarDatosCompleto {
             mascota4.setUrlImagen("/images/mascotas/gato2.jpg");
             mascota4.setDisponible(true);
             mascota4.setEstado("Disponible");
+            // Campos para búsqueda de mascota ideal
+            mascota4.setTamano("pequeño");
+            mascota4.setNivelActividad("medio");
+            mascota4.setPeludo(true);
+            mascota4.setCostoMantenimiento("bajo");
+            mascota4.setDescripcion("Gatito joven y curioso, fácil de cuidar");
             fachadaMascotas.registrarMascota(mascota4);
 
             // Mascota 5: Piolín - Pájaro
@@ -98,6 +122,12 @@ public class InsertarDatosCompleto {
             mascota5.setUrlImagen("/images/mascotas/pajaro1.jpg");
             mascota5.setDisponible(true);
             mascota5.setEstado("Disponible");
+            // Campos para búsqueda de mascota ideal
+            mascota5.setTamano("pequeño");
+            mascota5.setNivelActividad("medio");
+            mascota5.setPeludo(false);
+            mascota5.setCostoMantenimiento("bajo");
+            mascota5.setDescripcion("Pájaro cantarín, perfecto para espacios pequeños");
             fachadaMascotas.registrarMascota(mascota5);
 
             // Mascota 6: Verde - Reptil
@@ -110,6 +140,12 @@ public class InsertarDatosCompleto {
             mascota6.setUrlImagen("/images/mascotas/reptil1.jpg");
             mascota6.setDisponible(true);
             mascota6.setEstado("Disponible");
+            // Campos para búsqueda de mascota ideal
+            mascota6.setTamano("mediano");
+            mascota6.setNivelActividad("bajo");
+            mascota6.setPeludo(false);
+            mascota6.setCostoMantenimiento("medio");
+            mascota6.setDescripcion("Reptil tranquilo de bajo mantenimiento");
             fachadaMascotas.registrarMascota(mascota6);
 
             System.out.println("6 mascotas insertadas correctamente\n");

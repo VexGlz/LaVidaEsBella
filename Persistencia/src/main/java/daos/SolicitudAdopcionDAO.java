@@ -86,6 +86,19 @@ public class SolicitudAdopcionDAO {
     }
 
     /**
+     * Busca todas las solicitudes de adopción en el sistema
+     * 
+     * @return Lista de todas las solicitudes
+     */
+    public List<SolicitudAdopcion> buscarTodas() {
+        List<SolicitudAdopcion> solicitudes = new ArrayList<>();
+        for (Document doc : collection.find()) {
+            solicitudes.add(documentToSolicitud(doc));
+        }
+        return solicitudes;
+    }
+
+    /**
      * Convierte un Document de MongoDB a una entidad SolicitudAdopcion
      * 
      * @param doc Document de MongoDB con los datos de la solicitud
@@ -111,6 +124,9 @@ public class SolicitudAdopcionDAO {
             razones.setAceptaSeguimiento(razonesDoc.getBoolean("aceptaSeguimiento", false));
             solicitud.setRazones(razones);
         }
+
+        solicitud.setMensajeCorreccion(doc.getString("mensajeCorreccion"));
+        solicitud.setIdCita(doc.getObjectId("idCita"));
 
         return solicitud;
     }
@@ -141,6 +157,14 @@ public class SolicitudAdopcionDAO {
                     .append("antecedentesMascotas", solicitud.getRazones().getAntecedentesMascotas())
                     .append("aceptaSeguimiento", solicitud.getRazones().isAceptaSeguimiento());
             doc.append("razones", razonesDoc);
+        }
+
+        if (solicitud.getMensajeCorreccion() != null) {
+            doc.append("mensajeCorreccion", solicitud.getMensajeCorreccion());
+        }
+
+        if (solicitud.getIdCita() != null) {
+            doc.append("idCita", solicitud.getIdCita());
         }
 
         return doc;

@@ -39,6 +39,20 @@ public class UsuarioDAO {
     }
 
     /**
+     * Busca un usuario por su ID
+     * 
+     * @param id El ObjectId del usuario
+     * @return El usuario encontrado o null
+     */
+    public Usuario buscarPorId(ObjectId id) {
+        Document doc = collection.find(Filters.eq("_id", id)).first();
+        if (doc == null) {
+            return null;
+        }
+        return documentToUsuario(doc);
+    }
+
+    /**
      * Guarda un nuevo usuario en la base de datos
      * 
      * @param usuario El usuario a guardar

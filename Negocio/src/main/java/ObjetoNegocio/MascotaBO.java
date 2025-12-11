@@ -227,6 +227,13 @@ public class MascotaBO implements IMascotaBO {
         dto.setRaza(entidad.getRaza());
         dto.setPeso(entidad.getPeso());
 
+        // Campos para búsqueda de mascota ideal
+        dto.setTamano(entidad.getTamano());
+        dto.setNivelActividad(entidad.getNivelActividad());
+        dto.setPeludo(entidad.isPeludo());
+        dto.setCostoMantenimiento(entidad.getCostoMantenimiento());
+        dto.setDescripcion(entidad.getDescripcion());
+
         return dto;
     }
 
@@ -261,6 +268,13 @@ public class MascotaBO implements IMascotaBO {
         entidad.setColor(dto.getColor());
         entidad.setRaza(dto.getRaza());
         entidad.setPeso(dto.getPeso());
+
+        // Campos para búsqueda de mascota ideal
+        entidad.setTamano(dto.getTamano());
+        entidad.setNivelActividad(dto.getNivelActividad());
+        entidad.setPeludo(dto.isPeludo());
+        entidad.setCostoMantenimiento(dto.getCostoMantenimiento());
+        entidad.setDescripcion(dto.getDescripcion());
 
         return entidad;
     }

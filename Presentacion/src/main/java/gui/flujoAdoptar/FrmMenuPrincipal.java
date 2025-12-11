@@ -6,6 +6,7 @@ package gui.flujoAdoptar;
 
 import gui.JPContacto;
 import gui.JPSolicitudes;
+import presentacion.JPPerfilCUBuscar;
 
 /**
  * Ventana principal de la aplicación para el flujo de adopción.
@@ -29,8 +30,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private FrmRazonesAntecedentes frmRazonesAntecedentes;
     /** Panel de resumen de la solicitud */
     private JPInfoResumen frmInfoResumen;
-    /** Panel de perfil de usuario */
-    private FrmPerfil frmPerfil;
+    /** Panel de perfil de usuario con búsqueda de mascota ideal */
+    private JPPerfilCUBuscar jpPerfilCUBuscar;
 
     /** Panel para listar solicitudes del usuario */
     private JPSolicitudes jpSolicitudes;
@@ -63,7 +64,22 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         frmRazonesAntecedentes = new FrmRazonesAntecedentes();
         frmInfoResumen = new JPInfoResumen();
         jpSolicitudes = new JPSolicitudes();
-        frmPerfil = new FrmPerfil();
+        jpPerfilCUBuscar = new JPPerfilCUBuscar();
+        // Configurar listener para el flujo de adopción
+        jpPerfilCUBuscar.setAdopcionListener((idMascota, nombreMascota, porcentaje) -> {
+            // Establecer la mascota seleccionada en el control
+            if (controlPresentacion != null) {
+                controlPresentacion.setIdMascotaSeleccionada(idMascota);
+            }
+            // Navegar al formulario de información personal
+            mostrarInfoPersonal();
+        });
+        // Configurar listener para cerrar sesión
+        jpPerfilCUBuscar.setCerrarSesionListener(() -> {
+            if (controlPresentacion != null) {
+                controlPresentacion.cerrarSesion();
+            }
+        });
         frmCorreoConfirmacion = new gui.FrmCorreoConfirmacion();
 
         // Agregar al CardLayout con identificadores clave
@@ -74,7 +90,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         panelContenidoDinamico.add(frmInfoVivienda, "infoVivienda");
         panelContenidoDinamico.add(frmRazonesAntecedentes, "razonesAntecedentes");
         panelContenidoDinamico.add(frmInfoResumen, "infoResumen");
-        panelContenidoDinamico.add(frmPerfil, "perfil");
+        panelContenidoDinamico.add(jpPerfilCUBuscar, "perfil");
         panelContenidoDinamico.add(frmCorreoConfirmacion, "confirmacion");
 
         cardLayout.show(panelContenidoDinamico, "inicio");
@@ -106,8 +122,79 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         if (jpSolicitudes != null) {
             jpSolicitudes.setControlPresentacion(control);
         }
-        if (frmPerfil != null) {
-            frmPerfil.setControlPresentacion(control);
+        if (jpPerfilCUBuscar != null) {
+            // JPPerfilCUBuscar uses cubuscarmascotaideal.control.ControlPresentacion
+            cubuscarmascotaideal.control.ControlPresentacion controlCUBuscar = new cubuscarmascotaideal.control.ControlPresentacion();
+            jpPerfilCUBuscar.setControlPresentacion(controlCUBuscar);
+
+            // Cargar datos del usuario actual en los labels del perfil
+            if (control != null && control.getUsuarioActual() != null) {
+                DTOS.UsuarioDTO usuario = control.getUsuarioActual();
+                String nombre = usuario.getInfoPersonal() != null ? usuario.getInfoPersonal().getNombre() : "Usuario";
+                String correo = usuario.getInfoPersonal() != null ? usuario.getInfoPersonal().getCorreo() : "";
+                String curp = usuario.getInfoPersonal() != null ? usuario.getInfoPersonal().getCurp() : "";
+                jpPerfilCUBuscar.setDatosUsuario(nombre, correo, curp);
+            }
+        }
+
+        // Verificar si hay solicitudes que requieren modificación del usuario
+        verificarModificacionesPendientes();
+    }
+
+    /**
+     * Verifica si el usuario tiene solicitudes que requieren modificación y muestra
+     * popup.
+     */
+    private void verificarModificacionesPendientes() {
+        if (controlPresentacion == null)
+            return;
+
+        try {
+            // Obtener las solicitudes del usuario actual
+            java.util.List<DTOS.SolicitudAdopcionDTO> solicitudes = controlPresentacion
+                    .obtenerSolicitudesUsuarioActual();
+
+            for (DTOS.SolicitudAdopcionDTO solicitud : solicitudes) {
+                if ("Requiere Modificación".equalsIgnoreCase(solicitud.getEstado())) {
+                    // Mostrar popup al usuario
+                    String mensaje = solicitud.getMensajeCorreccion();
+                    if (mensaje == null || mensaje.isEmpty()) {
+                        mensaje = "El administrador ha solicitado que modifiques tu solicitud.";
+                    }
+
+                    int opcion = javax.swing.JOptionPane.showConfirmDialog(this,
+                            "El administrador ha solicitado modificaciones en tu solicitud:\n\n" +
+                                    "\"" + mensaje + "\"\n\n" +
+                                    "¿Deseas modificar tu solicitud ahora?",
+                            "Modificación Requerida",
+                            javax.swing.JOptionPane.YES_NO_OPTION,
+                            javax.swing.JOptionPane.QUESTION_MESSAGE);
+
+                    if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                        // Cargar datos de la solicitud y navegar al formulario
+                        controlPresentacion.setIdMascotaSeleccionada(solicitud.getIdMascota());
+                        mostrarInfoPersonal();
+                    } else {
+                        // Cancelar la solicitud
+                        int confirmar = javax.swing.JOptionPane.showConfirmDialog(this,
+                                "Si no modificas la solicitud, será cancelada.\n¿Estás seguro de cancelar?",
+                                "Confirmar Cancelación",
+                                javax.swing.JOptionPane.YES_NO_OPTION,
+                                javax.swing.JOptionPane.WARNING_MESSAGE);
+
+                        if (confirmar == javax.swing.JOptionPane.YES_OPTION) {
+                            controlPresentacion.cancelarSolicitudAdopcion(solicitud.getId());
+                            javax.swing.JOptionPane.showMessageDialog(this,
+                                    "Tu solicitud ha sido cancelada.",
+                                    "Solicitud Cancelada",
+                                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                    break; // Solo procesar la primera solicitud pendiente
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error al verificar modificaciones pendientes: " + e.getMessage());
         }
     }
 
@@ -326,12 +413,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// GEN-LAST:event_lblUserImageMouseClicked
 
     /**
-     * Navega a la sección de inicio (catálogo) al pulsar el botón Inicio.
+     * Navega a la sección de administración al pulsar el botón Inicio.
      * 
      * @param evt El evento de acción.
      */
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_inicioActionPerformed
         if (cardLayout != null) {
+            // Mostrar panel de inicio (catálogo de mascotas)
             cardLayout.show(panelContenidoDinamico, "inicio");
         }
     }// GEN-LAST:event_btn_inicioActionPerformed

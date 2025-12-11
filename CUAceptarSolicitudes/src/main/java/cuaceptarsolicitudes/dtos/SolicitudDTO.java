@@ -19,6 +19,7 @@ public class SolicitudDTO {
     private LocalDateTime fechaSolicitud;
     private LocalDateTime fechaCita;
     private String idCita;
+    private String mensajeCorreccion;
 
     public SolicitudDTO() {
     }
@@ -102,6 +103,14 @@ public class SolicitudDTO {
 
     public void setIdCita(String idCita) {
         this.idCita = idCita;
+    }
+
+    public String getMensajeCorreccion() {
+        return mensajeCorreccion;
+    }
+
+    public void setMensajeCorreccion(String mensajeCorreccion) {
+        this.mensajeCorreccion = mensajeCorreccion;
     }
 
     @Override

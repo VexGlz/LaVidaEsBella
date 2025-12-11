@@ -23,6 +23,15 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
 
     private ControlPresentacion controlPresentacion;
     private JPEncuesta encuestaPanel;
+    private AdopcionListener adopcionListener;
+    private Runnable cerrarSesionListener;
+
+    /**
+     * Interface para manejar navegación a flujo de adopción
+     */
+    public interface AdopcionListener {
+        void onAdoptarMascota(String idMascota, String nombreMascota, double porcentajeCompatibilidad);
+    }
 
     /**
      * Creates new form JPPerfilCUBuscar
@@ -31,6 +40,20 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
         initComponents();
         configurarEncuesta();
         configurarBotones();
+    }
+
+    /**
+     * Establece el listener para el flujo de adopción
+     */
+    public void setAdopcionListener(AdopcionListener listener) {
+        this.adopcionListener = listener;
+    }
+
+    /**
+     * Establece el listener para cerrar sesión
+     */
+    public void setCerrarSesionListener(Runnable listener) {
+        this.cerrarSesionListener = listener;
     }
 
     /**
@@ -66,12 +89,26 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
      * Carga los datos del usuario actual en el perfil
      */
     public void cargarDatosUsuario() {
-        if (controlPresentacion != null) {
-            // TODO: Implement user data loading when login system is ready
-            lblNombre.setText("Usuario");
-            lblCorreo.setText("email@example.com");
-            lblCurp.setText("CURP000000XXXXXX");
-        }
+        // Use setDatosUsuario for loading user data from external source
+        lblNombre.setText("Usuario");
+        lblCorreo.setText("email@example.com");
+        lblCurp.setText("CURP");
+    }
+
+    /**
+     * Establece los datos del usuario directamente en los labels del perfil
+     * 
+     * @param nombre Nombre del usuario
+     * @param correo Correo electrónico del usuario
+     * @param curp   CURP del usuario
+     */
+    public void setDatosUsuario(String nombre, String correo, String curp) {
+        if (nombre != null)
+            lblNombre.setText(nombre);
+        if (correo != null)
+            lblCorreo.setText(correo);
+        if (curp != null)
+            lblCurp.setText(curp);
     }
 
     /**
@@ -101,6 +138,8 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
                 // No se encontraron mascotas compatibles
                 mostrarPanelNoHayMascotas();
             } else {
+                // Volver al perfil para mostrar los resultados
+                volverAPerfil();
                 // Mostrar las mascotas encontradas
                 mostrarMascotasEnScroll(mascotasCompatibles);
                 JOptionPane.showMessageDialog(this,
@@ -157,17 +196,19 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
      * Abre el flujo de adopción con la mascota seleccionada
      */
     private void abrirFlujoAdopcion(MascotaResultadoDTO mascotaResultado) {
-        if (controlPresentacion != null) {
+        if (adopcionListener != null) {
+            // Usar el callback para que el módulo Presentacion maneje la navegación
+            adopcionListener.onAdoptarMascota(
+                    mascotaResultado.getId(),
+                    mascotaResultado.getNombre(),
+                    mascotaResultado.getPorcentajeCompatibilidad());
+        } else {
             JOptionPane.showMessageDialog(this,
                     "Funcionalidad de adopción para: " + mascotaResultado.getNombre() +
                             "\n(Compatibilidad: "
-                            + String.format("%.0f", mascotaResultado.getPorcentajeCompatibilidad()) + "%)",
+                            + String.format("%.0f", mascotaResultado.getPorcentajeCompatibilidad()) + "%)" +
+                            "\n\nAdopcionListener no configurado.",
                     "Iniciar Adopción", JOptionPane.INFORMATION_MESSAGE);
-            // TODO: Integrar con flujo de adopción cuando esté disponible
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Error: No se puede iniciar el flujo de adopción",
-                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -214,7 +255,7 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -273,8 +314,7 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
         btnBuscarMascotaIdeal.setBackground(new java.awt.Color(0, 153, 51));
         btnBuscarMascotaIdeal.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         btnBuscarMascotaIdeal.setText("Buscar mascota ideal");
-        btnBuscarMascotaIdeal
-                .setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBuscarMascotaIdeal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscarMascotaIdeal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarMascotaIdealActionPerformed(evt);
@@ -288,17 +328,17 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1197,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 688,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarMascotaIdealActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBuscarMascotaIdealActionPerformed
@@ -315,10 +355,13 @@ public class JPPerfilCUBuscar extends javax.swing.JPanel {
     }// GEN-LAST:event_btnBuscarMascotaIdealActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO: Implement logout functionality when user session system is ready
-        JOptionPane.showMessageDialog(this,
-                "Funcionalidad de cerrar sesión pendiente",
-                "Información", JOptionPane.INFORMATION_MESSAGE);
+        if (cerrarSesionListener != null) {
+            cerrarSesionListener.run();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No se puede cerrar sesión en este momento",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }// GEN-LAST:event_btnCerrarSesionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

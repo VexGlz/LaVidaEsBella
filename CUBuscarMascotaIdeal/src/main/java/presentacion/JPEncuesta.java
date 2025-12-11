@@ -185,7 +185,7 @@ public class JPEncuesta extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -282,6 +282,11 @@ public class JPEncuesta extends javax.swing.JPanel {
         jPanel3.add(rbtnNogastobastante, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, -1, -1));
 
         btnBuscarMascotas.setText("Buscar");
+        btnBuscarMascotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarMascotasActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnBuscarMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
 
         lblTiempoFuera.setText("¿Pasaras mucho tiempo fuera de tu hogar?");
@@ -295,24 +300,31 @@ public class JPEncuesta extends javax.swing.JPanel {
         });
         jPanel3.add(rbtnSITiempoFuera, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, -1, -1));
 
-        rbtnNotiempoFuera.setText("jRadioButton1");
+        rbtnNotiempoFuera.setText("No");
         jPanel3.add(rbtnNotiempoFuera, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1291,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 601,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMascotasActionPerformed
+        EncuestaDTO encuesta = obtenerCriterios();
+        if (encuesta != null && listener != null) {
+            listener.onBusquedaCompletada(encuesta);
+        }
+    }//GEN-LAST:event_btnBuscarMascotasActionPerformed
 
     private void rbtnNoAlergiasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rbtnNoAlergiasActionPerformed
         // TODO add your handling code here:
@@ -334,12 +346,7 @@ public class JPEncuesta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_rbtnSITiempoFueraActionPerformed
 
-    private void btnBuscarMascotasActionPerformed(java.awt.event.ActionEvent evt) {
-        EncuestaDTO encuesta = obtenerCriterios();
-        if (encuesta != null && listener != null) {
-            listener.onBusquedaCompletada(encuesta);
-        }
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarMascotas;

@@ -27,6 +27,13 @@ public class MascotaDTO {
     private String raza;
     private double peso; // en kilogramos
 
+    // Campos para búsqueda de mascota ideal
+    private String tamano;
+    private String nivelActividad;
+    private boolean peludo;
+    private String costoMantenimiento;
+    private String descripcion;
+
     public MascotaDTO() {
     }
 
@@ -131,6 +138,46 @@ public class MascotaDTO {
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    public String getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(String tamano) {
+        this.tamano = tamano;
+    }
+
+    public String getNivelActividad() {
+        return nivelActividad;
+    }
+
+    public void setNivelActividad(String nivelActividad) {
+        this.nivelActividad = nivelActividad;
+    }
+
+    public boolean isPeludo() {
+        return peludo;
+    }
+
+    public void setPeludo(boolean peludo) {
+        this.peludo = peludo;
+    }
+
+    public String getCostoMantenimiento() {
+        return costoMantenimiento;
+    }
+
+    public void setCostoMantenimiento(String costoMantenimiento) {
+        this.costoMantenimiento = costoMantenimiento;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override

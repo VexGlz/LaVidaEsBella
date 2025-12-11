@@ -18,6 +18,8 @@ public class SolicitudAdopcion {
 
     private LocalDateTime fechaSolicitud;
     private String estado;
+    private String mensajeCorreccion;
+    private ObjectId idCita;
 
     public SolicitudAdopcion() {
     }
@@ -69,6 +71,22 @@ public class SolicitudAdopcion {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getMensajeCorreccion() {
+        return mensajeCorreccion;
+    }
+
+    public void setMensajeCorreccion(String mensajeCorreccion) {
+        this.mensajeCorreccion = mensajeCorreccion;
+    }
+
+    public ObjectId getIdCita() {
+        return idCita;
+    }
+
+    public void setIdCita(ObjectId idCita) {
+        this.idCita = idCita;
     }
 
 }
