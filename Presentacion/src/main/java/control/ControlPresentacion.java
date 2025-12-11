@@ -900,13 +900,12 @@ public class ControlPresentacion {
             }
         }
 
-        // AGREGAR ESTE BLOQUE AQUÍ ↓↓↓
         // Guardar los datos precargados en la BD para que estén disponibles la próxima
         // vez
         if (viviendaEncontrada && usuarioActual != null && usuarioActual.getId() != null) {
             try {
                 controlSubsistemas.actualizarUsuario(usuarioActual);
-                System.out.println("✓ Datos de vivienda precargados guardados en BD");
+                System.out.println("Datos de vivienda precargados guardados en BD");
             } catch (Exception e) {
                 System.err.println("Error al actualizar usuario con datos precargados: " + e.getMessage());
             }
