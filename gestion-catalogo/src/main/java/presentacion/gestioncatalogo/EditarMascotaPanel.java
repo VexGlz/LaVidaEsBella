@@ -5,6 +5,7 @@
 package presentacion.gestioncatalogo;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -91,19 +92,41 @@ public class EditarMascotaPanel extends javax.swing.JPanel {
 
         private void cargarImagenExistente(String urlImagen) {
                 try {
-                        File archivoImagen = new File(urlImagen);
+                        // Normalizar la ruta: quitar "/" inicial si existe
+                        String rutaRecurso = urlImagen.startsWith("/") ? urlImagen.substring(1) : urlImagen;
 
-                        // Si no es absoluta o no existe, intentar buscar en resources
-                        if (!archivoImagen.isAbsolute() || !archivoImagen.exists()) {
-                                String rutaCompleta = "src/main/resources/images/mascotas/" + urlImagen;
-                                archivoImagen = new File(rutaCompleta);
+                        // Intentar cargar desde recursos primero
+                        java.net.URL imageUrl = getClass().getClassLoader().getResource(rutaRecurso);
+                        if (imageUrl != null) {
+                                try {
+                                        // Convertir URL a File si es posible
+                                        File archivoImagen = new File(imageUrl.toURI());
+                                        imagenSeleccionada = archivoImagen;
+                                        cargarImagenEnLabel(archivoImagen);
+                                        return;
+                                } catch (Exception ex) {
+                                        // Si no se puede convertir a File, cargar directamente desde URL
+                                        BufferedImage img = javax.imageio.ImageIO.read(imageUrl);
+                                        if (img != null) {
+                                                Image scaledImg = img.getScaledInstance(
+                                                                lbl_Img.getWidth() > 0 ? lbl_Img.getWidth() : 200,
+                                                                lbl_Img.getHeight() > 0 ? lbl_Img.getHeight() : 200,
+                                                                Image.SCALE_SMOOTH);
+                                                lbl_Img.setIcon(new ImageIcon(scaledImg));
+                                                lbl_Img.setText("");
+                                                return;
+                                        }
+                                }
                         }
 
+                        // Si no se encontró en recursos, intentar como archivo absoluto
+                        File archivoImagen = new File(urlImagen);
                         if (archivoImagen.exists()) {
                                 imagenSeleccionada = archivoImagen;
                                 cargarImagenEnLabel(archivoImagen);
                         } else {
-                                System.err.println("Imagen no encontrada: " + urlImagen);
+                                System.err.println("Imagen no encontrada - Recurso: " + rutaRecurso + " | Archivo: "
+                                                + urlImagen);
                                 lbl_Img.setIcon(null);
                                 lbl_Img.setText("No Encontrada");
                         }

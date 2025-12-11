@@ -194,7 +194,7 @@ public class GestionCatalogoPanel extends javax.swing.JPanel {
                 .addComponent(perro6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addContainerGap(258, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btn_infoMascota2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,7 +240,7 @@ public class GestionCatalogoPanel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(jLabel4)))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +280,7 @@ public class GestionCatalogoPanel extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addComponent(jLabel3)))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +298,7 @@ public class GestionCatalogoPanel extends javax.swing.JPanel {
 
         JScrollPaneCatalogo.setViewportView(JPaneCatalogo);
 
-        jPanel1.add(JScrollPaneCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1350, 420));
+        jPanel1.add(JScrollPaneCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1400, 420));
 
         btn_agregarMascota.setText("Agregar Nueva Mascota");
         jPanel1.add(btn_agregarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 540, 60));

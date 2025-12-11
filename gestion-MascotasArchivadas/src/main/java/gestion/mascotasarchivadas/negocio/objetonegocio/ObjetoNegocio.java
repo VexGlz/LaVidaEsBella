@@ -36,7 +36,8 @@ public class ObjetoNegocio {
 
     /**
      * Verifica si una mascota puede ser reactivada.
-     * Solo se pueden reactivar mascotas archivadas (estado = "baja").
+     * Solo se pueden reactivar mascotas archivadas (estado que comience con
+     * "baja").
      * 
      * @param mascota DTO de la mascota a verificar
      * @return true si puede reactivarse, false en caso contrario
@@ -52,8 +53,9 @@ public class ObjetoNegocio {
             return false;
         }
 
-        // Verificar que esté archivada
-        if (!"baja".equalsIgnoreCase(mascota.getEstado())) {
+        // Verificar que esté archivada (estado comienza con "baja")
+        String estado = mascota.getEstado() != null ? mascota.getEstado().toLowerCase() : "";
+        if (!estado.startsWith("baja")) {
             System.err.println("Validación falló: mascota no está archivada (estado: " + mascota.getEstado() + ")");
             return false;
         }

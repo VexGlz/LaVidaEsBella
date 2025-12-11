@@ -74,14 +74,22 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
 
                 // Listener para ver detalles
                 card.agregarListenerDetalle(e -> {
-                    FramePrincipal frame = (FramePrincipal) javax.swing.SwingUtilities.getWindowAncestor(this);
-                    if (frame != null) {
+                    // Obtener la ventana ancestro sin hacer cast específico
+                    java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+                    if (window instanceof FramePrincipal) {
+                        FramePrincipal frame = (FramePrincipal) window;
                         // Obtener panel de detalles y pasarle el ID
                         DetallesMascota detalles = frame.obtenerPanelDetalles();
                         if (detalles != null) {
                             detalles.setMascotaId(mascota.getId());
                         }
                         frame.mostrarPanel("DETALLES");
+                    } else {
+                        System.err.println("Error: Ventana ancestro no es FramePrincipal. Tipo: " +
+                                (window != null ? window.getClass().getName() : "null"));
+                        javax.swing.JOptionPane.showMessageDialog(this,
+                                "Error de navegación. Por favor, abra el módulo desde el menú de administración.",
+                                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                     }
                 });
 
@@ -152,9 +160,22 @@ public class CatalogoMascotasArchivadas extends javax.swing.JPanel {
                 card.setImagenMascota(mascota.getUrlImagen());
 
                 card.agregarListenerDetalle(e -> {
-                    FramePrincipal frame = (FramePrincipal) javax.swing.SwingUtilities.getWindowAncestor(this);
-                    if (frame != null) {
+                    // Obtener la ventana ancestro sin hacer cast específico
+                    java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+                    if (window instanceof FramePrincipal) {
+                        FramePrincipal frame = (FramePrincipal) window;
+                        // Obtener panel de detalles y pasarle el ID
+                        DetallesMascota detalles = frame.obtenerPanelDetalles();
+                        if (detalles != null) {
+                            detalles.setMascotaId(mascota.getId());
+                        }
                         frame.mostrarPanel("DETALLES");
+                    } else {
+                        System.err.println("Error: Ventana ancestro no es FramePrincipal en filtro. Tipo: " +
+                                (window != null ? window.getClass().getName() : "null"));
+                        javax.swing.JOptionPane.showMessageDialog(this,
+                                "Error de navegación. Por favor, abra el módulo desde el menú de administración.",
+                                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                     }
                 });
 
