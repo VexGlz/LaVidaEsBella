@@ -3,7 +3,7 @@ package cuaceptarsolicitudes.negocio.subsistema;
 import cuaceptarsolicitudes.dtos.SolicitudDTO;
 import cuaceptarsolicitudes.negocio.adaptadores.AdaptadorSolicitud;
 import cuaceptarsolicitudes.negocio.BO.SolicitudBO;
-import cuaceptarsolicitudes.negocio.interfaces.ISolicitudBO;
+import cuaceptarsolicitudes.negocio.BO.ISolicitudBO;
 import conexion.ConexionMongoDB;
 import daos.SolicitudAdopcionDAO;
 import daos.MascotaDAO;
@@ -139,7 +139,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
                 mascota.setDisponible(false);
                 mascota.setEstado("adoptada");
                 mascotaDAO.actualizar(mascota);
-                System.out.println("✓ Mascota " + mascota.getNombre() + " marcada como adoptada");
+                System.out.println(" Mascota " + mascota.getNombre() + " marcada como adoptada");
             }
         }
 
@@ -154,7 +154,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
             enviarCorreoAceptacion(usuario, solicitud);
         }
 
-        System.out.println("✓ Solicitud aceptada exitosamente");
+        System.out.println("Solicitud aceptada exitosamente");
         return true;
     }
 
@@ -181,7 +181,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
                 mascota.setDisponible(true);
                 mascota.setEstado("disponible");
                 mascotaDAO.actualizar(mascota);
-                System.out.println("✓ Mascota " + mascota.getNombre() + " liberada (disponible)");
+                System.out.println("Mascota " + mascota.getNombre() + " liberada (disponible)");
             }
         }
 
@@ -196,7 +196,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
             enviarCorreoRechazo(usuario, solicitud);
         }
 
-        System.out.println("✓ Solicitud rechazada exitosamente");
+        System.out.println(" Solicitud rechazada exitosamente");
         return true;
     }
 
@@ -228,7 +228,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
             enviarCorreoModificacion(usuario, solicitud, razonModificacion);
         }
 
-        System.out.println("✓ Solicitud marcada como pendiente de modificación");
+        System.out.println("Solicitud marcada como pendiente de modificación");
         return true;
     }
 
@@ -248,7 +248,7 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
                 }
             }
 
-            String asunto = "¡Felicidades! Tu solicitud de adopción ha sido aceptada";
+            String asunto = "Tu solicitud de adopción ha sido aceptada";
 
             // Obtener fecha de cita si existe
             String infoCita = "";
@@ -269,9 +269,9 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
 
             CorreoDTO correo = new CorreoDTO(destinatario, asunto, mensaje);
             sistemaCorreo.enviarCorreo(correo);
-            System.out.println("✓ Correo de aceptación enviado a: " + destinatario);
+            System.out.println("Correo de aceptación enviado a: " + destinatario);
         } catch (Exception e) {
-            System.err.println("⚠ Error al enviar correo de aceptación: " + e.getMessage());
+            System.err.println("Error al enviar correo de aceptación: " + e.getMessage());
         }
     }
 
@@ -303,9 +303,9 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
 
             CorreoDTO correo = new CorreoDTO(destinatario, asunto, mensaje);
             sistemaCorreo.enviarCorreo(correo);
-            System.out.println("✓ Correo de rechazo enviado a: " + destinatario);
+            System.out.println("Correo de rechazo enviado a: " + destinatario);
         } catch (Exception e) {
-            System.err.println("⚠ Error al enviar correo de rechazo: " + e.getMessage());
+            System.err.println("Error al enviar correo de rechazo: " + e.getMessage());
         }
     }
 
@@ -336,9 +336,9 @@ public class SeleccionarOpcion implements ISeleccionarOpcion {
 
             CorreoDTO correo = new CorreoDTO(destinatario, asunto, mensaje);
             sistemaCorreo.enviarCorreo(correo);
-            System.out.println("✓ Correo de modificación enviado a: " + destinatario);
+            System.out.println("Correo de modificación enviado a: " + destinatario);
         } catch (Exception e) {
-            System.err.println("⚠ Error al enviar correo de modificación: " + e.getMessage());
+            System.err.println("Error al enviar correo de modificación: " + e.getMessage());
         }
     }
 }

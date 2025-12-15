@@ -405,19 +405,15 @@ public class JPSolicitudesCU extends javax.swing.JPanel {
                         return;
                 }
 
-                String razonModificacion = JOptionPane.showInputDialog(this,
-                                "Ingresa la razón de la modificación requerida:",
-                                "Modificar Solicitud",
-                                JOptionPane.QUESTION_MESSAGE);
+                // Mostrar diálogo JDMsgModificacion para ingresar razón
+                java.awt.Frame parentFrame = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+                String razonModificacion = controlPresentacion.mostrarDialogoModificacion(parentFrame);
 
                 if (razonModificacion != null && !razonModificacion.trim().isEmpty()) {
-                        ResultadoOperacion resultado = controlPresentacion.modificarSolicitud(solicitud.getId(),
-                                        "admin@gmail.com",
-                                        razonModificacion);
+                        ResultadoOperacion resultado = controlPresentacion.modificarSolicitud(
+                                        solicitud.getId(), "admin@gmail.com", razonModificacion);
                         if (resultado.isExitoso()) {
-                                JOptionPane.showMessageDialog(this, resultado.getMensaje(), "Éxito",
-                                                JOptionPane.INFORMATION_MESSAGE);
-                                cargarSolicitudes();
+                                controlPresentacion.mostrarCorreoConfirmacion(solicitud.getCorreoUsuario());
                         } else {
                                 JOptionPane.showMessageDialog(this, resultado.getMensaje(), "Error",
                                                 JOptionPane.ERROR_MESSAGE);
@@ -443,12 +439,10 @@ public class JPSolicitudesCU extends javax.swing.JPanel {
                                 JOptionPane.YES_NO_OPTION);
 
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                        ResultadoOperacion resultado = controlPresentacion.aceptarSolicitud(solicitud.getId(),
-                                        "admin@gmail.com");
+                        ResultadoOperacion resultado = controlPresentacion.aceptarSolicitud(
+                                        solicitud.getId(), "admin@gmail.com");
                         if (resultado.isExitoso()) {
-                                JOptionPane.showMessageDialog(this, resultado.getMensaje(), "Éxito",
-                                                JOptionPane.INFORMATION_MESSAGE);
-                                cargarSolicitudes();
+                                controlPresentacion.mostrarCorreoConfirmacion(solicitud.getCorreoUsuario());
                         } else {
                                 JOptionPane.showMessageDialog(this, resultado.getMensaje(), "Error",
                                                 JOptionPane.ERROR_MESSAGE);
@@ -466,17 +460,16 @@ public class JPSolicitudesCU extends javax.swing.JPanel {
                 }
 
                 int confirmacion = JOptionPane.showConfirmDialog(this,
-                                "¿Está seguro de cancelar la cita de " + solicitud.getNombreUsuario() + "?",
+                                "¿Está seguro de cancelar/rechazar la solicitud de " + solicitud.getNombreUsuario()
+                                                + "?",
                                 "Confirmar Cancelación",
                                 JOptionPane.YES_NO_OPTION);
 
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                        ResultadoOperacion resultado = controlPresentacion.rechazarSolicitud(solicitud.getId(),
-                                        "admin@gmail.com");
+                        ResultadoOperacion resultado = controlPresentacion.rechazarSolicitud(
+                                        solicitud.getId(), "admin@gmail.com");
                         if (resultado.isExitoso()) {
-                                JOptionPane.showMessageDialog(this, resultado.getMensaje(), "Éxito",
-                                                JOptionPane.INFORMATION_MESSAGE);
-                                cargarSolicitudes();
+                                controlPresentacion.mostrarCorreoConfirmacion(solicitud.getCorreoUsuario());
                         } else {
                                 JOptionPane.showMessageDialog(this, resultado.getMensaje(), "Error",
                                                 JOptionPane.ERROR_MESSAGE);

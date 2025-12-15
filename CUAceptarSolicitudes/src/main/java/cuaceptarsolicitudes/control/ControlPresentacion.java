@@ -2,17 +2,30 @@ package cuaceptarsolicitudes.control;
 
 import cuaceptarsolicitudes.dtos.ResultadoOperacion;
 import cuaceptarsolicitudes.dtos.SolicitudDTO;
+import cuaceptarsolicitudes.presentacion.JPSolicitudesCU;
+import cuaceptarsolicitudes.presentacion.JDinfoSolicitud;
+import cuaceptarsolicitudes.presentacion.JDMsgModificacion;
+import cuaceptarsolicitudes.presentacion.FrmCorreoConfirmacion;
 
+import javax.swing.JPanel;
+import java.awt.Frame;
 import java.util.List;
 
 /**
  * Fachada principal del módulo de aceptar solicitudes (Boundary).
  * Proporciona una interfaz simplificada para la capa de presentación,
  * maneja excepciones y traduce errores a mensajes de usuario.
+ * Coordina la navegación entre las pantallas del caso de uso.
  */
 public class ControlPresentacion {
 
     private final ControlSubsistemas controlSubsistemas;
+
+    // Referencias a las Boundaries
+    private JPanel panelContenedor;
+    private JPSolicitudesCU panelSolicitudes;
+    private FrmCorreoConfirmacion panelCorreoConfirmacion;
+    private Runnable inicioCallback;
 
     public ControlPresentacion() {
         // Inicializar con implementación por defecto
@@ -22,6 +35,77 @@ public class ControlPresentacion {
     // Constructor con inyección de dependencias
     public ControlPresentacion(ControlSubsistemas controlSubsistemas) {
         this.controlSubsistemas = controlSubsistemas;
+    }
+
+    /**
+     * Establece el panel contenedor donde se mostrarán las pantallas.
+     * 
+     * @param panelContenedor JPanel contenedor principal
+     */
+    public void setPanelContenedor(JPanel panelContenedor) {
+        this.panelContenedor = panelContenedor;
+    }
+
+    /**
+     * Establece el callback para regresar al menú de inicio.
+     * 
+     * @param callback Runnable que se ejecuta al regresar al inicio
+     */
+    public void setInicioCallback(Runnable callback) {
+        this.inicioCallback = callback;
+    }
+
+    /**
+     * Muestra el panel de solicitudes de adopción.
+     * Crea y configura el panel si no existe.
+     */
+    public void mostrarPanelSolicitudes() {
+        if (panelSolicitudes == null) {
+            panelSolicitudes = new JPSolicitudesCU();
+            panelSolicitudes.setControlPresentacion(this);
+            panelSolicitudes.setInicioListener(() -> regresarAlInicio());
+        }
+
+        if (panelContenedor != null) {
+            panelContenedor.removeAll();
+            panelContenedor.add(panelSolicitudes);
+            panelContenedor.revalidate();
+            panelContenedor.repaint();
+        }
+    }
+
+    /**
+     * Muestra el diálogo con los detalles de una solicitud.
+     * 
+     * @param solicitud   SolicitudDTO con los datos a mostrar
+     * @param parentFrame Frame padre para el diálogo
+     */
+    public void mostrarDetallesSolicitud(SolicitudDTO solicitud, Frame parentFrame) {
+        if (solicitud != null && parentFrame != null) {
+            JDinfoSolicitud dialog = new JDinfoSolicitud(parentFrame, true, solicitud);
+            dialog.setLocationRelativeTo(parentFrame);
+            dialog.setVisible(true);
+        }
+    }
+
+    /**
+     * Regresa al menú de inicio.
+     * Ejecuta el callback de inicio si está configurado.
+     */
+    public void regresarAlInicio() {
+        if (inicioCallback != null) {
+            inicioCallback.run();
+        }
+    }
+
+    /**
+     * Actualiza la tabla de solicitudes en el panel actual.
+     */
+    public void actualizarVista() {
+        if (panelSolicitudes != null) {
+            // El panel recargará las solicitudes
+            mostrarPanelSolicitudes();
+        }
     }
 
     /**
@@ -135,6 +219,40 @@ public class ControlPresentacion {
             System.err.println("Error al modificar solicitud: " + e.getMessage());
             e.printStackTrace();
             return ResultadoOperacion.error("Error inesperado al modificar la solicitud: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Muestra el diálogo de modificación para ingresar la razón.
+     * 
+     * @param parentFrame Frame padre para el diálogo
+     * @return El texto ingresado, o null si se canceló
+     */
+    public String mostrarDialogoModificacion(Frame parentFrame) {
+        JDMsgModificacion dialog = new JDMsgModificacion(parentFrame, true);
+        dialog.setLocationRelativeTo(parentFrame);
+        dialog.setVisible(true);
+        return dialog.getMensaje();
+    }
+
+    /**
+     * Muestra el panel de confirmación de correo enviado.
+     * 
+     * @param correoUsuario Correo del usuario al que se envió la notificación
+     */
+    public void mostrarCorreoConfirmacion(String correoUsuario) {
+        if (panelCorreoConfirmacion == null) {
+            panelCorreoConfirmacion = new FrmCorreoConfirmacion();
+        }
+
+        panelCorreoConfirmacion.setCorreo(correoUsuario);
+        panelCorreoConfirmacion.setOnVolver(() -> mostrarPanelSolicitudes());
+
+        if (panelContenedor != null) {
+            panelContenedor.removeAll();
+            panelContenedor.add(panelCorreoConfirmacion);
+            panelContenedor.revalidate();
+            panelContenedor.repaint();
         }
     }
 }

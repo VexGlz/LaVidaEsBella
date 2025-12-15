@@ -10,7 +10,7 @@ public class ResultadoOperacion {
     private boolean exitoso;
     private String mensaje;
     private TipoMensaje tipo;
-    private String idGenerado; // ID generado para entidades creadas
+    private String idGenerado;
 
     public enum TipoMensaje {
         EXITO,
@@ -19,18 +19,15 @@ public class ResultadoOperacion {
         INFO
     }
 
-    // Constructor vacío
     public ResultadoOperacion() {
     }
 
-    // Constructor completo
     public ResultadoOperacion(boolean exitoso, String mensaje, TipoMensaje tipo) {
         this.exitoso = exitoso;
         this.mensaje = mensaje;
         this.tipo = tipo;
     }
 
-    // Métodos de fábrica para crear resultados comunes
     public static ResultadoOperacion exito(String mensaje) {
         return new ResultadoOperacion(true, mensaje, TipoMensaje.EXITO);
     }

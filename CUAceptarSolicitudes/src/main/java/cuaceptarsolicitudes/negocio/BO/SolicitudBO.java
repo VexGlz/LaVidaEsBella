@@ -1,7 +1,6 @@
 package cuaceptarsolicitudes.negocio.BO;
 
 import cuaceptarsolicitudes.dtos.SolicitudDTO;
-import cuaceptarsolicitudes.negocio.interfaces.ISolicitudBO;
 
 /**
  * Implementación de validaciones de negocio para solicitudes de adopción.
@@ -28,7 +27,6 @@ public class SolicitudBO implements ISolicitudBO {
         if (idSolicitud == null || idSolicitud.trim().isEmpty()) {
             return false;
         }
-        // Podría agregarse lógica adicional aquí
         return true;
     }
 
@@ -37,7 +35,6 @@ public class SolicitudBO implements ISolicitudBO {
         if (idSolicitud == null || idSolicitud.trim().isEmpty()) {
             return false;
         }
-        // Podría agregarse lógica adicional aquí
         return true;
     }
 
@@ -46,7 +43,6 @@ public class SolicitudBO implements ISolicitudBO {
         if (idSolicitud == null || idSolicitud.trim().isEmpty()) {
             return false;
         }
-        // Podría agregarse lógica adicional aquí
         return true;
     }
 }
